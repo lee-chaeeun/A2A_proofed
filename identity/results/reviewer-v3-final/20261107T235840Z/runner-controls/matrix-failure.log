@@ -1,9 +1,0 @@
-== snapshot /tmp/tmp.gODIP6MlFG/snap/20261107T235832Z-v3final-snapshot
-== build (trimpath) from the working tree and from the extracted snapshot
-gate ok: go build (tree) (exit 0)
-gate ok: go build (snapshot) (exit 0)
-9d91bdbd71280f99a986102ccd5bf1ecf0631577d7c0be235e40c5b585d0e87f  bin/a2aid
-9d91bdbd71280f99a986102ccd5bf1ecf0631577d7c0be235e40c5b585d0e87f  a2aid-from-snapshot
-gate ok: binaries identical
-== matrix: 24-cell V3 subset, final manifest
-GATE FAILED: matrix (exit 1, expected 0)

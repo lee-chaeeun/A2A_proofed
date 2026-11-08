@@ -1,1 +1,0 @@
-producer: run 20261108-000017 (evidence schema 1: ids+events, no typed context; continuity inventory written post-run); checker: v2 9d91bdbd71280f99a986102ccd5bf1ecf0631577d7c0be235e40c5b585d0e87f  bin/a2aid

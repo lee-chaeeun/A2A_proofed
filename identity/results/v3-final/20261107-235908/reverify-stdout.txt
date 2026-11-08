@@ -1,1 +1,0 @@
-reverify: 24/24 agree; wrote results/v3-final/20261107-235908/reverify.md

@@ -1,34 +1,61 @@
-# Results map: which artifact supports which claim
+# Results and their interpretation
 
-Paths are relative to this repository. Full reports: `identity/RESULTS_V3_FINAL.md`,
-`identity/RESULTS_V3_CORRECTIONS.md`, `identity/RESULTS_V2.md`, `zk-component/RESULTS_ZK.md`,
-`zk-component/RESULTS_ZK_CORRECTIONS.md`; the paper's own table is `paper/CLAIM_EVIDENCE_TABLE.md`.
+The implementation integrates TPM-format attestation with A2A and separately transports
+and appraises RISC Zero task proofs. The rationale for physical key protection is in
+[HARDWARE_AND_PTV.md](HARDWARE_AND_PTV.md); it is separate from these measurements.
 
-## Identity component (`identity/`)
-| claim (paper section) | artifact | note |
-|---|---|---|
-| Endpoint/TLS controls stop copy, replay, different-address and credential-less hijack; stolen TLS credentials defeat +tls (§4.1, Table 1, App. C) | `identity/results/v2/20261107-194025/matrix.csv`, `appraisals.*`, `provenance.json`, `predictions-frozen.md` | 231 cells, 201 applicable, 199/201 predicted; per-cell traces of this run are not in the copy |
-| Channel binding rejects the stolen-TLS relay identically for S-env and T; 24/24 agreement incl. 8 attacker deliveries; receipts 10 TLS (5 A, 5 B) + 4 HTTP (§4.2, Table 2) | `identity/results/v3-final/20261108-004047/matrix.csv`, `release-audit.md`, `release-audit-summary.json`, `cells/*` | checker v2 exit 0: 6 verified dispatches, 10 verified non-dispatches, 8 fixture-expected violations |
-| Pre-fix binding downgrade and cross-policy oracle deliver to the relay (§4.3) | `identity/results/v3-repro/20261107-202528/matrix.csv` | archived v2 binary; 17 matches / 7 misses against post-fix predictions |
-| Pre-fix dispatch to a replacement connection (§4.3) | `identity/results/audit/20261107T225036Z-v2-continuity-historical/go-test-output.txt` (line "RESULT: B RECEIVED THE JOB") | adapted test on an isolated extraction of the archived v2 source; logs rather than asserts |
-| Post-fix continuity cases and churn (§4.4) | `identity/results/v3-final/20261108-004047/continuity/`, `continuity-test-summary.txt`, `churn.txt` | T+cb 30/30/0; S-env+cb 28 refused + 2 client-unknown, 30 A receipts, 0 B |
-| Checker v1 false-cleans and v2 classifications (§4.5) | `identity/results/audit/20261107T233054Z-checker-falseclean-before/`, `…234220Z-checker-falseclean-after/`, `identity/results/reviewer-v3-final/` | exits 2,2,1,1,1 after |
-| swtpm clone + PCR re-extend impersonates A under T/P (§4.1 F19/F21) | `identity/results/v2/20261107-194025/matrix.csv` rows F19, F21 | software emulator only |
-| Superseded first final run (schema 1, checker v1) and two failed attempts | `identity/results/v3-final/20261108-000017/` (top level), `20261107-235740/`, `20261107-235908/` | kept deliberately; not validation evidence |
+## Identity
 
-## Computation component (`zk-component/`)
-| claim (paper section) | artifact | note |
-|---|---|---|
-| Genuine proofs; 12 min to first proof; 22.1–23.6 s per proof; 223,348-byte receipts (§5.1) | `zk-component/results/zk/feasibility/feasibility.json`, `results/zk/20261108-111817/exchanges.jsonl`, `receipts/` | one CPU host; 7 timings |
-| 52/52 cells; Z6/Z7 Pinned vs Current; Z4 obsolete input with fresh challenge; Z3 replay (§5.2, Table 3) | `zk-component/results/zk/20261108-111817/decisions.jsonl`, `summary.md`, `ledgers.json`, `run-inventory.json` | inventory declared before execution; 9 exchanges, 7 new proofs, 0 cache hits (`run-stats.json`) |
-| Oracle v2 agreement, 10 receipt/image pairs re-verified (7 valid, 3 rejected), 7 expected weak-policy successes (§5.3) | `zk-component/results/zk/20261108-111817/oracle-summary.json`, `oracle.md` | re-runnable: `bin/a2aid zk-oracle --results … --verify-bin zk/target/release/zkverify --out <dir>` |
-| Oracle v1 false-cleans; v2 rejects 24 mutations (§5.3) | `zk-component/results/audit/20261108T105605Z-zk-before-fix/oracle-controls-pre-edit/controls.json`, `…111037Z-zk-oracle-controls-after-legacyview/controls.json`, `…112131Z-…-after-schema2/controls.json` | per-case `cli.log` and `oracle-summary.json` kept; mutated run copies omitted |
-| Unsigned-card task delivery before the transport repair; rejected after (§5.3) | `…105605Z-zk-before-fix/unsigned-card-characterization-pre-edit.log`, `…112430Z-zkcorr-final-snapshot/unsigned-card-characterization-post-fix.log`, `zk-component/internal/zk/transport_test.go` | reviewer evidence in `results/reviewer-zk/20261108T103550Z/` |
-| First run (superseded as validation) and its legacy replay view | `zk-component/results/zk/20261108-002724/`, `results/audit/20261108T112526Z-zk-legacy-view-20261108-002724/` | same 52 outcomes; scored by oracle v1 at the time |
-| Independent second executions | `zk-component/results/zk-integration/20261108-112143/`, `20261108-003306/` | integration test logs `results/zk/zk-integration-test*.log` |
-| Pre-specification and timestamp disclosure (§5.3, App. B) | `zk-component/results/zk/PLAN.sha256` (00:06:31Z), `results/zk/20261108-002012/predictions-frozen.json` (byte-identical to `fixtures/zk/predictions.json`) | `frozen_at` string in the JSON is a mislabeled local time |
+Primary run: `identity/results/v3-final/20261108-004047`.
 
-## Metrics as printed in the paper
-Identity v2: 55/140 attacker-endpoint cells delivered to B (per policy in §4.1); honest 0/22 rejected.
-Identity final: 24/24 decision and recipient agreement; 14 receipts (10 TLS: 5 A, 5 B; 4 HTTP).
-ZK final: 52/52; wrong-context accepted 3/8; unsafe approvals 5/12; legitimate denied 0/12.
+- 24/24 decisions and recipients match the declared expectations: six deliveries to A,
+  eight to B under the selected weaker policies, ten with no recipient.
+- Against a relay with A's TLS key but no extra signing capability, bound software-envelope
+  and TPM-quote policies both reject the relay. This isolates the effect of the protocol;
+  it does not compare physical extraction resistance.
+- Proof is tied to the signer's own TLS connection, and guarded dispatch refuses a
+  replacement connection. Separate continuity tests cover both proof types.
+- Churn: T+cb has 30 honest deliveries and 30 refusals, with no B receipts. S-env+cb has
+  30 honest deliveries, 28 refusals and two client-unknown outcomes, with no B receipts.
+- Broad reference matrix: `identity/results/v2/20261107-194025`, 21 fixtures × 11 policies,
+  201 applicable cells out of 231 and 199 prediction matches. It covers file copying,
+  fresh/replayed proofs, signer access, transport controls and emulator cloning.
+
+The copied source is final. Earlier comparison observations do not represent a second
+installable code version. The emulator's copyable state and synthetic PCR cannot establish
+physical key protection or actual executing workload integrity.
+
+## Computation proofs
+
+Primary run: `zk-component/results/zk/20261108-111817`.
+Integration rerun: `zk-component/results/zk-integration/20261108-112143`.
+
+- 13 fixtures × four policies, 52/52 expected outcomes in each execution.
+- Nine network exchanges, seven new genuine proofs, zero cache hits in the primary run.
+- Z6 and Z7 use byte-identical receipt and challenge: Pinned authorizes the historical
+  result; Current requires the authority's current commitment. VI/VTI enforce the distinction.
+- A fresh challenge with obsolete input is accepted by V0/VT, demonstrating the need for
+  input authorization beyond freshness.
+- Wrong-context acceptances 3/8; unauthorized-input approvals 5/12; legitimate denials 0/12.
+  These are overlapping, hand-selected coverage groups, not population attack rates.
+- Oracle re-verification: ten receipt/image pairs, seven verified and three rejected.
+  Seven expected weak-policy attack successes remain explicitly visible.
+- The schema-2 evidence controls include unmodified plus 24 mutations; only unmodified is
+  clean. The oracle checks retained bytes, inventory completeness and event-derived ledgers.
+
+All policies use ZK. No signature-only comparison, physical TPM result, combined TPM/ZK
+handshake, model-honesty result or empirical privacy improvement is claimed.
+
+## Reading the evidence
+
+Identity `matrix.csv` summarizes fixture/policy outcomes; `appraisals.jsonl` separates
+proof acceptance from dispatch; per-cell receipt logs identify A/B observations;
+`release-audit-summary.json` summarizes structural checks.
+
+ZK `decisions.jsonl` separates `proof_valid`, context/input checks, `approval_allowed` and
+`approval_inserted`; `receipts/` holds actual proof bytes; `events.jsonl` and `ledgers.json`
+support action ordering and duplicate checks; `oracle-summary.json` reports re-verification.
+
+A clean audit means supported evidence agrees with the declared semantics, including
+expected weak-policy failures. It does not mean every policy is secure, and it does not
+protect against coordinated fabrication by trusted observers.

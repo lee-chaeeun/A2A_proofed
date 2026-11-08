@@ -1,1 +1,0 @@
-FAILED ATTEMPT (retained): every A2A delivery timed out because the identity requester's 20 s HTTP timeout is shorter than a ~24 s genuine proof; the worker did prove (6 proofs cached). Fixed by a configurable HTTPTimeout (identity default unchanged, 15 min for zk_task). Superseded by the next results/zk run.

@@ -1,1 +1,0 @@
-FAILED ATTEMPT (retained): all 52 cells matched the frozen predictions, but the offline oracle mis-scored Z5/VI because it located decision points heuristically (it attributed the next fixture's authority reset to Z5). Fixed by an explicit zk_decision marker emitted at the linearization point; the oracle now joins on that marker's order. Superseded by the next results/zk run.

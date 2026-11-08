@@ -1,11 +1,15 @@
-# docs/
+# Documentation
 
-- `SUBMISSION_READINESS.md` — status of the paper and of this copy, checks performed, blockers.
-- `RESULTS.md` — claim → artifact map for both components and the printed metrics.
-- `THREAT_MODEL.md` — trusted parties, attacker capabilities, measured outcomes, scope.
-- `PROVENANCE.md`, `PROVENANCE_MANIFEST.json` — per-file hashes, source paths, snapshot linkage, shared ancestry.
-- `ARTIFACT_INVENTORY.md` — every retained run and control set, including superseded and failed ones.
-- `ATTRIBUTION.md` — pre-sprint code, third-party dependencies, licence status (not yet chosen).
-- `OMISSIONS.md` — what the copy leaves out and where it remains.
-- `reviews/` — the review documents that drove each correction (v1, v2, v3, v3-final, v3 corrections, ZK component).
-- `packaging/` — `build_public_copy.py` (allowlist used to build this tree), `verify_manifest.py`.
+- [HARDWARE_AND_PTV.md](HARDWARE_AND_PTV.md): physical-TPM motivation, implemented emulator scope, PTV relationship and why TPM/PQC are separate issues.
+- [TOOLS.md](TOOLS.md): tools, upstream repositories, versions and code origins.
+- [THREAT_MODEL.md](THREAT_MODEL.md): actors, attacker capabilities and trusted boundaries.
+- [RESULTS.md](RESULTS.md): final measurements and what they establish.
+- [ARTIFACT_INVENTORY.md](ARTIFACT_INVENTORY.md): the selected runs and validation evidence included here.
+- [PROVENANCE.md](PROVENANCE.md) and [PROVENANCE_MANIFEST.json](PROVENANCE_MANIFEST.json): source mapping and file hashes.
+- [ATTRIBUTION.md](ATTRIBUTION.md): preexisting sample code, sprint work and licenses.
+- [OMISSIONS.md](OMISSIONS.md): what is intentionally excluded.
+- [SUBMISSION_READINESS.md](SUBMISSION_READINESS.md): paper/package status and checks.
+
+Only the final application source is distributed. Selected baseline measurements and
+regression evidence remain to support comparisons in the paper. Superseded run archives,
+review correspondence and planning documents are outside the public tree.

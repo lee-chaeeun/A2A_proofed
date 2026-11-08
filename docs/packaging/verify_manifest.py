@@ -1,28 +1,47 @@
 #!/usr/bin/env python3
-"""Verify every file of the publication copy against docs/PROVENANCE_MANIFEST.json
-(sha256 and size) and report files present in the tree but absent from the manifest.
-Run from the repository root: python3 docs/packaging/verify_manifest.py"""
-import hashlib, json, os, sys
+"""Check publication hashes and sizes, missing files, and unexpected files."""
+import hashlib
+import json
 from pathlib import Path
-root = Path(__file__).resolve().parents[2]
-man = json.loads((root / 'docs' / 'PROVENANCE_MANIFEST.json').read_text())
-bad, missing = [], []
-listed = set()
-for e in man['entries']:
-    p = root / e['published_path']
-    listed.add(e['published_path'])
-    if not p.exists():
-        missing.append(e['published_path']); continue
-    if hashlib.sha256(p.read_bytes()).hexdigest() != e['sha256']:
-        bad.append(e['published_path'])
-extra = []
-for p in root.rglob('*'):
-    if p.is_file() and not any(part in ('.git', 'bin', 'target') for part in p.parts):
-        r = p.relative_to(root).as_posix()
-        if r not in listed and not r.startswith('docs/') and r not in ('.gitignore', 'README.md', 'LICENSE', 'NOTICE', 'paper/README-BUILD.txt', 'paper/main.tex'):
-            extra.append(r)
-print('manifest entries: %d; hash mismatches: %d; missing: %d; unlisted files outside docs/: %d' % (len(man['entries']), len(bad), len(missing), len(extra)))
-for x in bad[:20]: print('  MISMATCH', x)
-for x in missing[:20]: print('  MISSING', x)
-for x in extra[:20]: print('  UNLISTED', x)
-sys.exit(1 if bad or missing else 0)
+import sys
+
+ROOT = Path(__file__).resolve().parents[2]
+MANIFEST = "docs/PROVENANCE_MANIFEST.json"
+IGNORED_DIRS = {".git", "bin", "target", "run", ".toolchain", "__pycache__"}
+
+
+def publication_files():
+    for path in sorted(ROOT.rglob("*")):
+        rel = path.relative_to(ROOT)
+        if path.is_file() and not any(p in IGNORED_DIRS for p in rel.parts):
+            if rel.as_posix() != MANIFEST:
+                yield rel.as_posix(), path
+
+
+def main():
+    manifest = json.loads((ROOT / MANIFEST).read_text())
+    entries = manifest["entries"]
+    names = [e["published_path"] for e in entries]
+    duplicate = len(names) != len(set(names))
+    actual = dict(publication_files())
+    bad, missing = [], []
+    for entry in entries:
+        name = entry["published_path"]
+        path = actual.get(name)
+        if path is None:
+            missing.append(name)
+            continue
+        data = path.read_bytes()
+        if len(data) != entry["bytes"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            bad.append(name)
+    extra = sorted(actual.keys() - set(names))
+    print(f"entries={len(entries)} mismatches={len(bad)} missing={len(missing)} "
+          f"unlisted={len(extra)} duplicate_entries={duplicate}")
+    for label, paths in [("MISMATCH", bad), ("MISSING", missing), ("UNLISTED", extra)]:
+        for path in paths[:20]:
+            print(label, path)
+    return 1 if duplicate or bad or missing or extra else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
