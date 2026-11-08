@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for the publication bug that excluded Rust src/bin sources."""
+"""Tests that declared Rust executable sources are present, visible to Git and inventoried."""
 from contextlib import redirect_stdout
 import io
 from pathlib import Path

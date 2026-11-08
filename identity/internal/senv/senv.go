@@ -1,4 +1,4 @@
-// Package senv is the v2 matched software control: a COSE_Sign1 envelope with the
+// Package senv is the matched software control for the TPM quote: a COSE_Sign1 envelope with the
 // same metadata coverage as the PTV routine response (identity, nonce, action,
 // audience, issued/expiry) but signed by the isolated SOFTWARE signer behind the
 // gate. It carries no attestation evidence and makes no configuration claim; it

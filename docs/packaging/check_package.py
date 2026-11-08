@@ -35,11 +35,19 @@ def main():
             failures.append(f'manifest inventory omits declared Rust source: {rel}')
     if not args.source_only:
         guide=(ROOT/'docs/CODE_MAP.md').read_text()
+        # Every source directory (or script) of the three modules must be described in the
+        # code map once; module prefixes are omitted there because the modules share layout.
         for name in included:
             parts=Path(name).parts
             if parts[0] in {'identity','zk-component','pq-identity'} and 'results' not in parts and 'fixtures' not in parts:
-                if Path(name).suffix in {'.go','.rs','.c','.h','.sh','.py'} and '../'+name not in guide:
-                    failures.append(f'source missing from CODE_MAP: {name}')
+                if Path(name).suffix in {'.go','.rs','.c','.h','.sh','.py'}:
+                    rel=Path(*parts[1:])
+                    key=rel.as_posix() if rel.parts[0]=='scripts' else rel.parent.as_posix()
+                    candidates={key}
+                    if rel.parts[0]=='zk':  # zk/host/src/bin, zk/methods/guest/src -> described as zk/host, zk/methods/guest
+                        candidates|={'/'.join(rel.parts[:i]) for i in range(2,len(rel.parts))}
+                    if not any(f'`{c}`' in guide or f'`{c},' in guide or f', `{c}`' in guide for c in candidates):
+                        failures.append(f'source directory missing from CODE_MAP: {key} ({name})')
         docs=[ROOT/'README.md',*sorted((ROOT/'docs').glob('*.md')),
               *[ROOT/c/'README.md' for c in ['identity','zk-component','pq-identity']]]
         for path in docs:

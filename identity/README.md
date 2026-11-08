@@ -1,69 +1,36 @@
-# TPM identity over A2A
+# Classical identity experiment
 
-This is the final identity implementation. It runs scripted A2A requester and agent
-processes, obtains fresh software or TPM proofs, and gates task delivery on the selected
-policy. TPM operations use swtpm; no physical key-protection measurement is claimed.
+Scripted A2A deployments answer a fresh challenge with a software signature, a software-signed COSE envelope or a swtpm quote, and the requester delivers a synthetic task only if the configured checks pass. The matched software and TPM proofs separate the effect of the protocol from the effect of where the key lives. Design and limits: [DESIGN.md](../docs/DESIGN.md); findings: [RESULTS.md](../docs/RESULTS.md); packages: [CODE_MAP.md](../docs/CODE_MAP.md).
 
-## Tools and design
+## Configurations
 
-- [A2A Go SDK](https://github.com/a2aproject/a2a-go): discovery, JSON-RPC and task artifacts.
-- [swtpm](https://github.com/stefanberger/swtpm) and [go-tpm](https://github.com/google/go-tpm): TPM commands and emulator-backed attestation keys.
-- [PTV draft-01](https://datatracker.ietf.org/doc/html/draft-anandakrishnan-rats-ptv-agent-identity-01): routine attestation-response design reference.
-- [RFC 9266](https://www.rfc-editor.org/rfc/rfc9266.html): TLS exporter channel binding.
+| Paper name | Policy identifier | Added check |
+|---|---|---|
+| Card only | `C` | Enrolled publisher's Agent Card signature |
+| File key, Service key | `S-file`, `S-iso` | Fresh signature from a key in the application files or in the signing service |
+| Software envelope | `S-env` | Software-signed COSE envelope over the request context |
+| TPM quote | `T` | Fresh TPM quote and comparison with the enrolled PCR reference |
+| PTV quote | `P` | TPM quote inside a PTV-style signed response |
+| Endpoint only | `+url` | Endpoint matches the signed card |
+| Baseline | `+tls` | Endpoint plus TLS authenticated with the enrolled name |
+| (bound) | `+cb` | Baseline plus a proof bound to the requester's TLS connection, delivered on that connection only |
 
-The physical-TPM motivation and its assumptions are explained in
-[hardware and PTV](../docs/HARDWARE_AND_PTV.md). Package responsibilities:
-`registry` enrollments; `cardsig` signed discovery; `tpmsig` TPM evidence; `ptv` outer
-response; `senv` software-envelope control; `gate` harness signer permissions; `verifier`
-appraisal and dispatch; `matrix` evaluation; `audit` release-evidence checks.
+Proof identifiers combine with a transport suffix (for example `T+cb` = *TPM quote (bound)*); without a suffix the proof is checked without endpoint or TLS checks.
 
-## Policies
+## Published records
 
-| Policy | Added check |
+| Directory | Contents |
 |---|---|
-| C | Enrolled publisher's Agent Card signature |
-| S-file | Fresh proof using a software key copied with the application |
-| S-iso | Fresh proof from a gated software signer |
-| S-env | Signed software envelope covering request context |
-| T | Fresh TPM quote and synthetic PCR reference appraisal |
-| P | TPM quote plus checked PTV routine response |
-| +url | Enrolled endpoint equality |
-| +tls | Endpoint checks plus enrolled-name authenticated TLS |
-| +cb | TLS plus own-connection-bound proof and pinned task dispatch |
+| `results/binding/20261108-004047` | Focused 24-cell matrix (`fixtures/manifest-binding.json`) with continuity and churn cases and audit reports |
+| `results/broad/20261107-194025` | Broad 21-scenario × 11-configuration matrix (`fixtures/manifest-broad.json`) |
 
-The software controls separate protocol effects from key-custody assumptions. All
-processes share one OS account; the gate is a simulated permission boundary. TLS uses
-freshly generated lab credentials. Actual workload integrity and physical TPM extraction
-resistance are outside the measured scope.
-
-## Build and inspect retained results
-
-From this directory:
+## Commands
 
 ```sh
-go build -o bin/a2aid ./cmd/a2aid
 go test -race -count=1 ./...
-cp -R results/v3-final/20261108-004047 /tmp/a2a-proofed-identity-check
-bin/a2aid audit-release --results /tmp/a2a-proofed-identity-check
+go build -o bin/a2aid ./cmd/a2aid
+cp -R results/binding/20261108-004047 /tmp/binding-check
+bin/a2aid audit-release --results /tmp/binding-check
 ```
 
-Use a fresh destination for each audit copy. Results and file meanings:
-[RESULTS.md](../docs/RESULTS.md), [artifact inventory](../docs/ARTIFACT_INVENTORY.md).
-
-## Run a fresh experiment
-
-Requires Go and swtpm, with loopback ports available. Setup resets live state under
-`run/`, including emulators and disposable lab credentials. Do not run simultaneous labs.
-
-```sh
-./scripts/setup.sh
-./scripts/v3final.sh
-```
-
-The runner's name is retained for compatibility; it runs the final focused binding
-matrix, continuity/churn checks and audit/test gates. Its historical-schema negative
-control uses the selected `results/v3/` input. That directory is test evidence, not a
-second implementation. `scripts/matrix.sh` runs the broader 21-fixture comparison.
-
-The release checker validates complete supported records and reports expected weak-policy
-attack outcomes separately. It relies on cooperative observations, not tamper-proof logs.
+The release audit writes its report into the directory it checks, so audit a copy. Fresh runs need swtpm: `scripts/binding_matrix.sh` or `scripts/broad_matrix.sh`, followed by `scripts/cleanup.sh`.

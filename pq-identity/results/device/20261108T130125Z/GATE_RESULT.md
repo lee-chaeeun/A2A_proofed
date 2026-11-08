@@ -1,6 +1,0 @@
-# Emulator feasibility gate — PASSED (native ML-DSA device commands)
-Clock: start 20261108T125045Z, end 2026-11-08T13:07:43Z (budget 60 + 30 min).
-Route 1 (libtpms/swtpm): libtpms master 165c303c has no ML-DSA code, no v0.11 tag → unavailable.
-Route 2 (wolfTPM firmware TPM, socket transport, TPM 2.0 v1.85): built task-locally with CMake (see *-cmake-options.txt, upstream-commits.txt).
-Evidence in this directory: create.json (TPM2_CreatePrimary rc 0 + TPM2_EvictControl rc 0, attributes 0x00040472 = fixedTPM|fixedParent|sensitiveDataOrigin|userWithAuth|noDA|sign, public key 1952 bytes, name), sign.json (TPM2_SignSequenceStart/Complete rc 0, 3309-byte signature, FIPS 204 ctx "a2aid-proof-v4"), sign-wrong-auth.json (TPM_RC_BAD_AUTH), verify-tampered-message.json (TPM_RC_SIGNATURE), pub-after-restart.json and sign-after-restart.json (persistent handle 0x81010001 survives an emulator restart; same public key and name), circl-cross-verification.txt (independent verification of the emulator signature with CIRCL mldsa65: true; wrong ctx/message: false), caps/mldsa_sign example outputs, circl ACVP log, binary hashes.
-No private key, seed or authValue is recorded; the private key exists only in the emulator's NV file.
