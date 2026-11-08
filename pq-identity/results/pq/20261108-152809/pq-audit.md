@@ -1,0 +1,139 @@
+# PQ composite audit (audit-pq v2, structural checker 2.1) for results/pq/20261108-152809
+
+Declared 128 · found 128 · agree 104 · disagree 0 · violations 24 · incomplete 0 · malformed 0 · unsupported 0 · proofs re-verified valid 35 / invalid 84 · expected attacker deliveries 25 · orphan receipts 0 · duplicate decision ids [] · **exit 1**
+
+Structural outcomes per decision: map[verified_dispatch:15 verified_non_dispatch:71 violation:25 violation_expected_by_fixture:25]. Checks by trust class (failed/total): recomputed 59/2358; requester_tls_observation 0/109; cooperative_event 25/82; copied_appraisal 0/136; stipulated_order 0/41; 
+
+
+| cell | status | decision (declared) | recipient (declared) | releases | structural | proof | detail |
+|---|---|---|---|---|---|---|---|
+| P1_C+tls | agree | accept (accept) | A (A) | 1 | verified_dispatch | n/a |  |
+| P1_EC-env+tls | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_EC-env+cb | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_PQ-env+tls | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_PQ-env+cb | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_PQ-file+cb | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_PQ-device+tls | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P1_PQ-device+cb | agree | accept (accept) | A (A) | 1 | verified_dispatch | valid |  |
+| P2_C+tls | violation | reject (reject) | none (none) | 0 | violation | n/a | structural: card_fetched < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_EC-env+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_EC-env+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_PQ-env+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_PQ-env+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_PQ-file+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_PQ-device+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P2_PQ-device+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P3_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P3_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P3_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P4_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P4_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P4_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P5_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P5_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P5_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:alg |  |
+| P6_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P6_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P6_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P6_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P6_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P6_PQ-file+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P6_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P6_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P7_C+tls | violation | reject (reject) | none (none) | 0 | violation | n/a | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_EC-env+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_EC-env+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_PQ-env+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_PQ-env+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_PQ-file+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_PQ-device+tls | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P7_PQ-device+cb | violation | reject (reject) | none (none) | 0 | violation | invalid:no-proof | structural: decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P8_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P8_EC-env+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P8_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P8_PQ-env+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P8_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P8_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P8_PQ-device+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P8_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P9_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P9_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:context-mismatch |  |
+| P10_C+tls | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | n/a |  |
+| P10_EC-env+tls | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_EC-env+cb | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_PQ-env+tls | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_PQ-env+cb | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_PQ-file+cb | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_PQ-device+tls | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P10_PQ-device+cb | agree | accept (accept) | none (none) | 1 | verified_non_dispatch | valid |  |
+| P11_C+tls | violation | accept (one) | A (A) | 1 | violation,violation | n/a,n/a | structural: authorization context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key, token); dispatch context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key, token); issued session records this release token |
+| P11_EC-env+tls | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_EC-env+cb | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_PQ-env+tls | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_PQ-env+cb | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_PQ-file+cb | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_PQ-device+tls | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P11_PQ-device+cb | violation | accept (one) | A (A) | 1 | verified_dispatch,violation | valid,invalid:no-proof | structural: challenge_sent < proof_received < appraised; appraised decision has a terminal event (not_authorized | release_suppressed | authorized); decision context equals the decision context (typed: id, expected, enrolled id, policy, action, audience, session key) |
+| P12_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| P12_EC-env+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P12_EC-env+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| P12_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P12_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P12_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P12_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| P12_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X1_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| X1_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X1_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X1_PQ-env+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X1_PQ-env+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X1_PQ-file+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X1_PQ-device+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X1_PQ-device+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X2_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| X2_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X2_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X2_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X2_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X2_PQ-file+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X2_PQ-device+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X2_PQ-device+cb | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | valid |  |
+| X3_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| X3_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X3_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_C+tls | agree | accept (accept) | B (B) | 1 | violation_expected_by_fixture | n/a |  |
+| X4_EC-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_EC-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_PQ-env+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_PQ-env+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_PQ-file+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:kid |  |
+| X4_PQ-device+tls | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+| X4_PQ-device+cb | agree | reject (reject) | none (none) | 0 | verified_non_dispatch | invalid:signature |  |
+
+audit-pq v2: structural release invariants (checker 2.1: strict loading, event order and multiplicity, typed contexts, session join, connection continuity, receipt joins by decision id/token/exporter, release cardinality, duplicate ids, orphan receipts) composed with re-verification of every retained ES256 / ML-DSA-65 proof under the trusted registry (shared libraries; expected context rebuilt from the issued session; parsed appraisal time inside the session validity) and with the declared inventory. Consistency of cooperative observations, not tamper-proof evidence.

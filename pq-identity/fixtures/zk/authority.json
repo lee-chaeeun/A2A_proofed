@@ -1,0 +1,17 @@
+{
+  "commitment": "sha256(a2aid-zk-commit-v1 || 0 || portfolio || 0 || version u32 LE || salt[32] || h1..h4 u32 LE)",
+  "history": [
+    {
+      "portfolio": "desk-1/portfolio-7",
+      "version": 1,
+      "commitment_hex": "532e99c53dce2dc45aab51913053083a6957f0f38b94f08d2e87a538a352bbb6"
+    },
+    {
+      "portfolio": "desk-1/portfolio-7",
+      "version": 2,
+      "commitment_hex": "ba84e0a21b78c9f50859add05db09ee83de1542687b248c814627d04358547fe"
+    }
+  ],
+  "limit": 100,
+  "note": "PUBLIC trusted fixture authority: ordered snapshot history (commitments only). The requester reads this; the worker cannot write it."
+}

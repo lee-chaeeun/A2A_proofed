@@ -1,0 +1,14 @@
+{
+  "deployment_id": "dep-A",
+  "nonce": "Rn5wh4tDzAnNv8rw4RTIz8Co1QqnbEWNya2OBHrDlYc=",
+  "policy": "EC-env+tls",
+  "proof_v4": {
+    "alg": "ES256",
+    "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1lY2Vudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCBGfnCHi0PMCc2/yvDhFMjPwKjVCqdsRY3JrY4EesOVh2ZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZmV4cGlyeRpq8IgSZnBvbGljeWpFQy1lbnYrdGxzZ3Nlc3Npb254LFJuNXdoNHREekFuTnY4cnc0UlRJejhDbzFRcW5iRVdOeWEyT0JIckRsWWM9aGV4cGVjdGVkZWRlcC1BaGV4cG9ydGVyQGlyZXF1ZXN0ZXJzcmVxdWVzdGVyOmEyYWlkLWxhYg==",
+    "format": "a2aid-proof-v4",
+    "kid": "A-ecenv-k1",
+    "signature": "8riRKDJTI9S4RvpN+lsdbqkT6mcUrjUibajB5z6e2twSa217BL4Bbfnps8VNaRj5jnv3VQ2hq6UIeWMUvIxdVQ=="
+  },
+  "timestamp": "2026-11-08T14:30:50Z",
+  "type": "evidence"
+}

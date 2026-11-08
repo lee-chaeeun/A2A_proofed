@@ -1,0 +1,175 @@
+{
+  "decisions": [
+    {
+      "policy": "EC-env+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "73c3c0e90e8949177584de80f1cecc7eb00409b7b355b60529f914f1e2e9d7a3",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ES256",
+        "kid": "A-ecenv-k1",
+        "pinned_alg": "ES256",
+        "pinned_kid": "A-ecenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 303,
+        "signature_bytes": 64,
+        "failure_stage": "signature",
+        "reason": "ES256 signature does not verify under the pinned key A-ecenv-k1"
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "fd1cf4a16cfaaf224247936f00d99a253b206ff77667018cb9e8e5d7f95f3b0e",
+        "agent_claimed_hex": "fd1cf4a16cfaaf224247936f00d99a253b206ff77667018cb9e8e5d7f95f3b0e",
+        "proof_bound_to_requester_connection": false
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "EC-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T14:30:55.915253116Z",
+        "expires_at": "2026-11-08T14:32:55.915253116Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "YPQ1Co852/MnrFpdHiXx4Nij0DDw5CVxmtYMOCJhzbw=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T14:30:55Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-signature",
+      "reason": "proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1",
+      "appraised_at": "2026-11-08T14:30:55.917650613Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "cb_hex": "fd1cf4a16cfaaf224247936f00d99a253b206ff77667018cb9e8e5d7f95f3b0e",
+        "deployment_id": "dep-A",
+        "nonce": "YPQ1Co852/MnrFpdHiXx4Nij0DDw5CVxmtYMOCJhzbw=",
+        "policy": "EC-env+cb",
+        "proof_v4": {
+          "alg": "ES256",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1lY2Vudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCBg9DUKjznb8yesWl0eJfHg2KPQMPDkJXGa1gw4ImHNvGZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZmV4cGlyeRpq8IgXZnBvbGljeWlFQy1lbnYrY2Jnc2Vzc2lvbngsWVBRMUNvODUyL01uckZwZEhpWHg0TmlqMEREdzVDVnhtdFlNT0NKaHpidz1oZXhwZWN0ZWRlZGVwLUFoZXhwb3J0ZXJYIP0c9KFs+q8iQkeTbwDZmiU7IG/3dmcBjLno5df5XzsOaXJlcXVlc3RlcnNyZXF1ZXN0ZXI6YTJhaWQtbGFi",
+          "format": "a2aid-proof-v4",
+          "kid": "A-ecenv-k1",
+          "signature": "kI+Qr27bUQJsiM2I7gnK82W8B/KPZf7kqSqG5Quk19Lk0UlcwXeeXBabaYs6FuMzGL6AwUI+WpWNsgWrMkV6hA=="
+        },
+        "timestamp": "2026-11-08T14:30:55Z",
+        "type": "evidence"
+      },
+      "decision_id": "08612b28c3137844",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "73c3c0e90e8949177584de80f1cecc7eb00409b7b355b60529f914f1e2e9d7a3",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "fd1cf4a16cfaaf224247936f00d99a253b206ff77667018cb9e8e5d7f95f3b0e",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T14:30:55.913080201Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T14:30:55.914799484Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=YPQ1Co852/MnrFpdHiXx4Nij0DDw5CVxmtYMOCJhzbw=",
+          "at": "2026-11-08T14:30:55.915407657Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T14:30:55.9174735Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-signature",
+          "at": "2026-11-08T14:30:55.917793637Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-signature",
+          "at": "2026-11-08T14:30:55.917883104Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "08612b28c3137844",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "EC-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "YPQ1Co852/MnrFpdHiXx4Nij0DDw5CVxmtYMOCJhzbw="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "YPQ1Co852/MnrFpdHiXx4Nij0DDw5CVxmtYMOCJhzbw=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "EC-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T14:30:55.915253116Z",
+      "expires_at": "2026-11-08T14:32:55.915253116Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T14:30:55.91765287Z",
+      "result": "reject:proof-v4-signature",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

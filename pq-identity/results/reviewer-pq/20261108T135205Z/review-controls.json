@@ -1,0 +1,58 @@
+[
+  {
+    "case": "baseline",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "missing-requester-events",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "dispatch-connection-swap",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "dispatch-context-action-mismatch",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "missing-issued-sessions",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "invalid-appraisal-time",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "duplicate-receipt",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  },
+  {
+    "case": "receipt-id-token-exporter-mismatch",
+    "exit": 0,
+    "agree": 128,
+    "violations": 0,
+    "malformed": 0
+  }
+]

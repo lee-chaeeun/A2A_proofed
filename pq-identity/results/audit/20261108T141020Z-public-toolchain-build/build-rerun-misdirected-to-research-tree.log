@@ -1,0 +1,34 @@
+first attempt failed at the options.h copy (script defect, fixed: options.h is generated in the wolfTPM source tree at this commit); rerun below 2026-11-08T14:13:04Z
++ set -euo pipefail
+++ dirname scripts/build_pq_toolchain.sh
++ cd scripts/..
++ ROOT=/home/bitchae/aisafety/swarmalign/a2a-pq-identity
++ TC=/home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain
++ SRC=/home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src
++ WOLFSSL_COMMIT=0ac786e0405978697f2ebfb079a47b27bca7fce9
++ WOLFTPM_COMMIT=1362e1e53ad3282973eefd6234be34fb774d06d3
++ mkdir -p /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolftpm/include /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolftpm/bin
++ '[' '!' -d /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl ']'
++ git clone -q https://github.com/wolfSSL/wolfssl /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl
++ cd /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl
++ git fetch -q --depth 1 origin 0ac786e0405978697f2ebfb079a47b27bca7fce9
++ git checkout -q 0ac786e0405978697f2ebfb079a47b27bca7fce9
++ cmake -S /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl -B /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolfssl -DWOLFSSL_MLDSA=yes -DWOLFSSL_MLKEM=yes -DWOLFSSL_KEYGEN=yes -DWOLFSSL_TPM=yes -DWOLFSSL_PKCALLBACKS=yes -DWOLFSSL_EXAMPLES=no -DWOLFSSL_CRYPT_TESTS=yes -DBUILD_SHARED_LIBS=OFF -DCMAKE_C_FLAGS=-DWC_RSA_NO_PADDING
+Building on Linux (or other)
++ ninja -C /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl/build
++ ninja -C /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfssl/build install
++ '[' '!' -d /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM ']'
++ git clone -q https://github.com/wolfSSL/wolfTPM /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM
++ cd /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM
++ git fetch -q --depth 1 origin 1362e1e53ad3282973eefd6234be34fb774d06d3
++ git checkout -q 1362e1e53ad3282973eefd6234be34fb774d06d3
++ cmake -S /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM -B /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolfssl -DWOLFTPM_FWTPM=yes -DWOLFTPM_INTERFACE=SWTPM -DWOLFTPM_V185=yes -DBUILD_SHARED_LIBS=OFF -DWOLFTPM_EXAMPLES=yes -DCMAKE_EXE_LINKER_FLAGS= -DCMAKE_C_STANDARD_LIBRARIES=-lm
+INTERFACE SWTPM
+TPM MODULE auto
+Generating user options header...
+Generating config header...
++ ninja -C /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM/build fwtpm_server mldsa_sign caps
++ cp /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM/build/bin/fwtpm_server /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM/build/bin/mldsa_sign /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/src/wolfTPM/build/bin/caps /home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolftpm/bin/
+cp: cannot create regular file '/home/bitchae/aisafety/swarmalign/a2a-pq-identity/.toolchain/wolftpm/bin/fwtpm_server': Text file busy
+bash -x scripts/build_pq_toolchain.sh  294.51s user 8.42s system 358% cpu 1:24.45 total
+exit 1

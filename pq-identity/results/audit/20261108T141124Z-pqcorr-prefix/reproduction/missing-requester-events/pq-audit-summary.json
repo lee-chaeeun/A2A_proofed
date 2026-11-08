@@ -1,0 +1,18 @@
+{
+  "run_dir": "results/reviewer-pq/20261108T135205Z/missing-requester-events",
+  "registry": "results/reviewer-pq/20261108T135205Z/missing-requester-events/enrollment-registry.json",
+  "cells_declared": 128,
+  "cells_found": 128,
+  "agree": 128,
+  "disagree": 0,
+  "violations": 0,
+  "incomplete": 0,
+  "malformed": 0,
+  "unsupported": 0,
+  "proof_v4_signatures_reverified": 35,
+  "proof_v4_signatures_invalid": 84,
+  "expected_attacker_deliveries": 25,
+  "run_level_errors": [],
+  "exit_code": 0,
+  "note": "a2aid-proof-v4 audit: every retained ES256 / ML-DSA-65 proof re-verified under the trusted registry (shared libraries), expected context rebuilt from the decision's own session data, recipients taken from controller receipts, completeness against the declared inventory. Not an independent implementation of the signature schemes."
+}

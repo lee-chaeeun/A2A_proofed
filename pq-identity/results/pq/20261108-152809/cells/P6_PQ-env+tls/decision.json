@@ -1,0 +1,167 @@
+{
+  "decisions": [
+    {
+      "policy": "PQ-env+tls",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ML-DSA-65",
+        "kid": "A-pqenv-k1",
+        "pinned_alg": "ML-DSA-65",
+        "pinned_kid": "A-pqenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 275,
+        "signature_bytes": 3309,
+        "failure_stage": "signature",
+        "reason": "ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1"
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T14:28:16.066756163Z",
+        "expires_at": "2026-11-08T14:30:16.066756163Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbE=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T14:28:16Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-signature",
+      "reason": "proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1",
+      "appraised_at": "2026-11-08T14:28:16.069946464Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbE=",
+        "policy": "PQ-env+tls",
+        "proof_v4": {
+          "alg": "ML-DSA-65",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2lNTC1EU0EtNjVja2lkakEtcHFlbnYtazFkcm9sZW5hZ2VudC1yZXNwb25zZWVub25jZVgg0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbFmYWN0aW9udXJlbGVhc2Utc3ludGhldGljLWpvYmZleHBpcnkaavCHeGZwb2xpY3lqUFEtZW52K3Rsc2dzZXNzaW9ueCwwQmh1dmREZG9kdE9MMERDREFGOVFvWjhpTk9hVUcxaXRINTJoY3ZOamJFPWhleHBlY3RlZGVkZXAtQWhleHBvcnRlckBpcmVxdWVzdGVyc3JlcXVlc3RlcjphMmFpZC1sYWI=",
+          "format": "a2aid-proof-v4",
+          "kid": "A-pqenv-k1",
+          "signature": "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"
+        },
+        "timestamp": "2026-11-08T14:28:16Z",
+        "type": "evidence"
+      },
+      "decision_id": "d26048072ef3c8cc",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "bf7015f7475b307d8813f7ba538d06bd3336ff533014d823e1e08adf6ad047f6",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T14:28:16.064651074Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:16.066309387Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbE=",
+          "at": "2026-11-08T14:28:16.066888289Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:16.069788075Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-signature",
+          "at": "2026-11-08T14:28:16.070205016Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-signature",
+          "at": "2026-11-08T14:28:16.070357703Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "d26048072ef3c8cc",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbE="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "0BhuvdDdodtOL0DCDAF9QoZ8iNOaUG1itH52hcvNjbE=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "PQ-env+tls",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T14:28:16.066756163Z",
+      "expires_at": "2026-11-08T14:30:16.066756163Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T14:28:16.069948722Z",
+      "result": "reject:proof-v4-signature",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

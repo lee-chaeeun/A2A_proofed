@@ -1,0 +1,175 @@
+{
+  "decisions": [
+    {
+      "policy": "EC-env+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "73c3c0e90e8949177584de80f1cecc7eb00409b7b355b60529f914f1e2e9d7a3",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ES256",
+        "kid": "A-ecenv-k1",
+        "pinned_alg": "ES256",
+        "pinned_kid": "A-ecenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 299,
+        "signature_bytes": 64,
+        "failure_stage": "context-mismatch",
+        "reason": "signed context differs from the expected context (fields: [action exporter])"
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "6d767a0957bfbdbb511a585ed5574e29cbe1c7a9498e9cd9190cd1265d3b8e78",
+        "agent_claimed_hex": "0ef66b59c55b2ad118ad62bb88cb1412d770185642f6be4fe7eeeff62e50fa70",
+        "proof_bound_to_requester_connection": false
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "EC-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T15:42:07.864471779Z",
+        "expires_at": "2026-11-08T15:44:07.864471779Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "kz7Rp007ttN2m5A+OfxP448ruwjEvZNwOlOh8/RCJG4=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T15:42:07Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-context-mismatch",
+      "reason": "proof_v4: signed context differs from the expected context (fields: [action exporter])",
+      "appraised_at": "2026-11-08T15:42:07.869753922Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "cb_hex": "0ef66b59c55b2ad118ad62bb88cb1412d770185642f6be4fe7eeeff62e50fa70",
+        "deployment_id": "dep-A",
+        "nonce": "kz7Rp007ttN2m5A+OfxP448ruwjEvZNwOlOh8/RCJG4=",
+        "policy": "EC-env+cb",
+        "proof_v4": {
+          "alg": "ES256",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1lY2Vudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCCTPtGnTTu203abkD45/E/jjyu7CMS9k3A6U6Hz9EIkbmZhY3Rpb25xcmVsZWFzZS1vdGhlci1qb2JmZXhwaXJ5GmrwmMdmcG9saWN5aUVDLWVuditjYmdzZXNzaW9ueCxrejdScDAwN3R0TjJtNUErT2Z4UDQ0OHJ1d2pFdlpOd09sT2g4L1JDSkc0PWhleHBlY3RlZGVkZXAtQWhleHBvcnRlclggDvZrWcVbKtEYrWK7iMsUEtdwGFZC9r5P5+7v9i5Q+nBpcmVxdWVzdGVyc3JlcXVlc3RlcjphMmFpZC1sYWI=",
+          "format": "a2aid-proof-v4",
+          "kid": "A-ecenv-k1",
+          "signature": "80aR7OI/u/89+dmC7ltVrbboF68V28zswhFXq3wJXW+BRO6sgE9CTPZGchUvhsxLvGwqZ+ft3D1SI9jQtYGbuA=="
+        },
+        "timestamp": "2026-11-08T15:42:07Z",
+        "type": "evidence"
+      },
+      "decision_id": "7a21df2aa8999fbe",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "73c3c0e90e8949177584de80f1cecc7eb00409b7b355b60529f914f1e2e9d7a3",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "6d767a0957bfbdbb511a585ed5574e29cbe1c7a9498e9cd9190cd1265d3b8e78",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T15:42:07.862393951Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T15:42:07.864064232Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=kz7Rp007ttN2m5A+OfxP448ruwjEvZNwOlOh8/RCJG4=",
+          "at": "2026-11-08T15:42:07.864586057Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T15:42:07.869615225Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-context-mismatch",
+          "at": "2026-11-08T15:42:07.869830839Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-context-mismatch",
+          "at": "2026-11-08T15:42:07.869941191Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "7a21df2aa8999fbe",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "EC-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "kz7Rp007ttN2m5A+OfxP448ruwjEvZNwOlOh8/RCJG4="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "kz7Rp007ttN2m5A+OfxP448ruwjEvZNwOlOh8/RCJG4=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "EC-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T15:42:07.864471779Z",
+      "expires_at": "2026-11-08T15:44:07.864471779Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T15:42:07.869755786Z",
+      "result": "reject:proof-v4-context-mismatch",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+device test in the PUBLIC copy against its own .toolchain, 2026-11-08T14:16:32Z
+pwd: /home/bitchae/aisafety/swarmalign/a2a-proof-binding-public/pq-identity
+=== RUN   TestDevice_CreateSignVerifyRestart
+--- PASS: TestDevice_CreateSignVerifyRestart (0.12s)
+PASS
+ok  	a2aid/internal/pqdev	1.124s
+exit 0

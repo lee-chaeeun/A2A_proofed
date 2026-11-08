@@ -1,0 +1,6 @@
+TPM2.0 ML-DSA Sign/Verify Example
+	Parameter Set: ML-DSA-65
+Created ML-DSA primary: handle 0x80000000, pubkey 1952 bytes
+Sign: signature 3309 bytes
+Verify: TPM_ST_MESSAGE_VERIFIED ticket returned
+Round-trip OK: Pure ML-DSA sign + verify sequence

@@ -1,0 +1,15 @@
+start 2026-11-08T15:42:04Z
+16:42:25.388 X4_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+16:42:25.548 X4_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+16:42:25.553 done: 128 cells, 136 appraisals, outputs in results/pq-integration/20261108-164204
+rerun: results/pq-integration/20261108-164204
+audit-pq v2 (structural checker 2.1): declared=128 found=128 agree=128 disagree=0 violations=0 incomplete=0 malformed=0 unsupported=0 proofs_valid=35 proofs_invalid=84 attacker_deliveries=25 orphan_receipts=0 duplicate_decision_ids=0 structural=map[verified_dispatch:16 verified_non_dispatch:95 violation_expected_by_fixture:25] exit=0
+rerun audit exit 0
+smoke start 2026-11-08T15:42:25Z
+=== RUN   TestPQSmoke_ZKTaskOverPQDeviceTransport
+    pq_smoke_test.go:118: ZK over PQ-device+cb smoke written to /home/bitchae/aisafety/swarmalign/a2a-pq-identity/results/zk-pq-smoke/20261108-154226
+--- PASS: TestPQSmoke_ZKTaskOverPQDeviceTransport (19.55s)
+PASS
+ok  	a2aid/internal/zk	19.554s
+smoke exit 
+end 2026-11-08T15:42:45Z

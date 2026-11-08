@@ -1,0 +1,17 @@
+{
+  "fixture": "X3",
+  "source": "/home/bitchae/aisafety/swarmalign/a2a-pq-identity/run/A/app",
+  "dest": "/home/bitchae/aisafety/swarmalign/a2a-pq-identity/run/B/copied-volume/app",
+  "included_sha256": {
+    "app/card.json": "8b709d8a925443bc259dc339ffaa8cfb2ebbe5c2119962a14e19b48efb07af9e"
+  },
+  "excluded": [
+    "run/A/signer/ak_auth (AK password)",
+    "run/A/signer/siso_token",
+    "run/A/signer/siso.key",
+    "run/A/publisher/card.key",
+    "run/A/tls (server certificate key)",
+    "run/tpmA/state (emulator NVRAM holding the AK)",
+    "run/gate/*.sock access (ACL)"
+  ]
+}

@@ -1,132 +1,74 @@
 # A2A Proofed
 
-An A2A prototype for TPM-based agent identity and proof-carrying task results.
+A local research prototype for authenticating A2A agents and checking their returned results.
 Built by Chae Eun Lee for the Swarm Alignment Hackathon, Track 3.
 
-The project asks how an agent can present evidence of an enrolled identity and how a
-requester can check a returned computation before acting on it. It contains two
-separately evaluated components:
+The main experiment uses **ML-DSA-65 keys created and used through a TPM emulator's command interface**. The requester verifies signatures with a separate library, checks the enrolled identity and request context, and sends the task on the connection that carried the proof. A RISC Zero component then checks a returned computation against the request and authorized input.
 
-- **TPM identity over A2A:** fresh attestation evidence, configuration appraisal and
-  a connection-bound proof before task delivery. The PTV-inspired routine response
-  carries a TPM quote in a signed envelope. The weekend implementation uses swtpm;
-  a physical TPM is the intended source of protected identity keys.
-- **Proof-carrying A2A results:** a RISC Zero guest proves a small computation.
-  The requester checks the proof, request challenge and authorized input commitment
-  before recording an approval.
+This is a runnable simulation. The emulator's state is a host file; the tests do not establish physical key protection or end-to-end post-quantum security. Agent Cards, TLS and the lab CA remain classical.
 
-The final implementation is in this tree. Superseded runs, review notes and development
-plans are excluded. The retained comparison and regression evidence supports the paper;
-these are test inputs and observations, not multiple implementations to install.
+## Start here
 
-## Why use a TPM?
+With Python 3.11+, Go (recorded: 1.27.1), a C compiler for Go's race detector, and `make`:
 
-An ordinary private key stored with an agent can be copied with its files. A properly
-provisioned physical TPM can keep a non-migratable identity key tied to a device and
-support appraisal of platform measurements. This motivates hardware-rooted agent identity.
+```sh
+make package-check
+make check
+```
 
-Here, swtpm makes the integration runnable without hardware. It exercises real TPM
-commands and evidence checks, but does not measure physical key-extraction or cloning
-resistance. The PCR measurement is synthetic. See
-[hardware benefits, threat assumptions and the PTV connection](docs/HARDWARE_AND_PTV.md)
-for the distinction between implemented behavior and expected hardware protection.
+`make check` builds the PQ application, runs its Go race tests, rechecks both retained 128-cell matrices, runs all 17 evidence-mutation controls, and checks runner failure propagation. It **does not generate proofs or start a persistent lab**. First builds need network access for pinned Go modules; HTTPS tests bind local ports. Temporary binaries and reports are written outside the repository.
+
+A successful audit means agreement with the declared experiment, including **25 expected attacker deliveries**. It is not a claim that every configuration is secure. Device and genuine-proof integrations are opt-in; ordinary Go tests do not replace them.
+
+For installation, fresh experiments and expected outputs, follow [Reproducing the experiments](docs/REPRODUCING.md).
+
+## What is included?
+
+```text
+A2A_proofed/
+├── pq-identity/       Main PQ experiment and PQ-to-ZK integration
+├── identity/          Final classical identity comparison used in the paper
+├── zk-component/      Final standalone ZK result-authorization experiment
+├── paper/             Editable Markdown and LaTeX, PDF, fonts and source ZIP
+├── docs/              Code map, pipeline, reproduction guide and evidence index
+├── scripts/check.py   Test and audit entry point; leaves retained evidence untouched
+└── Makefile           Short commands for the common checks
+```
+
+The three Go modules are the final implementations of **three separately measured studies**, not a sequence of releases to install. Start with `pq-identity/`. The other two retain the exact experimental paths used for the classical and standalone ZK comparisons; merging their source would obscure which code produced those measurements. There are no archived implementations or source tarballs in this publication tree.
+
+- [Code map](docs/CODE_MAP.md): annotated source tree, every source file, and where to start reading.
+- [Pipeline](docs/PIPELINE.md): what crosses each boundary and what each proof means.
+- [Results](docs/RESULTS.md): observations, expected failures and limits.
+- [Evidence guide](docs/EVIDENCE.md): how to read decisions, receipts and audit reports.
+- [Paper source](paper/paper-draft.md), [editable LaTeX](paper/main.tex), [PDF](paper/a2a-identity-paper.pdf), [LaTeX ZIP](paper/a2a-identity-latex.zip).
 
 ## Main tools
 
-| Component | Tool |
+| Tool | Role |
 |---|---|
-| Agent communication | [A2A](https://github.com/a2aproject/A2A) through the [Go SDK](https://github.com/a2aproject/a2a-go), v2.3.1 |
-| TPM emulation | [swtpm](https://github.com/stefanberger/swtpm), 0.10.2 |
-| TPM commands | [go-tpm](https://github.com/google/go-tpm), v0.9.8 |
-| Computation proofs | [RISC Zero](https://github.com/risc0/risc0), v3.0.6 |
-| Attestation design reference | [PTV draft-01](https://datatracker.ietf.org/doc/html/draft-anandakrishnan-rats-ptv-agent-identity-01), a work-in-progress Experimental draft |
+| [A2A Go SDK](https://github.com/a2aproject/a2a-go), v2.3.1 | Agent discovery, JSON-RPC messages and task artifacts |
+| [wolfTPM](https://github.com/wolfSSL/wolfTPM), `1362e1e5`, on [wolfSSL](https://github.com/wolfSSL/wolfssl), `0ac786e0` | Firmware-TPM emulator and native ML-DSA command implementation |
+| [CIRCL](https://github.com/cloudflare/circl), v1.6.5 | ML-DSA verification, software-signature controls and vector tests |
+| [swtpm](https://github.com/stefanberger/swtpm), 0.10.2, and [go-tpm](https://github.com/google/go-tpm), v0.9.8 | Classical TPM quote comparison |
+| [RISC Zero](https://github.com/risc0/risc0), 3.0.6 | Prove and verify the bounded-sum guest computation |
+| [RFC 9266](https://www.rfc-editor.org/rfc/rfc9266.html) | Bind an identity proof to its TLS connection |
 
-Go runs the A2A application and test harness; Rust supplies the RISC Zero guest and
-prover/verifier wrappers. A2A itself is language-independent.
-[All tools and code attribution](docs/TOOLS.md).
+Go implements the application and harness, Rust the ZK guest and host wrappers, and a C subprocess drives the PQ emulator. A2A is language-independent. See [tools and versions](docs/TOOLS.md) and [code origins](docs/ATTRIBUTION.md).
 
-## Pipeline
-
-```text
-Identity: discover agent -> validate card, endpoint and TLS -> obtain fresh proof
-          -> appraise key/configuration/connection -> deliver task on proven connection
-
-Task result: store request and input contract -> send task over appraised A2A HTTPS
-             -> receive RISC Zero receipt -> verify pinned guest
-             -> check request and authorized inputs -> record approval once
-```
-
-The ZK component uses the signed-card / endpoint / TLS baseline (`C+tls`). It is a separate
-experiment, not a combined TPM-plus-ZK deployment. Results and limitations are described
-in [docs/RESULTS.md](docs/RESULTS.md) and the [paper](paper/a2a-identity-paper.pdf).
-
-## Layout
-
-| Path | Contents |
-|---|---|
-| `identity/` | Final identity implementation, tests, fixture definitions and selected evidence |
-| `zk-component/` | Identity-derived application with the separate ZK component, Rust guest and proof tools |
-| `paper/` | Markdown source, TeX, PDF and source ZIP |
-| `docs/` | Hardware/PTV rationale, tools, threat model, results, provenance and artifact inventory |
-
-Start with [docs/README.md](docs/README.md). Runtime keys and emulator state are generated
-under ignored `run/` directories and are not distributed.
-
-## Check the identity component
-
-Requires Go (recorded compiler 1.27.1). First build downloads pinned Go modules; HTTPS
-tests need permission to bind localhost ports. From the repository root:
+## More commands
 
 ```sh
-cd identity
-go test -race -count=1 ./...
-go build -o bin/a2aid ./cmd/a2aid
-cp -R results/v3-final/20261108-004047 /tmp/a2a-proofed-identity-run
-bin/a2aid audit-release --results /tmp/a2a-proofed-identity-run
+make check-all           # Go tests in all three modules; PQ and classical audits
+make pq-toolchain        # Download/build the pinned C dependencies; CMake and Ninja needed
+make pq-device           # Actual emulator create/sign/restart test after that build
+make verify              # Check hashes against the publication inventory
 ```
 
-Use a new destination for each copied audit run. The checker writes reports into its
-input directory. Exit 0 means complete evidence with no unexpected violation; expected
-weak-policy attack outcomes remain listed.
+ZK verification and proving require the additional Rust/RISC Zero toolchain. See [the reproduction guide](docs/REPRODUCING.md); no model account, API key, Adaption credits or external agent dataset is needed.
 
-## Check the ZK component
+Runtime state and lab credentials are generated under ignored `run/` directories. Retained `results/` files are published observations; do not overwrite them. Selected earlier observations remain only where the paper or a regression test needs them. Superseded working notes, alternate code releases, generated toolchains and compiled binaries are excluded. One frozen correction plan remains so its recorded pre-run hash can be checked.
 
-```sh
-cd zk-component
-go build -o bin/a2aid ./cmd/a2aid
-go test -race -count=1 ./...
-```
+## License
 
-Proof-dependent tests skip if the verifier or required retained data is unavailable;
-inspect skips. To verify retained genuine receipts, install the pinned Rust/RISC Zero
-toolchain described in [zk-component/README.md](zk-component/README.md), then:
-
-```sh
-# From the repository root:
-cd zk-component/zk
-cargo build --release --bin zkverify
-cd ..
-bin/a2aid zk-oracle --results results/zk/20261108-111817 \
-  --verify-bin zk/target/release/zkverify --out /tmp/a2a-proofed-zk-oracle
-```
-
-Start this block from the repository root. Verification does not generate new proofs;
-building the guest/verifier does require the toolchain. New CPU proving took about
-23 seconds per proof on the recorded machine. See each component README for fresh lab runs.
-
-## Provenance and license
-
-From the repository root:
-
-```sh
-python3 docs/packaging/verify_manifest.py
-```
-
-[PROVENANCE.md](docs/PROVENANCE.md) distinguishes unchanged experimental evidence from
-publication-only documentation. Retained rows are scenario coverage, not real-world
-attack rates. The current implementation uses classical P-256 signatures and does not
-implement post-quantum cryptography.
-
-Apache-2.0: [LICENSE](LICENSE), [NOTICE](NOTICE). Agent Card signing adapts the official
-preexisting [A2A Go sample](https://github.com/a2aproject/a2a-samples/tree/main/samples/go/agents/sign-and-verify-agent-card).
-Third-party and sprint-work attribution: [docs/ATTRIBUTION.md](docs/ATTRIBUTION.md).
+The Go application is [Apache-2.0](LICENSE). The C bridge in `pq-identity/tools/pqtpm/` is GPLv3 and links wolfTPM/wolfSSL; it runs as a separate process. Agent Card signing adapts the official [A2A sample](https://github.com/a2aproject/a2a-samples/tree/main/samples/go/agents/sign-and-verify-agent-card). See [NOTICE](NOTICE), [attribution](docs/ATTRIBUTION.md) and the component license files.

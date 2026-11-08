@@ -1,0 +1,7 @@
+Clearing NV state file: fwtpm_nv.bin
+wolfTPM fwTPM Server v0.1.0
+  Command port:  2321
+  Platform port: 2322
+  Manufacturer:  WOLF
+  Model:         fwTPM
+fwTPM: Listening on command port 2321, platform port 2322

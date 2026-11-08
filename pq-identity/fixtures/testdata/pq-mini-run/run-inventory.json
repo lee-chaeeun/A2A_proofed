@@ -1,0 +1,102 @@
+{
+  "cells": [
+    {
+      "Cell": "P1_EC-env+cb",
+      "Fixture": "P1",
+      "Policy": "EC-env+cb",
+      "Class": "honest",
+      "PolicyClass": "defended",
+      "ExpectedDecision": "accept",
+      "ExpectedRecipient": "A",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "none"
+      ]
+    },
+    {
+      "Cell": "P1_PQ-env+tls",
+      "Fixture": "P1",
+      "Policy": "PQ-env+tls",
+      "Class": "honest",
+      "PolicyClass": "control",
+      "ExpectedDecision": "accept",
+      "ExpectedRecipient": "A",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "none"
+      ]
+    },
+    {
+      "Cell": "P1_PQ-env+cb",
+      "Fixture": "P1",
+      "Policy": "PQ-env+cb",
+      "Class": "honest",
+      "PolicyClass": "defended",
+      "ExpectedDecision": "accept",
+      "ExpectedRecipient": "A",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "none"
+      ]
+    },
+    {
+      "Cell": "P1_PQ-device+cb",
+      "Fixture": "P1",
+      "Policy": "PQ-device+cb",
+      "Class": "honest",
+      "PolicyClass": "defended",
+      "ExpectedDecision": "accept",
+      "ExpectedRecipient": "A",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "none"
+      ]
+    },
+    {
+      "Cell": "P8_PQ-env+tls",
+      "Fixture": "P8",
+      "Policy": "PQ-env+tls",
+      "Class": "malicious",
+      "PolicyClass": "control",
+      "ExpectedDecision": "accept",
+      "ExpectedRecipient": "B",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "card_copy",
+        "live_relay",
+        "address_hijack",
+        "tls_credentials_A"
+      ]
+    },
+    {
+      "Cell": "P8_PQ-env+cb",
+      "Fixture": "P8",
+      "Policy": "PQ-env+cb",
+      "Class": "malicious",
+      "PolicyClass": "defended",
+      "ExpectedDecision": "reject",
+      "ExpectedRecipient": "none",
+      "ExpectedDecisions": 1,
+      "ClassDerived": false,
+      "Capabilities": [
+        "card_copy",
+        "live_relay",
+        "address_hijack",
+        "tls_credentials_A"
+      ]
+    }
+  ],
+  "declared_before_execution": true,
+  "evidence_schema": 2,
+  "inventory_schema": 2,
+  "kind": "matrix",
+  "manifest": "fixtures/manifest-pq.json",
+  "manifest_version": 5,
+  "run_id": "20261108-142717",
+  "note": "test fixture: six cells copied unchanged from results/pq/20261108-142717 (declared inventory restricted to them); for audit-pq tests and runner failure injection only"
+}

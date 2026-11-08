@@ -1,0 +1,1 @@
+Six cells copied byte-for-byte from the retained PQ run results/pq/20261108-142717 with a restricted inventory. Test fixture for internal/pqaudit tests and scripts/test_pq_runner.sh; not an experimental result.

@@ -1,0 +1,229 @@
+{
+ "honest": {
+  "a2a_task_id": "01a1bbd4-fa6c-704f-97bd-3a8169a642e4",
+  "cached": false,
+  "decisions": [
+   {
+    "evidence_schema": 2,
+    "evaluation_id": "PQZ1/V0",
+    "ledger_id": "PQZ1/V0",
+    "request_id": "PQZ1",
+    "policy": "V0",
+    "contract": "pinned",
+    "receipt_sha256": "ed0142cc14e65ae455b5394e23513aa7b34a96702f523e10e1c79e81a1884c62",
+    "expected_image_id_hex": "4f1e028eacb440660d0a69e4f8ff6aa24724bc62ceaf61cb24a02d67a62e7b8b",
+    "proof_valid": true,
+    "verified_journal_hex": "01000000058b46c55ea876a8f58e60a7c821692e532e99c53dce2dc45aab51913053083a6957f0f38b94f08d2e87a538a352bbb6640000000000000001",
+    "result_pass": true,
+    "context_match": true,
+    "context_checked": false,
+    "input_authorized": true,
+    "input_checked": false,
+    "authority_version_at_decision": 1,
+    "approval_allowed": true,
+    "approval_inserted": true,
+    "decision_seq": 2,
+    "approval_seq": 3,
+    "reason": "approved"
+   },
+   {
+    "evidence_schema": 2,
+    "evaluation_id": "PQZ1/VT",
+    "ledger_id": "PQZ1/VT",
+    "request_id": "PQZ1",
+    "policy": "VT",
+    "contract": "pinned",
+    "receipt_sha256": "ed0142cc14e65ae455b5394e23513aa7b34a96702f523e10e1c79e81a1884c62",
+    "expected_image_id_hex": "4f1e028eacb440660d0a69e4f8ff6aa24724bc62ceaf61cb24a02d67a62e7b8b",
+    "proof_valid": true,
+    "verified_journal_hex": "01000000058b46c55ea876a8f58e60a7c821692e532e99c53dce2dc45aab51913053083a6957f0f38b94f08d2e87a538a352bbb6640000000000000001",
+    "result_pass": true,
+    "context_match": true,
+    "context_checked": true,
+    "input_authorized": true,
+    "input_checked": false,
+    "authority_version_at_decision": 1,
+    "approval_allowed": true,
+    "approval_inserted": true,
+    "decision_seq": 4,
+    "approval_seq": 5,
+    "reason": "approved"
+   },
+   {
+    "evidence_schema": 2,
+    "evaluation_id": "PQZ1/VI",
+    "ledger_id": "PQZ1/VI",
+    "request_id": "PQZ1",
+    "policy": "VI",
+    "contract": "pinned",
+    "receipt_sha256": "ed0142cc14e65ae455b5394e23513aa7b34a96702f523e10e1c79e81a1884c62",
+    "expected_image_id_hex": "4f1e028eacb440660d0a69e4f8ff6aa24724bc62ceaf61cb24a02d67a62e7b8b",
+    "proof_valid": true,
+    "verified_journal_hex": "01000000058b46c55ea876a8f58e60a7c821692e532e99c53dce2dc45aab51913053083a6957f0f38b94f08d2e87a538a352bbb6640000000000000001",
+    "result_pass": true,
+    "context_match": true,
+    "context_checked": false,
+    "input_authorized": true,
+    "input_checked": true,
+    "authority_version_at_decision": 1,
+    "approval_allowed": true,
+    "approval_inserted": true,
+    "decision_seq": 6,
+    "approval_seq": 7,
+    "reason": "approved"
+   },
+   {
+    "evidence_schema": 2,
+    "evaluation_id": "PQZ1/VTI",
+    "ledger_id": "PQZ1/VTI",
+    "request_id": "PQZ1",
+    "policy": "VTI",
+    "contract": "pinned",
+    "receipt_sha256": "ed0142cc14e65ae455b5394e23513aa7b34a96702f523e10e1c79e81a1884c62",
+    "expected_image_id_hex": "4f1e028eacb440660d0a69e4f8ff6aa24724bc62ceaf61cb24a02d67a62e7b8b",
+    "proof_valid": true,
+    "verified_journal_hex": "01000000058b46c55ea876a8f58e60a7c821692e532e99c53dce2dc45aab51913053083a6957f0f38b94f08d2e87a538a352bbb6640000000000000001",
+    "result_pass": true,
+    "context_match": true,
+    "context_checked": true,
+    "input_authorized": true,
+    "input_checked": true,
+    "authority_version_at_decision": 1,
+    "approval_allowed": true,
+    "approval_inserted": true,
+    "decision_seq": 8,
+    "approval_seq": 9,
+    "reason": "approved"
+   }
+  ],
+  "delivery_outcome": "delivered",
+  "identity": {
+   "decision_id": "79dfc08a5cbea331",
+   "nonce": "KCq3bMEhvfTkBBaex2J763Jf5WwE38eZToYSWcrnDyU=",
+   "proof_conn_id": 1,
+   "pinned_conn_id": 1,
+   "dispatch_conn_id": 1,
+   "authorization_token": "a717f1861510c6b1fb1fafe1",
+   "tls_dials": 1,
+   "tls_dials_refused": 0,
+   "requester_events": [
+    {
+     "seq": 1,
+     "kind": "connect",
+     "detail": "https://a.a2aid.test:9443",
+     "at": "2026-11-08T15:44:19.556710458Z"
+    },
+    {
+     "seq": 2,
+     "kind": "card_fetched",
+     "conn_id": 1,
+     "at": "2026-11-08T15:44:19.558384189Z"
+    },
+    {
+     "seq": 3,
+     "kind": "challenge_sent",
+     "detail": "nonce=KCq3bMEhvfTkBBaex2J763Jf5WwE38eZToYSWcrnDyU=",
+     "at": "2026-11-08T15:44:19.558851139Z"
+    },
+    {
+     "seq": 4,
+     "kind": "proof_received",
+     "conn_id": 1,
+     "at": "2026-11-08T15:44:19.563526237Z"
+    },
+    {
+     "seq": 5,
+     "kind": "appraised",
+     "conn_id": 1,
+     "detail": "accept=true stage=",
+     "at": "2026-11-08T15:44:19.563776869Z"
+    },
+    {
+     "seq": 6,
+     "kind": "authorized",
+     "conn_id": 1,
+     "token": "a717f1861510c6b1fb1fafe1",
+     "detail": "policy=PQ-device+cb expected=A nonce=KCq3bMEhvfTkBBaex2J763Jf5WwE38eZToYSWcrnDyU= kind=zk_task",
+     "at": "2026-11-08T15:44:19.563808636Z"
+    },
+    {
+     "seq": 7,
+     "kind": "sealed",
+     "conn_id": 1,
+     "token": "a717f1861510c6b1fb1fafe1",
+     "at": "2026-11-08T15:44:19.5638094Z"
+    },
+    {
+     "seq": 8,
+     "kind": "dispatch_attempt",
+     "conn_id": 1,
+     "token": "a717f1861510c6b1fb1fafe1",
+     "detail": "kind=zk_task",
+     "at": "2026-11-08T15:44:19.563810645Z"
+    },
+    {
+     "seq": 9,
+     "kind": "got_conn",
+     "conn_id": 1,
+     "token": "a717f1861510c6b1fb1fafe1",
+     "at": "2026-11-08T15:44:19.56386079Z"
+    },
+    {
+     "seq": 10,
+     "kind": "sent",
+     "conn_id": 1,
+     "token": "a717f1861510c6b1fb1fafe1",
+     "detail": "request written to the transport (wire delivery is established by the recipient's receipt, not by this event)",
+     "at": "2026-11-08T15:44:19.563879111Z"
+    }
+   ],
+   "connections": [
+    {
+     "conn_id": 1,
+     "peer_cert_sha256": "73c3c0e90e8949177584de80f1cecc7eb00409b7b355b60529f914f1e2e9d7a3",
+     "peer_name": "a.a2aid.test",
+     "exporter_hex": "87c53943f9e5970a966c7d8c268d7c70d0c1ab3d971251d7883d18339bcf3e8a",
+     "tls_version": "TLS 1.3"
+    }
+   ]
+  },
+  "prove_ms": 18894,
+  "receipt_sha256": "ed0142cc14e65ae455b5394e23513aa7b34a96702f523e10e1c79e81a1884c62",
+  "task_sent": true,
+  "transport": {
+   "policy": "PQ-device+cb",
+   "supported": true,
+   "card_signature_present": true,
+   "card_valid_under_enrolled_publisher": true,
+   "card_kid": "A-card-k1",
+   "endpoint_equal": true,
+   "tls_authenticated": true,
+   "tls_enrolled_name_match": true,
+   "tls_peer_name": "a.a2aid.test",
+   "tls_expected_name": "a.a2aid.test",
+   "accept": true
+  }
+ },
+ "invalid_pq": {
+  "error": "transport appraisal rejected; task not sent (stage proof-v4-signature): proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1",
+  "task_sent": false,
+  "transport": {
+   "policy": "PQ-device+cb",
+   "supported": true,
+   "card_signature_present": true,
+   "card_valid_under_enrolled_publisher": true,
+   "card_kid": "A-card-k1",
+   "endpoint_equal": true,
+   "tls_authenticated": true,
+   "tls_enrolled_name_match": true,
+   "tls_peer_name": "a.a2aid.test",
+   "tls_expected_name": "a.a2aid.test",
+   "accept": false,
+   "failure_stage": "proof-v4-signature",
+   "reason": "proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1"
+  },
+  "zk_task_served_at_B": 0
+ },
+ "note": "ZK task delivery gated by the PQ-device+cb identity appraisal and sent through GuardedSend (sealed transport, dispatch on the proof connection; identity record retained). The ZK guest, image id and policies are unchanged. Not a relabelling of the 52-cell matrix; replacement/refusal/recovery cases are in pq_transport_test.go.",
+ "pinned_image_id": "4f1e028eacb440660d0a69e4f8ff6aa24724bc62ceaf61cb24a02d67a62e7b8b"
+}

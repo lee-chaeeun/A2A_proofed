@@ -1,0 +1,10 @@
+2026/11/08 15:30:49 agent B https on 127.0.0.1:9444
+2026/11/08 15:30:49 agent B http on 127.0.0.1:9102
+2026/11/08 15:30:56 http: TLS handshake error from 127.0.0.1:53380: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53390: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53406: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53422: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53428: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53430: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53446: remote error: tls: bad certificate
+2026/11/08 15:30:57 http: TLS handshake error from 127.0.0.1:53448: remote error: tls: bad certificate

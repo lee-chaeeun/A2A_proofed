@@ -1,0 +1,36 @@
+{
+  "audit_version": "2",
+  "structural_checker_version": "2.1",
+  "run_dir": "results/audit/20261108T143109Z-pq-audit-controls/proof-removed-accept-kept-P1_EC-env+cb",
+  "registry": "results/audit/20261108T143109Z-pq-audit-controls/proof-removed-accept-kept-P1_EC-env+cb/enrollment-registry.json",
+  "cells_declared": 128,
+  "cells_found": 128,
+  "agree": 127,
+  "disagree": 0,
+  "violations": 1,
+  "incomplete": 0,
+  "malformed": 0,
+  "unsupported": 0,
+  "proof_v4_signatures_reverified": 34,
+  "proof_v4_signatures_invalid": 85,
+  "expected_attacker_deliveries": 25,
+  "structural_outcomes": {
+    "verified_dispatch": 16,
+    "verified_non_dispatch": 95,
+    "violation_expected_by_fixture": 25
+  },
+  "checks_by_class": {
+    "cooperative_event": 82,
+    "copied_appraisal": 136,
+    "recomputed": 2358,
+    "requester_tls_observation": 109,
+    "stipulated_order": 41
+  },
+  "failed_checks_by_class": {
+    "cooperative_event": 25
+  },
+  "orphan_receipts": 0,
+  "run_level_errors": [],
+  "exit_code": 1,
+  "note": "audit-pq v2: structural release invariants (checker 2.1: strict loading, event order and multiplicity, typed contexts, session join, connection continuity, receipt joins by decision id/token/exporter, release cardinality, duplicate ids, orphan receipts) composed with re-verification of every retained ES256 / ML-DSA-65 proof under the trusted registry (shared libraries; expected context rebuilt from the issued session; parsed appraisal time inside the session validity) and with the declared inventory. Consistency of cooperative observations, not tamper-proof evidence."
+}

@@ -1,37 +1,37 @@
-# Current paper and package status
+# Publication readiness — 8 November 2026
 
-The paper is distributed at `paper/a2a-identity-paper.pdf`, with Markdown, TeX, converter,
-fonts and a self-contained source ZIP alongside it. The latest prior typesetting check
-reported a 236-word abstract and eight main-text pages, with references/appendices outside
-that limit. This repository cleanup did not regenerate or change the manuscript/PDF.
+## Current paper
 
-## Final-source publication cleanup
+- Editable source: `paper/paper-draft.md` and `paper/main.tex`; Markdown conversion uses pandoc, compilation uses LuaLaTeX.
+- PDF: `paper/a2a-identity-paper.pdf`, **16 pages**; main text ends on **page 8**, references start on page 9; **217-word abstract**, **19 references**.
+- Source package: `paper/a2a-identity-latex.zip`, with TeX, Markdown, converter, compiler setting, fonts and their OFL license. Tested from a separate source directory with LuaLaTeX twice.
+- PDF SHA256: `700bd35997c8d7fa56358cc896b30cff513b6a657446a3d8fdcbda69034a5166`; file and ZIP hashes are in `paper/SHA256SUMS`.
+- The main text explains the PQ identity study, separate classical/ZK results and the narrower composition smoke test. The Google CAPS technical report remains reference 19. The background/algorithm appendices are retained.
 
-The public README now presents the TPM/PTV identity integration and separate RISC Zero
-component, with linked tools and a conditional explanation of physical TPM benefits.
-Superseded full runs, review notes, development plans and old root reports are excluded.
-Selected baseline/regression evidence remains to support the research paper and runner.
-The original research trees and a full pre-cleanup publication backup remain outside this
-repository. Existing Git history was not rewritten.
+## Checks executed in this review
 
-## Checks performed after cleanup
+| Check | Result |
+|---|---|
+| New root reproduction entry point, all three modules | Go builds and race suites pass |
+| Corrected PQ final and integration evidence | Both 128/128 agree; composite audit exit 0 |
+| PQ full-run mutation controls | 17/17 classifications match |
+| Runner failure injection | 9/9, including the actual built audit binary |
+| Classical release audit | Exit 0; eight declared weak-policy attack successes remain listed |
+| Standalone ZK oracle | 52/52 agree, seven expected weak-policy successes; genuine receipts reverified |
+| Public PQ emulator with rebuilt bridge | Opt-in create/sign/negative/restart/evict test passes |
+| Restored public Rust source | Clean offline build with cached dependencies and the installed RISC Zero 3.0.6 guest toolchain, separate target directory; all four Rust tests pass |
+| Public-built Rust verifier on retained ZK run | Oracle exit 0, 52/52 agree; no new proofs generated |
+| Package completeness | All six declared Rust CLI sources present, Git-visible and inventoried; source guide covers every application source; relative documentation links resolve |
+| Packaging regression tests | 3/3 (complete source, missing source, overly broad Git ignore) |
+| Retained raw evidence and fixtures | All 2467 baseline hashes unchanged |
+| Paper | LuaLaTeX twice, no undefined citations, overfull boxes or missing characters; all 16 rendered pages inspected |
 
-- `go test -race -count=1 ./...` passed in both `identity/` and `zk-component/`, with local
-  networking available for HTTPS tests.
-- Retained evidence checked against the pre-cleanup inventory: 957 files, zero changes.
-- Application source was not edited; documentation and publication tooling were updated.
-- Edited documentation's local links were checked for existence.
-- The refreshed publication manifest verifies file hashes, sizes, missing files and extras.
-- New proof generation, physical TPM testing and networked matrix reruns were not performed.
-  Default integration/receipt-dependent skips remain subject to their documented prerequisites.
+Fresh full matrices, new genuine proofs, a new timing benchmark and physical hardware were not run in this review. The Rust build used already installed guest tools and cached dependencies, not a fresh installation of that toolchain. The emulator libraries were the public-copy build retained from the correction pass; this review rebuilt the C bridge against them and exercised them. Default Go skips are not counted as those opt-in integrations.
 
-The public working tree contains the cleanup changes for review. This task did not commit
-or push them. A prior repository publication may already exist; this file does not claim
-that nothing has ever been uploaded.
+## Public tree
 
-## Scientific scope
+The three directories are final implementations of distinct paper studies. Generated toolchains, binaries and live state are excluded. The unused discovery/paid-inference command was removed; no experimental security implementation changed. Rust `src/bin` source is restored and included in Git and provenance checks. `docs/CODE_MAP.md` lists every source file; `docs/REPRODUCING.md` gives the prerequisites and commands.
 
-TPM integration uses swtpm and a synthetic PCR. Physical non-migratable key protection is
-a design motivation under stated enrollment/device assumptions, not measured here. The
-application uses classical P-256, not PQC. The ZK component measures task/input checks over
-verified receipts; it is not a combined TPM/ZK experiment or a comparison with signatures.
+Selected earlier observations remain only where the paper or a regression control needs them; archived code versions and source tarballs are not shipped. Raw historical paths inside copied records are preserved, not rewritten. The pre-cleanup publication tree and generated files are preserved outside the repository in the author's research workspace.
+
+Nothing was committed, pushed or submitted. The Git working tree is prepared for the author to review and publish. Submission-form team details and optional presentation materials remain separate from the repository.

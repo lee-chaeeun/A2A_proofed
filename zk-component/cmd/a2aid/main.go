@@ -30,7 +30,6 @@ import (
 	"a2aid/internal/cardsig"
 	"a2aid/internal/controller"
 	"a2aid/internal/ctl"
-	"a2aid/internal/discover"
 	"a2aid/internal/gate"
 	"a2aid/internal/matrix"
 	"a2aid/internal/registry"
@@ -72,8 +71,6 @@ func main() {
 		zkInventory(os.Args[2:])
 	case "audit-release":
 		audit.Main(os.Args[2:])
-	case "discover":
-		discover.Main(os.Args[2:])
 	case "reverify":
 		matrix.ReverifyMain(os.Args[2:])
 	case "version":
@@ -84,7 +81,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: a2aid setup|provision|publish-card|controller|gate|agent|matrix|traces|reverify|version ...")
+	fmt.Fprintln(os.Stderr, "usage: a2aid setup|provision|publish-card|controller|gate|agent|matrix|traces|zk-fixtures|zk-matrix|zk-oracle|zk-inventory|audit-release|reverify|version ...")
 	os.Exit(2)
 }
 

@@ -1,0 +1,70 @@
+{
+  "host_note": "single host, CPU only; emulator timings are not physical TPM timings; microbenchmarks are not agent throughput",
+  "sizes_bytes": {
+    "context_cbor": 306,
+    "mldsa65_public_key": 1952,
+    "mldsa65_signature": 3309,
+    "p256_public_key_uncompressed": 65,
+    "p256_signature_raw": 64
+  },
+  "mldsa65_keygen": {
+    "samples": 30,
+    "median_us": 178,
+    "min_us": 117,
+    "max_us": 376
+  },
+  "mldsa65_sign": {
+    "samples": 30,
+    "median_us": 243,
+    "min_us": 73,
+    "max_us": 2097
+  },
+  "mldsa65_verify": {
+    "samples": 30,
+    "median_us": 141,
+    "min_us": 92,
+    "max_us": 1150
+  },
+  "p256_keygen": {
+    "samples": 30,
+    "median_us": 14,
+    "min_us": 14,
+    "max_us": 42
+  },
+  "p256_sign": {
+    "samples": 30,
+    "median_us": 34,
+    "min_us": 33,
+    "max_us": 82
+  },
+  "p256_verify": {
+    "samples": 30,
+    "median_us": 75,
+    "min_us": 74,
+    "max_us": 87
+  },
+  "device_sign_bridge_wall": {
+    "samples": 30,
+    "median_us": 2408,
+    "min_us": 1747,
+    "max_us": 3272
+  },
+  "device_sign_tpm_commands": {
+    "samples": 30,
+    "median_us": 804,
+    "min_us": 367,
+    "max_us": 1392
+  },
+  "device_sign_sequence_complete_only": {
+    "samples": 30,
+    "median_us": 672,
+    "min_us": 310,
+    "max_us": 1245
+  },
+  "device_signature_verify_host_circl": {
+    "samples": 30,
+    "median_us": 158,
+    "min_us": 100,
+    "max_us": 244
+  }
+}

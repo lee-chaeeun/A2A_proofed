@@ -1,0 +1,20 @@
+?   	a2aid/cmd/a2aid	[no test files]
+?   	a2aid/internal/agent	[no test files]
+ok  	a2aid/internal/audit	2.263s
+?   	a2aid/internal/cardsig	[no test files]
+?   	a2aid/internal/controller	[no test files]
+?   	a2aid/internal/ctl	[no test files]
+ok  	a2aid/internal/discover	1.151s
+ok  	a2aid/internal/gate	1.024s
+ok  	a2aid/internal/matrix	1.020s
+ok  	a2aid/internal/pqaudit	2.335s
+ok  	a2aid/internal/pqdev	1.010s
+ok  	a2aid/internal/pqsig	1.226s
+ok  	a2aid/internal/ptv	1.017s
+?   	a2aid/internal/registry	[no test files]
+ok  	a2aid/internal/senv	1.015s
+ok  	a2aid/internal/tpmsig	1.011s
+ok  	a2aid/internal/verifier	6.066s
+ok  	a2aid/internal/wire	1.060s
+ok  	a2aid/internal/zk	19.477s
+exit 0

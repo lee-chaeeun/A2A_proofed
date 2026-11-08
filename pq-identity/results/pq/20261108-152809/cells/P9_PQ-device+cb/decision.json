@@ -1,0 +1,173 @@
+{
+  "decisions": [
+    {
+      "policy": "PQ-device+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ML-DSA-65",
+        "kid": "A-pqdev-k1",
+        "pinned_alg": "ML-DSA-65",
+        "pinned_kid": "A-pqdev-k1",
+        "pinned_custody": "emulated-device",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 278,
+        "signature_bytes": 3309,
+        "failure_stage": "context-mismatch",
+        "reason": "signed context differs from the expected context (fields: [policy nonce session exporter])"
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "113c636a727980813d02c09f39788fd9e89cab2f437e7579bd7ae4dec0b0057b",
+        "proof_bound_to_requester_connection": false
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "PQ-device+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T14:28:20.589065375Z",
+        "expires_at": "2026-11-08T14:30:20.589065375Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "7bhpkMUeDFkjagVNCJnuvadm01LzZ2O1H+QiT0YZhM8=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T14:28:20Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-context-mismatch",
+      "reason": "proof_v4: signed context differs from the expected context (fields: [policy nonce session exporter])",
+      "appraised_at": "2026-11-08T14:28:20.596532621Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "7bhpkMUeDFkjagVNCJnuvadm01LzZ2O1H+QiT0YZhM8=",
+        "policy": "PQ-device+tls",
+        "proof_v4": {
+          "alg": "ML-DSA-65",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2lNTC1EU0EtNjVja2lkakEtcHFkZXYtazFkcm9sZW5hZ2VudC1yZXNwb25zZWVub25jZVgg1A66LtAIgkkEw9WtwcL5LT2AhDm/GV5sLx87iMo3ZclmYWN0aW9udXJlbGVhc2Utc3ludGhldGljLWpvYmZleHBpcnkaavCHfGZwb2xpY3ltUFEtZGV2aWNlK3Rsc2dzZXNzaW9ueCwxQTY2THRBSWdra0V3OVd0d2NMNUxUMkFoRG0vR1Y1c0x4ODdpTW8zWmNrPWhleHBlY3RlZGVkZXAtQWhleHBvcnRlckBpcmVxdWVzdGVyc3JlcXVlc3RlcjphMmFpZC1sYWI=",
+          "format": "a2aid-proof-v4",
+          "kid": "A-pqdev-k1",
+          "signature": "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"
+        },
+        "timestamp": "2026-11-08T14:28:20Z",
+        "type": "evidence"
+      },
+      "decision_id": "73aeae5eef498eb0",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "113c636a727980813d02c09f39788fd9e89cab2f437e7579bd7ae4dec0b0057b",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T14:28:20.587035278Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:20.588676799Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=7bhpkMUeDFkjagVNCJnuvadm01LzZ2O1H+QiT0YZhM8=",
+          "at": "2026-11-08T14:28:20.589177702Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:20.596340786Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-context-mismatch",
+          "at": "2026-11-08T14:28:20.596634378Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-context-mismatch",
+          "at": "2026-11-08T14:28:20.596765778Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "73aeae5eef498eb0",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-device+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "7bhpkMUeDFkjagVNCJnuvadm01LzZ2O1H+QiT0YZhM8="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "7bhpkMUeDFkjagVNCJnuvadm01LzZ2O1H+QiT0YZhM8=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "PQ-device+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T14:28:20.589065375Z",
+      "expires_at": "2026-11-08T14:30:20.589065375Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T14:28:20.596535522Z",
+      "result": "reject:proof-v4-context-mismatch",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

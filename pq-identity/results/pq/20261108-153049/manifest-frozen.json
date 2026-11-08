@@ -1,0 +1,1264 @@
+{
+ "version": 5,
+ "frozen_at": "2026-11-08T13:30:00Z",
+ "note": "PQ identity manifest (a2aid-proof-v4): 12 scenarios P1-P12 and 4 boundary controls X1-X4 over 8 arms = 128 cells, declared before the first run from PQ_IDENTITY_PLAN.md. Expected decision and recipient are separate. Arms: C+tls baseline; EC-env (ES256, gated signer); PQ-env (ML-DSA-65, gated signer); PQ-file (ML-DSA-65 seed in the application volume); PQ-device (ML-DSA-65 key created and held by the wolfTPM firmware-TPM emulator, used through the gated signer). P3-P6 and P12 presuppose A's TLS credentials so that the proof check, not the TLS name check, is the variable (without credentials every +tls arm rejects as in P7). Revised 2026-11-08 before attempt 2 (after attempt 1 results/pq/20261108-142400): P11 expected decision string \"accept\" -> \"one\" (the concurrent helper's reporting format; the prediction of exactly one release to A is unchanged). No other cell changed.",
+ "policies": [
+  "C+tls",
+  "EC-env+tls",
+  "EC-env+cb",
+  "PQ-env+tls",
+  "PQ-env+cb",
+  "PQ-file+cb",
+  "PQ-device+tls",
+  "PQ-device+cb"
+ ],
+ "fixtures": [
+  {
+   "id": "P1",
+   "title": "honest A, one delivery",
+   "endpoint": "A",
+   "capabilities": [
+    "none"
+   ],
+   "permissions": "B honest at its own address; A answers normally",
+   "class": "honest",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "accept",
+    "EC-env+cb": "accept",
+    "PQ-env+tls": "accept",
+    "PQ-env+cb": "accept",
+    "PQ-file+cb": "accept",
+    "PQ-device+tls": "accept",
+    "PQ-device+cb": "accept"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "A",
+    "EC-env+tls": "A",
+    "EC-env+cb": "A",
+    "PQ-env+tls": "A",
+    "PQ-env+cb": "A",
+    "PQ-file+cb": "A",
+    "PQ-device+tls": "A",
+    "PQ-device+cb": "A"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "EC-env+tls": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "EC-env+cb": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "PQ-env+tls": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "PQ-env+cb": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "PQ-file+cb": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "PQ-device+tls": {
+     "decision": "accept",
+     "recipient": "A"
+    },
+    "PQ-device+cb": {
+     "decision": "accept",
+     "recipient": "A"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": ""
+  },
+  {
+   "id": "P2",
+   "title": "recorded proof replayed against a fresh nonce",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "replay"
+   ],
+   "permissions": "B at its own address replays an earlier response captured from A",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "reject",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "none",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "C+tls rejects at endpoint equality (card declares A's origin); proof arms at nonce/context"
+  },
+  {
+   "id": "P3",
+   "title": "context tamper: relay changes the action of the forwarded challenge",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A",
+    "context_tamper"
+   ],
+   "permissions": "B holds A's TLS credentials, relays to A with action rewritten; no key access",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "the honest signer signs the tampered action; the requester compares with its own issued context"
+  },
+  {
+   "id": "P4",
+   "title": "wrong enrolled key: B presents its own genuine keys under A's key ids",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "own_enrolled_keys"
+   ],
+   "permissions": "B holds A's TLS credentials and signs with B's enrolled EC/ML-DSA keys claiming A",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "signature does not verify under A's pinned key; includes another deployment's genuine ML-DSA key"
+  },
+  {
+   "id": "P5",
+   "title": "algorithm confusion / classical fallback",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "alg_confusion"
+   ],
+   "permissions": "B holds A's TLS credentials and answers PQ policies with ES256 and EC policies with ML-DSA-65, signed by B's keys",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "closed algorithm set pinned per policy base; no downgrade"
+  },
+  {
+   "id": "P6",
+   "title": "application volume copied (incl. PQ-file seed) + A's TLS credentials, no signer access",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy",
+    "address_hijack",
+    "tls_credentials_A"
+   ],
+   "permissions": "B serves A's copied volume with A's TLS credentials; gate ACL denies B",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "accept",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "B",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "only the volume-held PQ key is copied; gated and device keys are not"
+  },
+  {
+   "id": "P7",
+   "title": "address hijack without TLS credentials",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack"
+   ],
+   "permissions": "B at A's name with B's own certificate, relaying to A",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "reject",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "none",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "TLS name check"
+  },
+  {
+   "id": "P8",
+   "title": "relay with A's TLS credentials, untouched forwarding",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A"
+   ],
+   "permissions": "B terminates the requester's TLS with A's credentials and relays A's untouched response",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "accept",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "accept",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "accept",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "B",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "B",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "B",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "the measured relay: binding, not the algorithm, decides"
+  },
+  {
+   "id": "P9",
+   "title": "relay + binding strip, exporter injection, chosen nonce and cross-policy forward",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A",
+    "binding_strip",
+    "exporter_injection",
+    "cross_policy_forward"
+   ],
+   "permissions": "same relay actively rewriting the forwarded challenge (strip binding, inject its exporter, bound-nonce substitution, +cb\u2192+tls forward)",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "under +tls arms the rewrite is self-defeating (reject), not protection; P8 is the working attack there"
+  },
+  {
+   "id": "P10",
+   "title": "valid proof, then proof connection closed and A's name repointed to B before dispatch",
+   "endpoint": "A",
+   "capabilities": [
+    "tls_credentials_A",
+    "connection_substitution"
+   ],
+   "permissions": "B (A's TLS credentials, honest mode) receives the requester's reconnect after appraisal",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "accept",
+    "EC-env+cb": "accept",
+    "PQ-env+tls": "accept",
+    "PQ-env+cb": "accept",
+    "PQ-file+cb": "accept",
+    "PQ-device+tls": "accept",
+    "PQ-device+cb": "accept"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "none",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "EC-env+tls": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "accept",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "accept",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "dispatch refused before any task byte; no receipt anywhere (C+tls pins the discovery connection)"
+  },
+  {
+   "id": "P11",
+   "title": "two concurrent deliveries for one session",
+   "endpoint": "A-and-B",
+   "capabilities": [
+    "concurrent_delivery"
+   ],
+   "permissions": "the requester runs A and B concurrently for one issued nonce; B is honest with its own card",
+   "class": "honest",
+   "expected": {
+    "C+tls": "one",
+    "EC-env+tls": "one",
+    "EC-env+cb": "one",
+    "PQ-env+tls": "one",
+    "PQ-env+cb": "one",
+    "PQ-file+cb": "one",
+    "PQ-device+tls": "one",
+    "PQ-device+cb": "one"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "A",
+    "EC-env+tls": "A",
+    "EC-env+cb": "A",
+    "PQ-env+tls": "A",
+    "PQ-env+cb": "A",
+    "PQ-file+cb": "A",
+    "PQ-device+tls": "A",
+    "PQ-device+cb": "A"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "EC-env+tls": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "EC-env+cb": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "PQ-env+tls": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "PQ-env+cb": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "PQ-file+cb": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "PQ-device+tls": {
+     "decision": "one",
+     "recipient": "A"
+    },
+    "PQ-device+cb": {
+     "decision": "one",
+     "recipient": "A"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "exactly one release, to A; the concurrent helper reports \"one\" or \"N releases\" as its decision string (format fixed before attempt 2; semantics unchanged)"
+  },
+  {
+   "id": "P12",
+   "title": "classical-compromise surrogate: A's TLS credentials + EC signer access, no PQ key",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "ec_signer_access"
+   ],
+   "permissions": "B holds A's TLS credentials, A's gate tokens and the ecA ACL; pqA/devA denied; no PQ-file seed",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "accept",
+    "EC-env+cb": "accept",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "B",
+    "EC-env+cb": "B",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "capability surrogate, not a quantum attack: B is granted the classical secret and not the independently enrolled PQ key"
+  },
+  {
+   "id": "X1",
+   "title": "boundary control: A's TLS credentials + PQ software signer and device signer access",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "pq_signer_access",
+    "device_signer_access"
+   ],
+   "permissions": "B holds A's TLS credentials, A's gate tokens and the pqA + devA ACLs; ecA denied",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "accept",
+    "PQ-env+cb": "accept",
+    "PQ-file+cb": "accept",
+    "PQ-device+tls": "accept",
+    "PQ-device+cb": "accept"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "B",
+    "PQ-env+cb": "B",
+    "PQ-file+cb": "B",
+    "PQ-device+tls": "B",
+    "PQ-device+cb": "B"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-env+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-file+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "authorized signing reproduces the capability (and the copied volume carries the PQ-file key)"
+  },
+  {
+   "id": "X2",
+   "title": "boundary control: copy of A's emulator NV file in a third fwTPM instance + A's authValue",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "emulator_state_clone",
+    "device_auth_A"
+   ],
+   "permissions": "B holds A's TLS credentials and tokens; the clone signer devAclone (A's authValue) is granted to B; ecA/pqA/devA denied",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "accept",
+    "PQ-device+tls": "accept",
+    "PQ-device+cb": "accept"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "B",
+    "PQ-device+tls": "B",
+    "PQ-device+cb": "B"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "PQ-device+cb": {
+     "decision": "accept",
+     "recipient": "B"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "emulator state is a file; the clone reproduces the device key capability (PQ-file from the copied volume)"
+  },
+  {
+   "id": "X3",
+   "title": "boundary control: attacker-generated ML-DSA key presented under A's key ids",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "key_substitution"
+   ],
+   "permissions": "B holds A's TLS credentials and signs with a fresh ML-DSA key under A's kids",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "key substitution rejected under the pinned public key"
+  },
+  {
+   "id": "X4",
+   "title": "boundary control: PQ-file key rotated in the registry (version 2) while the copied volume holds version 1",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy",
+    "address_hijack",
+    "tls_credentials_A",
+    "stale_key_version"
+   ],
+   "permissions": "as P6, but the requester pins A-pqfile-k2",
+   "class": "malicious",
+   "expected": {
+    "C+tls": "accept",
+    "EC-env+tls": "reject",
+    "EC-env+cb": "reject",
+    "PQ-env+tls": "reject",
+    "PQ-env+cb": "reject",
+    "PQ-file+cb": "reject",
+    "PQ-device+tls": "reject",
+    "PQ-device+cb": "reject"
+   },
+   "expected_recipient_by_policy": {
+    "C+tls": "B",
+    "EC-env+tls": "none",
+    "EC-env+cb": "none",
+    "PQ-env+tls": "none",
+    "PQ-env+cb": "none",
+    "PQ-file+cb": "none",
+    "PQ-device+tls": "none",
+    "PQ-device+cb": "none"
+   },
+   "expected_outcome": {
+    "C+tls": {
+     "decision": "accept",
+     "recipient": "B"
+    },
+    "EC-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "EC-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-env+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-file+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+tls": {
+     "decision": "reject",
+     "recipient": "none"
+    },
+    "PQ-device+cb": {
+     "decision": "reject",
+     "recipient": "none"
+    }
+   },
+   "policy_classes": {
+    "C+tls": "secured-baseline",
+    "EC-env+tls": "control",
+    "EC-env+cb": "defended",
+    "PQ-env+tls": "control",
+    "PQ-env+cb": "defended",
+    "PQ-file+cb": "defended",
+    "PQ-device+tls": "control",
+    "PQ-device+cb": "defended"
+   },
+   "class_note": "the pinned key id/version rejects the stale copied key"
+  }
+ ]
+}

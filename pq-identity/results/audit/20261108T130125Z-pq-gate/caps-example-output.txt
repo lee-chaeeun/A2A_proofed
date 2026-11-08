@@ -1,0 +1,8 @@
+TPM2 Get Capabilities
+Mfg WOLF (0), Vendor wolfTPM, Fw 0.0 (0x1), FIPS none, CC-EAL4 0
+Found 0 persistent handles
+Assigned PCR's:
+	SHA256:  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+	SHA384:  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+	SHA1: 
+wolfTPM caps read successfully

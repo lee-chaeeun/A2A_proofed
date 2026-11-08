@@ -1,0 +1,15 @@
+{
+  "cb_hex": "3dced57b84df2db0fa1e916460d2245e146024ed64614cc332316be0647d768a",
+  "deployment_id": "dep-A",
+  "nonce": "OrX7LVn6MEGjGvxngbcFR/1jdLp0hPKMEIPfo/vqcy0=",
+  "policy": "EC-env+cb",
+  "proof_v4": {
+    "alg": "ES256",
+    "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1lY2Vudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCA6tfstWfowQaMa/GeBtwVH/WN0unSE8owQg9+j++pzLWZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZmV4cGlyeRpq8JjGZnBvbGljeWlFQy1lbnYrY2Jnc2Vzc2lvbngsT3JYN0xWbjZNRUdqR3Z4bmdiY0ZSLzFqZExwMGhQS01FSVBmby92cWN5MD1oZXhwZWN0ZWRlZGVwLUFoZXhwb3J0ZXJYID3O1XuE3y2w+h6RZGDSJF4UYCTtZGFMwzIxa+BkfXaKaXJlcXVlc3RlcnNyZXF1ZXN0ZXI6YTJhaWQtbGFi",
+    "format": "a2aid-proof-v4",
+    "kid": "A-ecenv-k1",
+    "signature": "MfZUmn/uSuG1Td6+lERTP3bFcoov6YmuTAgUoIQdYpVLuT4dGQNjCXlS+cB8RbNYggaC5wmMyB4R7eed5QfWMQ=="
+  },
+  "timestamp": "2026-11-08T15:42:06Z",
+  "type": "evidence"
+}

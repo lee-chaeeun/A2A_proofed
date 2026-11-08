@@ -1,0 +1,227 @@
+{
+  "decisions": [
+    {
+      "policy": "PQ-env+tls",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "ef4f8db8afacb77570afb9ec2294b4875a1ee2e3380d69b0ef8ade954544745a",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ML-DSA-65",
+        "kid": "A-pqenv-k1",
+        "pinned_alg": "ML-DSA-65",
+        "pinned_kid": "A-pqenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": true,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": true,
+        "context_bytes": 275,
+        "signature_bytes": 3309
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T13:27:17.981315676Z",
+        "expires_at": "2026-11-08T13:29:17.981315676Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T13:27:17Z",
+      "sig_verdict": "ok",
+      "accept": true,
+      "appraised_at": "2026-11-08T13:27:17.984747819Z",
+      "dispatch_attempted": true,
+      "job_released": true,
+      "job_reused_proof_connection": true,
+      "job_token": "53429d5149eca5d423f79a08",
+      "job_ack_received": true,
+      "job_ack_claimed_deployment": "dep-A",
+      "job_ack_pcr_at_receipt_hex": "7ac91e2ac03e4e0a4690a16e805c60fb1cd3aa1388853dd945a9836415f9a4d6",
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+        "policy": "PQ-env+tls",
+        "proof_v4": {
+          "alg": "ML-DSA-65",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2lNTC1EU0EtNjVja2lkakEtcHFlbnYtazFkcm9sZW5hZ2VudC1yZXNwb25zZWVub25jZVggWdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2dmYWN0aW9udXJlbGVhc2Utc3ludGhldGljLWpvYmZleHBpcnkaavB5LWZwb2xpY3lqUFEtZW52K3Rsc2dzZXNzaW9ueCxXZEttdXU2QjFZTllPbHJqak9KeTcvNDJSTjBDRlhKQWJlenBzanV4azJjPWhleHBlY3RlZGVkZXAtQWhleHBvcnRlckBpcmVxdWVzdGVyc3JlcXVlc3RlcjphMmFpZC1sYWI=",
+          "format": "a2aid-proof-v4",
+          "kid": "A-pqenv-k1",
+          "signature": "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"
+        },
+        "timestamp": "2026-11-08T13:27:17Z",
+        "type": "evidence"
+      },
+      "decision_id": "99d9ba8159d69f0f",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "ef4f8db8afacb77570afb9ec2294b4875a1ee2e3380d69b0ef8ade954544745a",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "a470390e6db5130df4bf0d2823a6b8282aa79fa5c01e43eb6edc66acf759f61c",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "pinned_conn_id": 1,
+      "dispatch_conn_id": 1,
+      "job_sent": true,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T13:27:17.979199854Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T13:27:17.980922238Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+          "at": "2026-11-08T13:27:17.981495781Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T13:27:17.984562071Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=true stage=",
+          "at": "2026-11-08T13:27:17.984962151Z"
+        },
+        {
+          "seq": 6,
+          "kind": "authorized",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "detail": "policy=PQ-env+tls expected=A nonce=WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+          "at": "2026-11-08T13:27:17.985142749Z"
+        },
+        {
+          "seq": 7,
+          "kind": "sealed",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "at": "2026-11-08T13:27:17.985285865Z"
+        },
+        {
+          "seq": 8,
+          "kind": "dispatch_attempt",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "at": "2026-11-08T13:27:17.985409592Z"
+        },
+        {
+          "seq": 9,
+          "kind": "got_conn",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "at": "2026-11-08T13:27:17.985759315Z"
+        },
+        {
+          "seq": 10,
+          "kind": "sent",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "detail": "request written to the transport (wire delivery is established by the recipient's receipt, not by this event)",
+          "at": "2026-11-08T13:27:17.985934678Z"
+        },
+        {
+          "seq": 11,
+          "kind": "ack",
+          "conn_id": 1,
+          "token": "53429d5149eca5d423f79a08",
+          "detail": "claimed=dep-A",
+          "at": "2026-11-08T13:27:17.987232747Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "context": {
+        "decision_id": "99d9ba8159d69f0f",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c="
+      },
+      "authorization_context": {
+        "decision_id": "99d9ba8159d69f0f",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+        "token": "53429d5149eca5d423f79a08"
+      },
+      "dispatch_context": {
+        "decision_id": "99d9ba8159d69f0f",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+        "token": "53429d5149eca5d423f79a08"
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "WdKmuu6B1YNYOlrjjOJy7/42RN0CFXJAbezpsjuxk2c=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "PQ-env+tls",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T13:27:17.981315676Z",
+      "expires_at": "2026-11-08T13:29:17.981315676Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T13:27:17.98474986Z",
+      "result": "accept",
+      "released": true,
+      "job_token": "53429d5149eca5d423f79a08",
+      "appraisals": 1
+    }
+  ]
+}

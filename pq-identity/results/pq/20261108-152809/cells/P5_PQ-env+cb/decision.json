@@ -1,0 +1,175 @@
+{
+  "decisions": [
+    {
+      "policy": "PQ-env+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ES256",
+        "kid": "A-pqenv-k1",
+        "pinned_alg": "ML-DSA-65",
+        "pinned_kid": "A-pqenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 303,
+        "signature_bytes": 64,
+        "failure_stage": "alg",
+        "reason": "algorithm \"ES256\" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)"
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "1bcd04b677a93354f22bfc8de070c465810dbbaf8e9dea897d0635417fff293b",
+        "agent_claimed_hex": "1bcd04b677a93354f22bfc8de070c465810dbbaf8e9dea897d0635417fff293b",
+        "proof_bound_to_requester_connection": false
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "PQ-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T14:28:14.967749586Z",
+        "expires_at": "2026-11-08T14:30:14.967749586Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "WdkfVb8pGvQzc2MHSodmSLBcm9X1QxGNpB/fNqzZr9A=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T14:28:14Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-alg",
+      "reason": "proof_v4: algorithm \"ES256\" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)",
+      "appraised_at": "2026-11-08T14:28:14.970550977Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "cb_hex": "1bcd04b677a93354f22bfc8de070c465810dbbaf8e9dea897d0635417fff293b",
+        "deployment_id": "dep-A",
+        "nonce": "WdkfVb8pGvQzc2MHSodmSLBcm9X1QxGNpB/fNqzZr9A=",
+        "policy": "PQ-env+cb",
+        "proof_v4": {
+          "alg": "ES256",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1wcWVudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCBZ2R9Vvyka9DNzYwdKh2ZIsFyb1fVDEY2kH982rNmv0GZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZmV4cGlyeRpq8Id2ZnBvbGljeWlQUS1lbnYrY2Jnc2Vzc2lvbngsV2RrZlZiOHBHdlF6YzJNSFNvZG1TTEJjbTlYMVF4R05wQi9mTnF6WnI5QT1oZXhwZWN0ZWRlZGVwLUFoZXhwb3J0ZXJYIBvNBLZ3qTNU8iv8jeBwxGWBDbuvjp3qiX0GNUF//yk7aXJlcXVlc3RlcnNyZXF1ZXN0ZXI6YTJhaWQtbGFi",
+          "format": "a2aid-proof-v4",
+          "kid": "A-pqenv-k1",
+          "signature": "zW2+/x+HcQBpSiro3wkHxuDPG20DRG/sKQfW5B4KCtLmBGJ7RL3ow+20oR67M9sLUvGAh1NF1+T0xKmCTOdfOA=="
+        },
+        "timestamp": "2026-11-08T14:28:14Z",
+        "type": "evidence"
+      },
+      "decision_id": "819bce06e6341e6c",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "1bcd04b677a93354f22bfc8de070c465810dbbaf8e9dea897d0635417fff293b",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T14:28:14.965261068Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:14.96733005Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=WdkfVb8pGvQzc2MHSodmSLBcm9X1QxGNpB/fNqzZr9A=",
+          "at": "2026-11-08T14:28:14.967897284Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:14.970392185Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-alg",
+          "at": "2026-11-08T14:28:14.970617333Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-alg",
+          "at": "2026-11-08T14:28:14.970739785Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "819bce06e6341e6c",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "PQ-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "WdkfVb8pGvQzc2MHSodmSLBcm9X1QxGNpB/fNqzZr9A="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "WdkfVb8pGvQzc2MHSodmSLBcm9X1QxGNpB/fNqzZr9A=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "PQ-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T14:28:14.967749586Z",
+      "expires_at": "2026-11-08T14:30:14.967749586Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T14:28:14.970552704Z",
+      "result": "reject:proof-v4-alg",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

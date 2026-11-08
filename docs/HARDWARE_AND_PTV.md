@@ -1,6 +1,6 @@
 # Why root an A2A identity key in hardware?
 
-This prototype connects TPM attestation to an A2A requester. The weekend implementation uses a software TPM so the message flow, quote checks and task-delivery rules can be exercised without a physical device. The intended deployment is an enrolled identity key protected by a physical TPM.
+This prototype connects device-held identity keys to an A2A requester. The weekend implementation uses two software TPMs so the message flow, proof checks and task-delivery rules can be exercised without a physical device: swtpm for the classical attestation quote, and the wolfTPM firmware TPM for an ML-DSA-65 identity key (the final prototype, `pq-identity/`). The intended deployment is an enrolled identity key protected by a physical device.
 
 ## Three separate protections
 
@@ -47,8 +47,20 @@ PTV motivates the hardware-rooted design; citing it does not turn the emulator m
 
 TPM protection concerns where keys live and who can use them. Post-quantum cryptography concerns the mathematical algorithms' resistance to quantum attacks. A hardware-protected classical elliptic-curve key does not become post-quantum secure because it is inside a TPM. Conversely, a post-quantum private key stored in an ordinary file can still be copied. [NIST's PQC explanation](https://www.nist.gov/cybersecurity-and-privacy/what-post-quantum-cryptography).
 
-This implementation uses classical P-256 signatures. It does not implement or evaluate PQC, and neither the TPM nor ZK component should be advertised as establishing end-to-end post-quantum security.
+## The post-quantum credential measured here
+
+`pq-identity/` enrolls, per deployment, an ML-DSA-65 ([FIPS 204](https://csrc.nist.gov/pubs/fips/204/final)) key under three custodies and compares them with an ECDSA P-256 control that signs the same canonical context:
+
+| Arm | Where the ML-DSA key lives | What a copy of the application volume yields | What authorized signer access yields |
+|---|---|---|---|
+| PQ-file | seed file in the application volume | the key (P6: attacker delivery) | — |
+| PQ-env | gated signer service | nothing (P6: rejected) | the capability (X1) |
+| PQ-device | created and held by the wolfTPM firmware TPM, persistent handle, `fixedTPM\|fixedParent`, authValue held by the gated device signer | nothing (P6: rejected) | the capability (X1); a copy of the emulator's state directory with its journal key also yields it (X2) |
+
+The requester verifies with CIRCL under the pinned public key, so the emulator's wolfCrypt signatures are checked by an independent implementation. Against every network attack (replay, tamper, key or algorithm substitution, relay with stolen TLS credentials, binding strip, connection substitution) the ECDSA control behaves exactly like the PQ arms: the algorithm changes nothing there, the connection binding does. The classical-compromise surrogate (P12: attacker holds A's TLS credentials and A's classical signer) defeats the bound ECDSA arm but no PQ arm, because the PQ key is a separately enrolled credential. What the registry enforces is the pinned algorithm, key id and public key; its version field is a label, and no rotation or revocation protocol was evaluated (X4 changed the enrolled key id).
+
+What this does not establish: physical extraction resistance (the emulator's NV state and its journal HMAC key are files), FIPS validation, the security of ML-DSA itself, or end-to-end post-quantum security. Agent Card JWS, TLS 1.3, the lab CA and the swtpm quote are classical; an adversary who recovers TLS session keys would also obtain the channel-binding exporter, a stronger attacker than the stolen-certificate relay measured. Native ML-DSA support must be verified for a specific device, firmware and API before any deployment promise; the TPM 2.0 v1.85 commands were exercised only on the emulator. Costs on the recorded host: 1952-byte public keys and 3309-byte signatures, about 4.9 kB per proof response against 0.6 kB for ECDSA, and 4.4–4.9 ms challenge-to-proof latency over loopback through the emulator against 2.2–2.4 ms for ECDSA.
 
 ## A defensible description
 
-> An A2A prototype integrating TPM-based identity attestation, connection-bound task delivery and a separate RISC Zero task-result verification component. TPM integration is evaluated with swtpm; physical key-protection benefits are motivated by established TPM properties and remain outside the measured hardware scope.
+> An A2A prototype integrating a device-resident post-quantum identity credential (ML-DSA-65 created and held by a TPM 2.0 v1.85 emulator, verified independently under a pinned key), TPM-based identity attestation, connection-bound task delivery and a separate RISC Zero task-result verification component. Device integration is evaluated with emulators (wolfTPM firmware TPM, swtpm); physical key-protection benefits are motivated by established TPM properties and remain outside the measured hardware scope, and transport, cards and the CA stay classical.

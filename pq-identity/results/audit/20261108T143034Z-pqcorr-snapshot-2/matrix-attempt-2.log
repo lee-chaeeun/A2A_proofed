@@ -1,0 +1,215 @@
+corrected matrix attempt 2, start 2026-11-08T14:30:34Z, binary 15b7717f3c7fcf52
+pwd /home/bitchae/aisafety/swarmalign/a2a-pq-identity
+[pq_matrix] 14:30:47Z setup (./scripts/setup.sh)
+15b7717f3c7fcf52bd0c5fb33eab19af8a7b52786313b9f73ac6bb8aeaf89e0f  bin/a2aid
+provisioned A: deployment=dep-A ak_name=000bdd4a30c43f665d19d8c6440ca750e81adc4321eb59538bb3d6203794db82ca01 pcr16=7ac91e2ac03e4e0a4690a16e805c60fb1cd3aa1388853dd945a9836415f9a4d6 tls_name=a.a2aid.test
+provisioned B: deployment=dep-B ak_name=000bcad89f5a3c1c3ba427e69b7d12eaddb8f6cbd99a204fb3285bf79976e93421bc pcr16=6ca65e2b00fd47d168fd33416d76e0a100a8b4cc930596a35a094a98829d567f tls_name=b.a2aid.test
+setup complete; registry at /home/bitchae/aisafety/swarmalign/a2a-pq-identity/run/registry.json
+[pq_matrix] 14:30:49Z matrix
+15:30:49.229 booted: controller, gate, A(pid 477062), B(pid 477063), operator pid 477023
+15:30:49.229 === P1 honest A, one delivery
+15:30:49.388 P1_C+tls       expected=accept         observed=accept         job->A keys=[] 
+15:30:49.551 P1_EC-env+tls  expected=accept         observed=accept         job->A keys=[A] 
+15:30:49.711 P1_EC-env+cb   expected=accept         observed=accept         job->A keys=[A] 
+15:30:49.869 P1_PQ-env+tls  expected=accept         observed=accept         job->A keys=[A] 
+15:30:50.028 P1_PQ-env+cb   expected=accept         observed=accept         job->A keys=[A] 
+15:30:50.188 P1_PQ-file+cb  expected=accept         observed=accept         job->A keys=[A] 
+15:30:50.350 P1_PQ-device+tls expected=accept         observed=accept         job->A keys=[A] 
+15:30:50.512 P1_PQ-device+cb expected=accept         observed=accept         job->A keys=[A] 
+15:30:50.513 === P2 recorded proof replayed against a fresh nonce
+15:30:50.516 cell P2_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.667 P2_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.674 cell P2_EC-env+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.824 P2_EC-env+tls  expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.833 cell P2_EC-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.983 P2_EC-env+cb   expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:50.991 cell P2_PQ-env+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.142 P2_PQ-env+tls  expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.150 cell P2_PQ-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.301 P2_PQ-env+cb   expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.309 cell P2_PQ-file+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.461 P2_PQ-file+cb  expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.470 cell P2_PQ-device+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.621 P2_PQ-device+tls expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.631 cell P2_PQ-device+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.782 P2_PQ-device+cb expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+15:30:51.783 === P3 context tamper: relay changes the action of the forwarded challenge
+15:30:51.939 P3_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:52.102 P3_EC-env+tls  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action])
+15:30:52.261 P3_EC-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action exporter])
+15:30:52.423 P3_PQ-env+tls  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action])
+15:30:52.584 P3_PQ-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action exporter])
+15:30:52.746 P3_PQ-file+cb  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action exporter])
+15:30:52.910 P3_PQ-device+tls expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action])
+15:30:53.072 P3_PQ-device+cb expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [action exporter])
+15:30:53.072 === P4 wrong enrolled key: B presents its own genuine keys under A's key ids
+15:30:53.229 P4_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:53.387 P4_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:30:53.544 P4_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:30:53.700 P4_PQ-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:30:53.858 P4_PQ-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:30:54.016 P4_PQ-file+cb  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqfile-k1
+15:30:54.177 P4_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:30:54.337 P4_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:30:54.337 === P5 algorithm confusion / classical fallback
+15:30:54.494 P5_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:54.652 P5_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ML-DSA-65" is not the pinned ES256 for this policy (no downgrade or confusion)
+15:30:54.809 P5_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ML-DSA-65" is not the pinned ES256 for this policy (no downgrade or confusion)
+15:30:54.966 P5_PQ-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ES256" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)
+15:30:55.124 P5_PQ-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ES256" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)
+15:30:55.282 P5_PQ-file+cb  expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ES256" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)
+15:30:55.438 P5_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ES256" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)
+15:30:55.594 P5_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: algorithm "ES256" is not the pinned ML-DSA-65 for this policy (no downgrade or confusion)
+15:30:55.595 === P6 application volume copied (incl. PQ-file seed) + A's TLS credentials, no signer access
+15:30:55.754 P6_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:55.911 P6_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:30:56.068 P6_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:30:56.226 P6_PQ-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:30:56.385 P6_PQ-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:30:56.545 P6_PQ-file+cb  expected=accept         observed=accept         job->B keys=[A] 
+15:30:56.708 P6_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:30:56.867 P6_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:30:56.868 === P7 address hijack without TLS credentials
+15:30:56.871 cell P7_C+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.022 P7_C+tls       expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.024 cell P7_EC-env+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.175 P7_EC-env+tls  expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.177 cell P7_EC-env+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.328 P7_EC-env+cb   expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.331 cell P7_PQ-env+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.482 P7_PQ-env+tls  expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.486 cell P7_PQ-env+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.637 P7_PQ-env+cb   expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.666 cell P7_PQ-file+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.817 P7_PQ-file+cb  expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.819 cell P7_PQ-device+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.969 P7_PQ-device+tls expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:57.972 cell P7_PQ-device+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:58.123 P7_PQ-device+cb expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+15:30:58.123 === P8 relay with A's TLS credentials, untouched forwarding
+15:30:58.280 P8_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:58.442 P8_EC-env+tls  expected=accept         observed=accept         job->B keys=[A] 
+15:30:58.605 P8_EC-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [exporter])
+15:30:58.770 P8_PQ-env+tls  expected=accept         observed=accept         job->B keys=[A] 
+15:30:58.973 P8_PQ-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [exporter])
+15:30:59.134 P8_PQ-file+cb  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [exporter])
+15:30:59.302 P8_PQ-device+tls expected=accept         observed=accept         job->B keys=[A] 
+15:30:59.466 P8_PQ-device+cb expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [exporter])
+15:30:59.467 === P9 relay + binding strip, exporter injection, chosen nonce and cross-policy forward
+15:30:59.623 P9_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:30:59.794 P9_EC-env+tls  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [nonce session])
+15:30:59.953 P9_EC-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [policy nonce session exporter])
+15:31:00.114 P9_PQ-env+tls  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [nonce session])
+15:31:00.273 P9_PQ-env+cb   expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [policy nonce session exporter])
+15:31:00.432 P9_PQ-file+cb  expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [policy nonce session exporter])
+15:31:00.594 P9_PQ-device+tls expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [nonce session])
+15:31:00.757 P9_PQ-device+cb expected=reject         observed=reject         job->none keys=[A] proof_v4: signed context differs from the expected context (fields: [policy nonce session exporter])
+15:31:00.758 === P10 valid proof, then proof connection closed and A's name repointed to B before dispatch
+15:31:00.914 P10_C+tls      expected=accept         observed=accept         job->none keys=[] 
+15:31:01.072 P10_EC-env+tls expected=accept         observed=accept         job->none keys=[A] 
+15:31:01.231 P10_EC-env+cb  expected=accept         observed=accept         job->none keys=[A] 
+15:31:01.389 P10_PQ-env+tls expected=accept         observed=accept         job->none keys=[A] 
+15:31:01.547 P10_PQ-env+cb  expected=accept         observed=accept         job->none keys=[A] 
+15:31:01.706 P10_PQ-file+cb expected=accept         observed=accept         job->none keys=[A] 
+15:31:01.866 P10_PQ-device+tls expected=accept         observed=accept         job->none keys=[A] 
+15:31:02.027 P10_PQ-device+cb expected=accept         observed=accept         job->none keys=[A] 
+15:31:02.027 === P11 two concurrent deliveries for one session
+15:31:02.186 P11_C+tls      expected=one            observed=one            job->A keys=[] 
+15:31:02.348 P11_EC-env+tls expected=one            observed=one            job->A keys=[A] 
+15:31:02.507 P11_EC-env+cb  expected=one            observed=one            job->A keys=[A] 
+15:31:02.675 P11_PQ-env+tls expected=one            observed=one            job->A keys=[A] 
+15:31:02.838 P11_PQ-env+cb  expected=one            observed=one            job->A keys=[A] 
+15:31:02.999 P11_PQ-file+cb expected=one            observed=one            job->A keys=[A] 
+15:31:03.162 P11_PQ-device+tls expected=one            observed=one            job->A keys=[A] 
+15:31:03.325 P11_PQ-device+cb expected=one            observed=one            job->A keys=[A] 
+15:31:03.325 === P12 classical-compromise surrogate: A's TLS credentials + EC signer access, no PQ key
+15:31:03.482 P12_C+tls      expected=accept         observed=accept         job->B keys=[] 
+15:31:03.641 P12_EC-env+tls expected=accept         observed=accept         job->B keys=[A] 
+15:31:03.801 P12_EC-env+cb  expected=accept         observed=accept         job->B keys=[A] 
+15:31:03.958 P12_PQ-env+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:04.116 P12_PQ-env+cb  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:04.273 P12_PQ-file+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqfile-k1
+15:31:04.432 P12_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:04.592 P12_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:04.592 === X1 boundary control: A's TLS credentials + PQ software signer and device signer access
+15:31:04.750 X1_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:31:04.908 X1_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:05.064 X1_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:05.225 X1_PQ-env+tls  expected=accept         observed=accept         job->B keys=[A] 
+15:31:05.386 X1_PQ-env+cb   expected=accept         observed=accept         job->B keys=[A] 
+15:31:05.545 X1_PQ-file+cb  expected=accept         observed=accept         job->B keys=[A] 
+15:31:05.707 X1_PQ-device+tls expected=accept         observed=accept         job->B keys=[A] 
+15:31:05.870 X1_PQ-device+cb expected=accept         observed=accept         job->B keys=[A] 
+15:31:05.871 === X2 boundary control: copy of A's emulator NV file in a third fwTPM instance + A's authValue
+15:31:06.081 X2_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:31:06.238 X2_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:06.395 X2_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:06.553 X2_PQ-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:06.711 X2_PQ-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:06.871 X2_PQ-file+cb  expected=accept         observed=accept         job->B keys=[A] 
+15:31:07.133 X2_PQ-device+tls expected=accept         observed=accept         job->B keys=[A] 
+15:31:07.295 X2_PQ-device+cb expected=accept         observed=accept         job->B keys=[A] 
+15:31:07.296 === X3 boundary control: attacker-generated ML-DSA key presented under A's key ids
+15:31:07.453 X3_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:31:07.610 X3_EC-env+tls  expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:07.766 X3_EC-env+cb   expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:07.923 X3_PQ-env+tls  expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:08.082 X3_PQ-env+cb   expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:08.265 X3_PQ-file+cb  expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqfile-k1
+15:31:08.422 X3_PQ-device+tls expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:08.580 X3_PQ-device+cb expected=reject         observed=reject         job->none keys=[attacker-generated] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:08.580 === X4 boundary control: PQ-file key rotated in the registry (version 2) while the copied volume holds version 1
+15:31:08.738 X4_C+tls       expected=accept         observed=accept         job->B keys=[] 
+15:31:08.918 X4_EC-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:09.075 X4_EC-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ES256 signature does not verify under the pinned key A-ecenv-k1
+15:31:09.233 X4_PQ-env+tls  expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:09.390 X4_PQ-env+cb   expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqenv-k1
+15:31:09.545 X4_PQ-file+cb  expected=reject         observed=reject         job->none keys=[A] proof_v4: key id "A-pqfile-k1" is not the pinned "A-pqfile-k2"
+15:31:09.704 X4_PQ-device+tls expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:09.865 X4_PQ-device+cb expected=reject         observed=reject         job->none keys=[B] proof_v4: ML-DSA-65 signature does not verify under the pinned key A-pqdev-k1
+15:31:09.872 done: 128 cells, 136 appraisals, outputs in results/pq/20261108-153049
+[pq_matrix] 14:31:09Z audit-pq on results/pq/20261108-153049 (exit code is the gate)
+audit-pq v2 (structural checker 2.1): declared=128 found=128 agree=128 disagree=0 violations=0 incomplete=0 malformed=0 unsupported=0 proofs_valid=35 proofs_invalid=84 attacker_deliveries=25 orphan_receipts=0 duplicate_decision_ids=0 structural=map[verified_dispatch:16 verified_non_dispatch:95 violation_expected_by_fixture:25] exit=0
+[pq_matrix] 14:31:09Z mutation controls (every expected exit code asserted)
+{"control": "unmodified", "exit": 0, "expected_exit": 0, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 128, "disagree": 0, "violations": 0, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "removed-cell-P1_PQ-device+cb", "exit": 2, "expected_exit": 2, "as_expected": true, "cells_declared": 128, "cells_found": 127, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 1, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "duplicate-decision-P1_PQ-env+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 1, "unsupported": 0, "orphan_receipts": 0}
+{"control": "altered-context-bytes-P1_PQ-device+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "changed-signature-P1_PQ-env+tls", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "substituted-registry-key-PQ-device", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 109, "disagree": 8, "violations": 11, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "proof-removed-accept-kept-P1_EC-env+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "unknown-algorithm-label-P1_PQ-env+cb", "exit": 2, "expected_exit": 2, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 0, "malformed": 0, "unsupported": 1, "orphan_receipts": 0}
+{"control": "policy-downgrade-P8_PQ-env+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "accept-flag-forged-P8_PQ-env+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R1-missing-requester-events-P1_PQ-device+cb", "exit": 2, "expected_exit": 2, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 0, "malformed": 0, "unsupported": 1, "orphan_receipts": 0}
+{"control": "R2-dispatch-connection-swap-P1_PQ-device+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R3-dispatch-context-action-P1_PQ-device+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R4-missing-issued-sessions-P1_PQ-device+cb", "exit": 2, "expected_exit": 2, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 1, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R5-invalid-appraisal-time-P1_PQ-device+cb", "exit": 2, "expected_exit": 2, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 0, "malformed": 1, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R6-duplicate-receipt-P1_PQ-device+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 1, "incomplete": 0, "malformed": 0, "unsupported": 0, "orphan_receipts": 0}
+{"control": "R7-receipt-id-token-exporter-P1_PQ-device+cb", "exit": 1, "expected_exit": 1, "as_expected": true, "cells_declared": 128, "cells_found": 128, "agree": 127, "disagree": 0, "violations": 0, "incomplete": 1, "malformed": 0, "unsupported": 0, "orphan_receipts": 1}
+controls: 17 cases, 0 mismatches, 0 uncovered, status 0
+[pq_matrix] 14:31:12Z tests (go test -race -count=1 ./...)
+?   	a2aid/cmd/a2aid	[no test files]
+?   	a2aid/internal/agent	[no test files]
+ok  	a2aid/internal/audit	2.470s
+?   	a2aid/internal/cardsig	[no test files]
+?   	a2aid/internal/controller	[no test files]
+?   	a2aid/internal/ctl	[no test files]
+ok  	a2aid/internal/discover	1.223s
+ok  	a2aid/internal/gate	1.041s
+ok  	a2aid/internal/matrix	1.014s
+ok  	a2aid/internal/pqaudit	2.660s
+ok  	a2aid/internal/pqdev	1.011s
+ok  	a2aid/internal/pqsig	1.285s
+ok  	a2aid/internal/ptv	1.017s
+?   	a2aid/internal/registry	[no test files]
+ok  	a2aid/internal/senv	1.013s
+ok  	a2aid/internal/tpmsig	1.015s
+ok  	a2aid/internal/verifier	6.443s
+ok  	a2aid/internal/wire	1.019s
+ok  	a2aid/internal/zk	19.592s
+[pq_matrix] 14:31:35Z done
+run: results/pq/20261108-153049
+runner exit 0
+end 2026-11-08T14:31:35Z

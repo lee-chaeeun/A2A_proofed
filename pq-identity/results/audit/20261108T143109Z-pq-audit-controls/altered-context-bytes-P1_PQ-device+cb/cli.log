@@ -1,0 +1,1 @@
+audit-pq v2 (structural checker 2.1): declared=128 found=128 agree=127 disagree=0 violations=1 incomplete=0 malformed=0 unsupported=0 proofs_valid=34 proofs_invalid=85 attacker_deliveries=25 orphan_receipts=0 duplicate_decision_ids=0 structural=map[verified_dispatch:16 verified_non_dispatch:95 violation_expected_by_fixture:25] exit=1

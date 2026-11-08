@@ -7,13 +7,15 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = "docs/PROVENANCE_MANIFEST.json"
-IGNORED_DIRS = {".git", "bin", "target", "run", ".toolchain", "__pycache__"}
+IGNORED_DIRS = {".git", "target", "run", ".toolchain", "__pycache__"}
 
 
 def publication_files():
     for path in sorted(ROOT.rglob("*")):
         rel = path.relative_to(ROOT)
-        if path.is_file() and not any(p in IGNORED_DIRS for p in rel.parts):
+        build_bin = (rel.parts[0] == "bin" or
+                     (len(rel.parts) > 1 and rel.parts[0] in {"identity", "zk-component", "pq-identity"} and rel.parts[1] == "bin"))
+        if path.is_file() and not build_bin and not any(p in IGNORED_DIRS for p in rel.parts):
             if rel.as_posix() != MANIFEST:
                 yield rel.as_posix(), path
 

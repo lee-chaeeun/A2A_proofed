@@ -1,0 +1,167 @@
+{
+  "decisions": [
+    {
+      "policy": "EC-env+tls",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "proof_v4": {
+        "present": true,
+        "alg": "ES256",
+        "kid": "A-ecenv-k1",
+        "pinned_alg": "ES256",
+        "pinned_kid": "A-ecenv-k1",
+        "pinned_custody": "gated-service",
+        "context_matches_expected": false,
+        "expiry_ok": true,
+        "signature_valid_under_pinned_key": false,
+        "context_bytes": 267,
+        "signature_bytes": 64,
+        "failure_stage": "context-mismatch",
+        "reason": "signed context differs from the expected context (fields: [action])"
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "EC-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-08T14:28:11.945218454Z",
+        "expires_at": "2026-11-08T14:30:11.945218454Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "lmWpkONPdqaFwKhW9yZRw+TCdcu/o9KS2ffxFR2z17E=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-08T14:28:11Z",
+      "sig_verdict": "invalid",
+      "accept": false,
+      "failure_stage": "proof-v4-context-mismatch",
+      "reason": "proof_v4: signed context differs from the expected context (fields: [action])",
+      "appraised_at": "2026-11-08T14:28:11.950834053Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "lmWpkONPdqaFwKhW9yZRw+TCdcu/o9KS2ffxFR2z17E=",
+        "policy": "EC-env+tls",
+        "proof_v4": {
+          "alg": "ES256",
+          "context": "rGF2bmEyYWlkLXByb29mLXY0Y2FsZ2VFUzI1NmNraWRqQS1lY2Vudi1rMWRyb2xlbmFnZW50LXJlc3BvbnNlZW5vbmNlWCCWZamQ4092poXAqFb3JlHD5MJ1y7+j0pLZ9/EVHbPXsWZhY3Rpb25xcmVsZWFzZS1vdGhlci1qb2JmZXhwaXJ5Gmrwh3NmcG9saWN5akVDLWVudit0bHNnc2Vzc2lvbngsbG1XcGtPTlBkcWFGd0toVzl5WlJ3K1RDZGN1L285S1MyZmZ4RlIyejE3RT1oZXhwZWN0ZWRlZGVwLUFoZXhwb3J0ZXJAaXJlcXVlc3RlcnNyZXF1ZXN0ZXI6YTJhaWQtbGFi",
+          "format": "a2aid-proof-v4",
+          "kid": "A-ecenv-k1",
+          "signature": "siu2Sn/ZyFBH/wVRWTF72ZhNvRymxZmm+8d1f3fceTKE6F6wWTsKiplPRa+fnloLvNgJPMQosWPlkdvRKdww5g=="
+        },
+        "timestamp": "2026-11-08T14:28:11Z",
+        "type": "evidence"
+      },
+      "decision_id": "10169ef05c5c2181",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "8ec1d38c6d0b4306845bb64ffd1717150cfafa1fb3b66204239d88e061d2ecbb",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "d8769934e3305f36aa0d73652eb3d597a1c05bc59bb9b94df5793d7fff5320f0",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-08T14:28:11.943108108Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:11.944803751Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=lmWpkONPdqaFwKhW9yZRw+TCdcu/o9KS2ffxFR2z17E=",
+          "at": "2026-11-08T14:28:11.945366013Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-08T14:28:11.950704937Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=false stage=proof-v4-context-mismatch",
+          "at": "2026-11-08T14:28:11.950906256Z"
+        },
+        {
+          "seq": 6,
+          "kind": "not_authorized",
+          "detail": "proof-v4-context-mismatch",
+          "at": "2026-11-08T14:28:11.951040544Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "producer_revision": "2026-11-08-pq-corrections",
+      "context": {
+        "decision_id": "10169ef05c5c2181",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "EC-env+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "lmWpkONPdqaFwKhW9yZRw+TCdcu/o9KS2ffxFR2z17E="
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "lmWpkONPdqaFwKhW9yZRw+TCdcu/o9KS2ffxFR2z17E=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "EC-env+tls",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-08T14:28:11.945218454Z",
+      "expires_at": "2026-11-08T14:30:11.945218454Z",
+      "consumed": true,
+      "consumed_at": "2026-11-08T14:28:11.950835704Z",
+      "result": "reject:proof-v4-context-mismatch",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}
