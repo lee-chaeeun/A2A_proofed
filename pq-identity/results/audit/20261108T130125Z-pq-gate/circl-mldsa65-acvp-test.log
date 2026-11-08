@@ -1,8 +1,0 @@
-=== RUN   TestACVP/sigGen
-=== RUN   TestACVP/sigVer
---- PASS: TestACVP (0.06s)
-    --- PASS: TestACVP/keyGen (0.02s)
-    --- PASS: TestACVP/sigGen (0.03s)
-    --- PASS: TestACVP/sigVer (0.01s)
-PASS
-ok  	github.com/cloudflare/circl/sign/mldsa/mldsa65	0.059s

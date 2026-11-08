@@ -1,5 +1,0 @@
-=== RUN   TestReviewerPQZK_ReconnectDelivery
-    transport_test.go:315: REPRODUCED: accepted bound proof then delivered ZK task on new TLS connection; proof=127.0.0.1:45898 task=127.0.0.1:45900
---- PASS: TestReviewerPQZK_ReconnectDelivery (0.05s)
-PASS
-ok  	a2aid/internal/zk	1.060s

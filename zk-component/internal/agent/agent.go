@@ -112,7 +112,7 @@ type Mode struct {
 	TLSIdentityDir    string            `json:"tls_identity_dir,omitempty"` // present another deployment's server certificate (stolen TLS credentials)
 	InjectCB          bool              `json:"inject_cb,omitempty"`        // relay: put our observed exporter value into the forwarded challenge
 	DelayMs           int               `json:"delay_ms,omitempty"`         // artificial processing delay before answering a challenge
-	// Binding-downgrade / chosen-nonce relay (v3 P0-A). The relay computes the bound
+	// Binding-downgrade / chosen-nonce relay. The relay computes the bound
 	// nonce for its OWN connection with the requester and sends that value to A as a
 	// plain challenge nonce, turning A into a signing oracle for the exact value the
 	// requester will expect. ForwardPolicy overrides the policy sent to A (e.g.
@@ -388,7 +388,7 @@ func (a *Agent) handleChallenge(ctx context.Context, ch wire.Challenge, raw map[
 	}
 
 	// Binding mode is derived from the PARSED POLICY, never from the request's
-	// binding field (v3 P0-A fix). A +cb policy always mixes THIS server's own TLS
+	// binding field. A +cb policy always mixes THIS server's own TLS
 	// exporter; a relay cannot omit it to turn us into a signing oracle. Any binding
 	// field supplied in the challenge must be consistent with the policy, and a "cb"
 	// value supplied by a relay is ignored and reported.

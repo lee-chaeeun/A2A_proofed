@@ -118,7 +118,7 @@ func BuildInventory(kind, runID, pinned string, pred predictions) (*Inventory, e
 	case "run":
 		inv.Note = "Declared BEFORE execution: every fixture × policy evaluation the run must produce exactly once, with its request, contract, ledger and the expected image id the requester pins (Z9b deliberately wrong). The offline oracle takes these facts from here, never from decision rows."
 	case "legacy":
-		inv.Note = "Declared on 2026-11-08 AFTER the schema-1 runs, from ZK_COMPONENT_PLAN.md's fixture table, fixtures/zk/predictions.json and the pinned image id recorded in the run provenance. Used only by the separately identified legacy replay/audit view of schema-1 runs; it adds no field those runs did not record."
+		inv.Note = "Declared after a schema-1 run, from the fixture table, fixtures/zk/predictions.json and the pinned image id recorded in the run provenance. Used only by the separately identified replay/audit view of schema-1 runs; it adds no field those runs did not record."
 	default:
 		return nil, errors.New("inventory kind must be run or legacy")
 	}

@@ -1,6 +1,0 @@
-=== RUN   TestReviewerUnsignedCardStillGetsZKTask
-    reviewer_unsigned_card_test.go:35: network task POSTs=1; dispatch error=unexpected HTTP status: 500 Internal Server Error
-    reviewer_unsigned_card_test.go:37: REPRODUCED: a valid-TLS worker with an unsigned Agent Card received the ZK task
---- PASS: TestReviewerUnsignedCardStillGetsZKTask (0.00s)
-PASS
-ok  	a2aid/internal/zk	0.008s

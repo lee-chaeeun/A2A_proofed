@@ -1,9 +1,9 @@
 package pqaudit
 
 // Permanent tests of the composite audit on the six-cell fixture run
-// (fixtures/testdata/pq-mini-run: cells copied unchanged from the retained final run
-// with a restricted inventory). Mutations mirror scripts/pq_audit_controls.py (the
-// ten original controls and the seven reviewer additions R1–R7) and the expected exit
+// (fixtures/testdata/pq-mini-run: six cells of a retained PQ run with a restricted
+// inventory). Mutations mirror scripts/pq_audit_controls.py (ten proof/schema controls
+// and seven release-evidence controls R1–R7) and the expected exit
 // codes come from the frozen table fixtures/pq-audit-controls-expected.json. The CLI
 // test builds the real a2aid binary and asserts the process exit codes.
 

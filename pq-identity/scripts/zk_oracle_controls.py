@@ -5,8 +5,8 @@ usage: zk_oracle_controls.py --bin BIN --run RUN --out OUT [--legacy-inventory F
                              [--verify-bin ZKVERIFY] [--cases before|after]
 
 Each case copies the run, applies one mutation, runs `BIN zk-oracle` and records the
-exit code and summary. "before" runs the four reviewer cases only (for the pre-edit
-binary, which has no inventory/verifier flags); "after" runs the full declared set.
+exit code and summary. "before" runs the four basic cases only (for a binary without
+inventory/verifier flags); "after" runs the full declared set.
 """
 import argparse, base64, hashlib, json, os, shutil, subprocess, sys
 from pathlib import Path

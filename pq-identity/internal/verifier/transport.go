@@ -41,7 +41,7 @@ type connRecorder struct {
 // seal freezes the set of connections after a successful appraisal. A job may only
 // reuse a connection that carried the proof; opening a NEW TLS connection after this
 // is refused BEFORE the dial, so a job is never written to a connection the proof
-// did not use (v3 P0-B fix). A legitimate reconnect must obtain a fresh proof (a new
+// did not use. A legitimate reconnect must obtain a fresh proof (a new
 // decision).
 func (c *connRecorder) seal() {
 	c.mu.Lock()

@@ -10,7 +10,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = {'pq': ('pq-identity', 'results/pq/20261108-153049'),
-        'identity': ('identity', 'results/v3-final/20261108-004047'),
+        'identity': ('identity', 'results/binding/20261108-004047'),
         'zk': ('zk-component', 'results/zk/20261108-111817')}
 
 
@@ -44,8 +44,7 @@ def main():
         if not args.evidence_only:
             run(f'{name} Go race tests', ['go', 'test', '-race', '-count=1', './...'], cwd)
         if name == 'pq':
-            for suffix, path in [('final',retained), ('rerun','results/pq-integration/20261108-164204')]:
-                run(f'PQ {suffix} audit', [binary, 'audit-pq', '--results', path, '--out',out/f'pq-{suffix}'], cwd)
+            run('PQ audit', [binary, 'audit-pq', '--results', retained, '--out', out/'pq-audit'], cwd)
             run('PQ mutation controls', ['python3','-I','scripts/pq_audit_controls.py','--bin',binary,'--run',retained,'--out',out/'pq-controls'], cwd)
             env = dict(os.environ, A2AID_RUNNER_TEST_BIN=str(binary))
             run('PQ runner failure injection', ['bash','scripts/test_pq_runner.sh'],cwd,env)

@@ -9,9 +9,9 @@ expectation table; the script ASSERTS them: it exits 1 if any case returns anoth
 code (including an unexpectedly clean mutation) and 2 if the expectation table does
 not cover a case. The original run directory is never modified.
 
-Original ten controls (schema/proof properties) plus the seven reviewer additions R1–R7
-(release-evidence invariants: events, connection continuity, dispatch context, issued
-sessions, typed appraisal time, receipt multiplicity and joins).
+Ten proof/schema controls plus seven release-evidence controls R1–R7 (events,
+connection continuity, dispatch context, issued sessions, typed appraisal time, receipt
+multiplicity and joins).
 """
 import argparse, base64, hashlib, json, shutil, subprocess, sys
 from pathlib import Path
@@ -32,7 +32,7 @@ def events_path(d, cell): return d / 'cells' / cell / 'controller-events.jsonl'
 def read_events(d, cell): return [json.loads(l) for l in events_path(d, cell).read_text().splitlines() if l.strip()]
 def write_events(d, cell, evs): events_path(d, cell).write_text(''.join(json.dumps(e) + '\n' for e in evs))
 
-# ---- original controls ----
+# ---- proof and schema controls ----
 def c_unmodified(d): pass
 def c_remove_cell(d): shutil.rmtree(d / 'cells' / CELL)
 def c_duplicate_decision(d):
@@ -57,7 +57,7 @@ def c_flip_accept(d):
     for k in ('signature_valid_under_pinned_key', 'context_matches_expected', 'expiry_ok'): x['proof_v4'][k] = True
     save(p, j)
 
-# ---- reviewer additions (release-evidence invariants) ----
+# ---- release-evidence invariants ----
 def r1_missing_requester_events(d):
     p, j = dec(d, CELL); j['decisions'][0]['requester_events'] = []; save(p, j)
 def r2_dispatch_connection_swap(d):

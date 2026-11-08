@@ -170,16 +170,16 @@ func TestCache_LegacyFlatEntryIsNeverRead(t *testing.T) {
 	os.MkdirAll(cache, 0o755)
 	stub := makeStub(t, dir, "prover", imgA)
 	req := ProveRequest{Portfolio: "p", Version: 1, SaltHex: hex.EncodeToString(make([]byte, 32)), Holdings: [4]uint32{1, 2, 3, 4}, ChallengeHex: hex.EncodeToString(make([]byte, 16))}
-	// a v1 (unqualified) entry as the pre-correction worker wrote it: key = sha256("|" + inputs)
+	// an unqualified entry (no image id in the key): key = sha256("|" + inputs)
 	kb, _ := json.Marshal(req)
 	h := sha256.Sum256(append([]byte("|"), kb...))
-	legacy := ProveResponse{OK: true, ImageIDHex: imgA, ReceiptB64: base64.StdEncoding.EncodeToString([]byte("legacy")), ReceiptSHA256: "x", JournalHex: "00"}
+	legacy := ProveResponse{OK: true, ImageIDHex: imgA, ReceiptB64: base64.StdEncoding.EncodeToString([]byte("unqualified")), ReceiptSHA256: "x", JournalHex: "00"}
 	lb, _ := json.Marshal(legacy)
 	os.WriteFile(filepath.Join(cache, hex.EncodeToString(h[:])+".json"), lb, 0o644)
 	b := &Bridge{ProverBin: stub, CacheDir: cache}
 	res, raw, err := b.Prove(context.Background(), req, false)
-	if err != nil || res.Cached || string(raw) == "legacy" || proveCount(t, dir, imgA) != 1 {
-		t.Fatalf("legacy entry must not be served: %+v %v", res, err)
+	if err != nil || res.Cached || string(raw) == "unqualified" || proveCount(t, dir, imgA) != 1 {
+		t.Fatalf("unqualified entry must not be served: %+v %v", res, err)
 	}
 }
 

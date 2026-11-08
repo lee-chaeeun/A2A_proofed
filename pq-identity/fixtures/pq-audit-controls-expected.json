@@ -1,5 +1,5 @@
 {
-  "note": "Frozen before the controls were run on corrected evidence (PQ_CORRECTION_PLAN.md, 8 Nov 2026). Exit 0 = clean; 1 = disagreement/violation/orphan/duplicate; 2 = incomplete/malformed/unsupported (1 wins). Every control other than 'unmodified' must be non-clean AND return exactly the declared code; the script exits non-zero on any mismatch.",
+  "note": "Exit 0 = clean; 1 = disagreement/violation/orphan/duplicate; 2 = incomplete/malformed/unsupported (1 wins). Every control other than 'unmodified' must be non-clean AND return exactly the declared code; the script exits non-zero on any mismatch.",
   "expected_exit": {
     "unmodified": 0,
     "removed-cell-P1_PQ-device+cb": 2,

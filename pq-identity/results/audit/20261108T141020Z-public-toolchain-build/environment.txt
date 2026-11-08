@@ -1,8 +1,0 @@
-started 2026-11-08T14:10:20Z
-cwd /home/bitchae/aisafety/swarmalign/a2a-proof-binding-public/pq-identity
-cmake version 4.3.4
-1.13.2
-cc (Debian 16.2.0-3) 16.2.0
-go version go1.27.1 linux/amd64
-b5cc66bf9a044a28f2ae10cfe98151b145917885
-finished 2026-11-08T14:11:45Z

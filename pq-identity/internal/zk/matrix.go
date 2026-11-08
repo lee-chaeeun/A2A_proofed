@@ -352,7 +352,7 @@ func hexSum(b []byte) string {
 	return hex.EncodeToString(s[:])
 }
 
-// countCacheFiles counts image-qualified (v2) cache entries.
+// countCacheFiles counts image-qualified cache entries.
 func countCacheFiles(dir string) int {
 	n := 0
 	filepath.Walk(filepath.Join(dir, CacheVersion), func(p string, info os.FileInfo, err error) error {

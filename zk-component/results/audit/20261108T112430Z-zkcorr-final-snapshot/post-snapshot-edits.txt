@@ -1,7 +1,0 @@
-Edits after this snapshot (documentation and the CLI usage string only; no behavioural change):
-bd8574fff46c9c86c9ecd262136cf8b0f10e077c28d601de6d8b0c0764d62811  README.md
-468c37926ab04064aca9ec1b2af88b2299347283f35eff71ecf07b1123ae06b8  RESULTS_ZK.md
-0f8755e26be110972eb42fd4dc038714505671d3a7e0d661fdb20f5715bb7ef5  RESULTS_ZK_CORRECTIONS.md
-df048d58f068fed6b675350b6d556b6a38961c7d612b6db63d4c3cbc8a9cfd7b  cmd/a2aid/main.go
-67302de34b6cbe59e9e2563a76f78e21403c8459d7a325a2defec400f1972a0c  bin/a2aid
-cmd/a2aid/main.go: usage() string lists the zk-* subcommands; bin/a2aid rebuilt from it (all reported controls and tests used the snapshot binary 48592e76…).

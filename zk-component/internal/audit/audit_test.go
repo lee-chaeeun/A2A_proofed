@@ -272,7 +272,7 @@ func TestAudit_UnknownPolicyAndUnsupportedSchema(t *testing.T) {
 	mutateDecision(t, d, honest, func(m map[string]any) { delete(m, "decision_id"); delete(m, "requester_events") })
 	sum, by = run(t, d)
 	if by[honest].Outcome != OutUnsupported || sum.ExitCode != ExitIncomplete {
-		t.Fatalf("historical schema must be unsupported/exit 2: %s exit=%d", by[honest].Outcome, sum.ExitCode)
+		t.Fatalf("record without schema-2 fields must be unsupported/exit 2: %s exit=%d", by[honest].Outcome, sum.ExitCode)
 	}
 }
 
@@ -299,15 +299,13 @@ func TestAudit_OrphanReceiptAndReceiptExporterMismatch(t *testing.T) {
 }
 
 // ---------------------------------------------------------------------------
-// Reviewer controls (REVIEW_V3_FINAL.md): five corruptions the version-1 checker
-// passed as clean (before-fix evidence retained under
-// results/audit/*-checker-falseclean-before/). Each must now be non-clean with the
+// Corruption controls: five corrupted copies that must be non-clean with the
 // declared classification and exit status, through the same Run the CLI calls.
 
 const split = "3_split_connection"
 const recovery = "5_honest_recovery_new_decision"
 
-func TestReviewer1_EmptyDecisionsInInventoriedRejectedCell(t *testing.T) {
+func TestCorruption_EmptyDecisionsInInventoriedRejectedCell(t *testing.T) {
 	d := base(t)
 	p := filepath.Join(d, "cells", split, "decision.json")
 	b, _ := os.ReadFile(p)
@@ -340,7 +338,7 @@ func TestReviewer1_EmptyDecisionsInInventoriedRejectedCell(t *testing.T) {
 	}
 }
 
-func TestReviewer2_UndeclaredMalformedCell(t *testing.T) {
+func TestCorruption_UndeclaredMalformedCell(t *testing.T) {
 	d := base(t)
 	os.MkdirAll(filepath.Join(d, "cells", "UNDECLARED"), 0o755)
 	os.WriteFile(filepath.Join(d, "cells", "UNDECLARED", "decision.json"), []byte("{not-json\n"), 0o644)
@@ -376,7 +374,7 @@ func TestReviewer2_UndeclaredMalformedCell(t *testing.T) {
 	}
 }
 
-func TestReviewer3_MissingAppraisedEventRenumbered(t *testing.T) {
+func TestCorruption_MissingAppraisedEventRenumbered(t *testing.T) {
 	d := base(t)
 	mutateDecision(t, d, honest, func(m map[string]any) {
 		var keep []any
@@ -386,7 +384,7 @@ func TestReviewer3_MissingAppraisedEventRenumbered(t *testing.T) {
 			}
 		}
 		for i, e := range keep {
-			e.(map[string]any)["seq"] = i + 1 // contiguous renumbering, as the reviewer did
+			e.(map[string]any)["seq"] = i + 1 // contiguous renumbering hides the gap
 		}
 		m["requester_events"] = keep
 	})
@@ -397,7 +395,7 @@ func TestReviewer3_MissingAppraisedEventRenumbered(t *testing.T) {
 	}
 }
 
-func TestReviewer4_ChangedSessionActionAndAudience(t *testing.T) {
+func TestCorruption_ChangedSessionActionAndAudience(t *testing.T) {
 	for _, variant := range []string{"both", "action", "audience"} {
 		d := base(t)
 		mutateSessions(t, d, honest, func(s map[string]any) {
@@ -415,7 +413,7 @@ func TestReviewer4_ChangedSessionActionAndAudience(t *testing.T) {
 	}
 }
 
-func TestReviewer5_InventoryPolicyDiffersFromDecision(t *testing.T) {
+func TestCorruption_InventoryPolicyDiffersFromDecision(t *testing.T) {
 	d := base(t)
 	p := filepath.Join(d, "run-inventory.json")
 	b, _ := os.ReadFile(p)

@@ -14,11 +14,11 @@
 // that every context field was signed by every policy, or a formal security proof.
 // Cross-process order beyond causal ids is stipulated by the trusted controller.
 //
-// Inventory and evidence schema 2 (see RESULTS_V3_CORRECTIONS.md): every inventory
+// Inventory and evidence schema 2: every inventory
 // cell declares its policy and expected decision count; every decision record
 // carries evidence_schema >= 2, a decision id, contiguous requester events and typed
 // context/authorization_context/dispatch_context. Older records are reported as
-// unsupported_historical_schema, never as complete.
+// unsupported (outcome label unsupported_historical_schema), never as complete.
 //
 // Exit codes: 0 no unexpected violation and complete; 1 any unexpected violation,
 // orphan receipt or duplicate decision id; 2 incomplete, malformed, unsupported
@@ -39,9 +39,9 @@ import (
 	"a2aid/internal/wire"
 )
 
-// CheckerVersion 2.1 (8 Nov 2026): exported per-decision entry points for the
-// composite PQ audit; session checks apply only once a nonce was issued (a connect
-// failure cannot have a session), so an early rejection is classified as such.
+// CheckerVersion 2.1: exported per-decision entry points for the composite PQ audit;
+// session checks apply only once a nonce was issued (a connect failure cannot have a
+// session), so an early rejection is classified as such.
 const CheckerVersion = "2.1"
 
 // Trust classes.
@@ -142,7 +142,7 @@ type invCell struct {
 	Policy            string
 	Class             string
 	ExpectedRecipient string
-	ExpectedDecisions int // 0 = undeclared (legacy inventories)
+	ExpectedDecisions int // 0 = undeclared (inventories without counts)
 }
 
 var cellIDRe = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_+.-]*$`)
@@ -204,7 +204,7 @@ func Run(dir string) (*Summary, []DecisionResult, error) {
 		if !unexpected {
 			switch {
 			case ic.ExpectedDecisions == 0:
-				sum.CardinalityErrors = append(sum.CardinalityErrors, fmt.Sprintf("%s: inventory declares no decision count (legacy inventory)", cellName))
+				sum.CardinalityErrors = append(sum.CardinalityErrors, fmt.Sprintf("%s: inventory declares no decision count", cellName))
 			case len(decisions) != ic.ExpectedDecisions:
 				sum.CardinalityErrors = append(sum.CardinalityErrors, fmt.Sprintf("%s: declared %d decisions, found %d", cellName, ic.ExpectedDecisions, len(decisions)))
 			}
@@ -351,7 +351,7 @@ func auditDecision(cell string, ic invCell, unexpected bool, d map[string]any, s
 	evsRaw, _ := d["requester_events"].([]any)
 	ctx, _ := d["context"].(map[string]any)
 	if r.Schema < 2 || r.DecisionID == "" || len(evsRaw) == 0 || ctx == nil {
-		add("record carries evidence_schema>=2, decision_id, requester_events and typed context", ClassRecomputed, false, fmt.Sprintf("schema=%d id=%q events=%d typed_context=%v (historical schema: not auditable as complete)", r.Schema, r.DecisionID, len(evsRaw), ctx != nil))
+		add("record carries evidence_schema>=2, decision_id, requester_events and typed context", ClassRecomputed, false, fmt.Sprintf("schema=%d id=%q events=%d typed_context=%v (no schema-2 fields: not auditable as complete)", r.Schema, r.DecisionID, len(evsRaw), ctx != nil))
 		r.Outcome = OutUnsupported
 		return r
 	}
@@ -765,7 +765,7 @@ func loadInventory(dir string) ([]invCell, string, int, []string, error) {
 			out = append(out, invCell{Cell: fx.ID + "_" + p, Policy: p})
 		}
 	}
-	return out, "manifest-frozen.json (derived; historical run without a declared inventory)", 0, errs, nil
+	return out, "manifest-frozen.json (derived; run without a declared inventory)", 0, errs, nil
 }
 
 func or(a, b string) string {

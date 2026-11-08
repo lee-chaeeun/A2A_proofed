@@ -19,8 +19,8 @@ import (
 	"strings"
 )
 
-// Base policy names. The first five are the v1 (historical) definitions and keep
-// their v1 semantics; S-env is the v2 matched software-envelope control.
+// Base policy names. C, S-file, S-iso, T and P are the baseline definitions; S-env is
+// the matched software-envelope control.
 const (
 	PolicyC     = "C"
 	PolicySFile = "S-file"
@@ -96,7 +96,7 @@ func ParsePolicy(s string) (Policy, error) {
 	return p, nil
 }
 
-// V1Policies are the historical baseline definitions.
+// V1Policies are the baseline policy definitions.
 var V1Policies = []string{PolicyC, PolicySFile, PolicySIso, PolicyT, PolicyP}
 
 // Challenge is sent by the requester (type "challenge").

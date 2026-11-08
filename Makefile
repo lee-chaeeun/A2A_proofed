@@ -1,7 +1,7 @@
 .PHONY: help check check-all check-zk verify package-check pq-toolchain pq-device
 help:
-	@echo 'make check           Go tests + PQ final/rerun audits + 17 controls + runner checks'
-	@echo 'make check-all       Go tests in all three components + identity/PQ audits'
+	@echo 'make check           PQ Go tests, PQ evidence audit, 17 audit controls, runner checks'
+	@echo 'make check-all       Go tests in all three modules, PQ and classical evidence audits'
 	@echo 'make check-zk ZK_VERIFY=/absolute/path/to/zkverify  Reverify the 52 ZK rows'
 	@echo 'make pq-toolchain    Download and build the pinned emulator and C bridge'
 	@echo 'make pq-device       Test the built emulator; no existing lab needed'

@@ -39,14 +39,14 @@ type Fixture struct {
 	Permissions       string            `json:"permissions"`
 	Expected          map[string]string `json:"expected"`
 	ExpectedRecipient string            `json:"expected_recipient"`
-	// v3-final schema (manifest version >= 4): explicit classification and a
+	// Manifest version >= 4: explicit classification and a
 	// per-policy expected recipient, so "accept" is never read as "delivered to A".
 	Class                     string            `json:"class,omitempty"` // honest | malicious | ablation
 	ExpectedRecipientByPolicy map[string]string `json:"expected_recipient_by_policy,omitempty"`
 	PolicyClasses             map[string]string `json:"policy_classes,omitempty"` // ablation | secured-baseline | defended
 }
 
-// class returns the explicit fixture class, or a derivation for legacy manifests
+// class returns the explicit fixture class, or a derivation for older manifests
 // (endpoint A = honest; anything else = malicious), labelled as derived.
 func (fx Fixture) class() (string, bool) {
 	if fx.Class != "" {
@@ -109,7 +109,7 @@ type Appraisal struct {
 	SignerOK            string   `json:"signer_attribution"` // correct | false-attribution | n/a
 	CustodyBroken       bool     `json:"custody_broken"`
 	Telemetry           string   `json:"telemetry"` // complete | missing: ...
-	// v3-final release evidence (requester-observed; joined with the recipient's receipt)
+	// Release evidence (requester-observed; joined with the recipient's receipt)
 	DecisionID           string `json:"decision_id"`
 	JobSent              bool   `json:"job_sent"`                    // request written to the transport (not wire proof)
 	JobConnReused        bool   `json:"job_reused_proof_connection"` // dispatch stayed on the pinned proof connection
@@ -142,12 +142,12 @@ type Row struct {
 	ObservedResult    string   `json:"observed_result"`
 	Match             bool     `json:"match"`
 	Notes             []string `json:"notes,omitempty"`
-	// v3-final: decision and recipient are predicted and matched separately.
+	// Decision and recipient are predicted and matched separately.
 	Class             string `json:"class,omitempty"`
 	ExpectedRecipient string `json:"expected_recipient,omitempty"`
 	DecisionMatch     bool   `json:"decision_match"`
 	RecipientMatch    bool   `json:"recipient_match"`
-	RecipientChecked  bool   `json:"recipient_checked"` // false for legacy manifests without a per-policy recipient
+	RecipientChecked  bool   `json:"recipient_checked"` // false for manifests without a per-policy recipient
 }
 
 // RunOptions parameterize one matrix run (CLI and integration tests share Run).
@@ -166,11 +166,11 @@ type RunOptions struct {
 func Main(args []string) {
 	fs := flag.NewFlagSet("matrix", flag.ExitOnError)
 	runDir := fs.String("run-dir", "run", "")
-	out := fs.String("out", "results/v2", "")
+	out := fs.String("out", "results/broad", "")
 	only := fs.String("fixtures", "", "comma-separated fixture IDs (default all)")
 	pols := fs.String("policies", "", "comma-separated policies (default: manifest)")
-	manifestPath := fs.String("manifest", "fixtures/manifest-v2.json", "")
-	predictions := fs.String("predictions", "fixtures/predictions-v2.md", "")
+	manifestPath := fs.String("manifest", "fixtures/manifest-broad.json", "")
+	predictions := fs.String("predictions", "fixtures/predictions-broad.md", "")
 	races := fs.Bool("races", true, "run the randomized race trials declared in the manifest")
 	runPathFile := fs.String("run-path-file", "", "write the created run directory path to this file (exact handoff to callers)")
 	fs.Parse(args)

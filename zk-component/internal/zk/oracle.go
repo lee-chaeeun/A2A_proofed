@@ -17,7 +17,7 @@ import (
 	"time"
 )
 
-// Oracle v2: the offline scorer of a ZK run. It validates that the run is COMPLETE
+// The oracle is the offline scorer of a ZK run. It validates that the run is COMPLETE
 // and UNIQUE against the inventory declared before execution, binds every scored row
 // to the retained receipt bytes by re-running the pinned verifier CLI (a shared
 // component, recorded by hash; not an independent proof-system implementation),
@@ -184,7 +184,7 @@ func RunOracleOpts(o OracleOptions) (*OracleSummary, []OracleRow, error) {
 		case sum.Incomplete+sum.Malformed > 0 || sum.Expected == 0:
 			sum.ExitCode = 2
 		}
-		sum.Note = "Offline business-decision oracle v2 (completeness against the declared inventory, receipt bytes re-verified with the pinned verifier, ledgers reconstructed from ordered events, duplicate suppression derived from ledger history). Trusted: the declared inventory, the fixture authority history, the openings, the verifier binary."
+		sum.Note = "Offline business-decision oracle (completeness against the declared inventory, receipt bytes re-verified with the pinned verifier, ledgers reconstructed from ordered events, duplicate suppression derived from ledger history). Trusted: the declared inventory, the fixture authority history, the openings, the verifier binary."
 		writeOracle(o.OutDir, sum, rows)
 		return sum, rows, nil
 	}

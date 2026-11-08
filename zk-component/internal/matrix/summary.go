@@ -87,7 +87,7 @@ func summary(man Manifest, rows []Row, apps []Appraisal, rt *Runtime, raceSummar
 				perPolicyFE[r.Policy].n++
 			}
 		}
-		if cls, _ := fxByID[r.Fixture].class(); cls == "honest" { // explicit class (v3-final) or derived from endpoint=A (legacy)
+		if cls, _ := fxByID[r.Fixture].class(); cls == "honest" { // explicit class, or derived from endpoint=A for older manifests
 			honD++
 			if r.Decision != "accept" || !strings.Contains(r.JobRecipients, "A") {
 				honRej++
@@ -161,9 +161,9 @@ func summary(man Manifest, rows []Row, apps []Appraisal, rt *Runtime, raceSummar
 		parts = append(parts, fmt.Sprintf("%s %d/%d", p, perPolicyFE[p].n, perPolicyFE[p].d))
 	}
 	fmt.Fprintf(&sb, "  * per policy: %s\n", strings.Join(parts, "; "))
-	fmt.Fprintf(&sb, "* Honest-class cells (explicit fixture class, or derived from endpoint=A for legacy manifests) not delivering to A: %d / %d cells; cells by class: %v\n", honRej, honD, classCount)
+	fmt.Fprintf(&sb, "* Honest-class cells (explicit fixture class, or derived from endpoint=A for older manifests) not delivering to A: %d / %d cells; cells by class: %v\n", honRej, honD, classCount)
 	if recChecked > 0 {
-		fmt.Fprintf(&sb, "* v3-final schema: decision matches %d / %d, recipient matches %d / %d (predicted separately; accept is not delivery to A)\n", decMatch, recChecked, recMatch, recChecked)
+		fmt.Fprintf(&sb, "* Separate predictions: decision matches %d / %d, recipient matches %d / %d (predicted separately; accept is not delivery to A)\n", decMatch, recChecked, recMatch, recChecked)
 	}
 	fmt.Fprintf(&sb, "* Changed-configuration rejections (F9, reported separately, legitimate by policy): %d cells\n", legitRejCfg)
 	fmt.Fprintf(&sb, "* Nonce burning (F12): valid second responses rejected because the nonce was consumed: %d appraisals (availability cost of consume-on-failure)\n", nonceBurnLegit)

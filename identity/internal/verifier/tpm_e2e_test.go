@@ -136,7 +136,7 @@ func TestE2E_TPM_PositiveControlAndMissingEvidence(t *testing.T) { // [E2E/emula
 	if !d.Accept {
 		t.Fatalf("E2E T positive control rejected: %s", d.Reason)
 	}
-	// the review-audit variants, now through the real restricted AK
+	// the strict-evidence variants, through the real restricted AK
 	for _, variant := range []string{"absent", "empty", "null", "proof-only", "both"} {
 		n, _ := k.r.Issue("A", wire.PolicyP)
 		nb, _ := wire.UnB64(n)

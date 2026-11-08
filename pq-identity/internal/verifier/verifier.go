@@ -173,7 +173,7 @@ type Decision struct {
 	AgentError        string               `json:"agent_error,omitempty"`
 	RawEvidence       map[string]any       `json:"raw_evidence,omitempty"` // public protocol evidence, kept for offline reverification
 
-	// v3-final release evidence (requester-observed; nothing below comes from the agent).
+	// Release evidence (requester-observed; nothing below comes from the agent).
 	DecisionID      string       `json:"decision_id"`
 	ExpectedDepID   string       `json:"expected_deployment_id,omitempty"` // enrolled id of Expected, from the registry
 	Conns           []ConnRecord `json:"connections,omitempty"`
@@ -215,11 +215,10 @@ type ReqContext struct {
 // EvidenceSchemaVersion is the current evidence schema the requester produces.
 const EvidenceSchemaVersion = 2
 
-// ProducerRevision names the producer code line that wrote a record (schema 2 is
-// unchanged; the 8 Nov 2026 PQ correction pass gives every path, including early
-// rejections and the concurrent/nonce-burn drivers, the full schema-2 record and
-// routes the ZK task through GuardedSend). Older records carry no revision and are
-// read as they are.
+// ProducerRevision names the producer code line that wrote a record. With this
+// revision every path, including early rejections and the concurrent/nonce-burn
+// drivers, writes the full schema-2 record, and the ZK task goes through GuardedSend.
+// Records without a revision are read as they are.
 const ProducerRevision = "2026-11-08-pq-corrections"
 
 func (r *Requester) ctxOf(d *Decision, sessionKey, token string) *ReqContext {
@@ -256,7 +255,7 @@ type Requester struct {
 	Hook func(stage string, d *Decision)
 	mu   sync.Mutex
 	// noSealAblation disables the transport seal. Unexported: only white-box tests
-	// can set it, and only to label an ABLATION of the fix; it is never a mode of
+	// can set it, and only to label an ABLATION of the transport seal; it is never a mode of
 	// the production requester.
 	noSealAblation bool
 }
@@ -407,7 +406,7 @@ func (r *Requester) Connect(ctx context.Context, endpoint, expected string, d *D
 	}
 	d.ExpectedDepID = dep.DeploymentID
 	// The typed decision context exists from the first event on, so that an early
-	// rejection (connect failure) is auditable as such and not as a historical record.
+	// rejection (connect failure) is auditable as such and not as an unsupported record.
 	if d.Context == nil {
 		d.Context = r.ctxOf(d, "", "")
 	}
@@ -608,7 +607,7 @@ func sessionVerdict(s Session, found bool, expected, policy, audience string) *S
 
 // ownExporter returns the verifier's OWN RFC 9266 exporter for the connection that
 // carried this decision's proof, and whether every recorded connection authenticated
-// the same exporter. The agent's claimed value is never consulted (v3 P0-A/B fix):
+// the same exporter. The agent's claimed value is never consulted:
 // a relay cannot steer the verifier to a connection it did not terminate.
 func (r *Requester) ownExporter(d *Decision) (hexVal string, consistent bool) {
 	if d.conns == nil {

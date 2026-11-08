@@ -151,7 +151,7 @@ type Decision struct {
 	AgentError        string               `json:"agent_error,omitempty"`
 	RawEvidence       map[string]any       `json:"raw_evidence,omitempty"` // public protocol evidence, kept for offline reverification
 
-	// v3-final release evidence (requester-observed; nothing below comes from the agent).
+	// Release evidence (requester-observed; nothing below comes from the agent).
 	DecisionID      string       `json:"decision_id"`
 	ExpectedDepID   string       `json:"expected_deployment_id,omitempty"` // enrolled id of Expected, from the registry
 	Conns           []ConnRecord `json:"connections,omitempty"`
@@ -226,7 +226,7 @@ type Requester struct {
 	Hook func(stage string, d *Decision)
 	mu   sync.Mutex
 	// noSealAblation disables the transport seal. Unexported: only white-box tests
-	// can set it, and only to label an ABLATION of the fix; it is never a mode of
+	// can set it, and only to label an ABLATION of the transport seal; it is never a mode of
 	// the production requester.
 	noSealAblation bool
 }
@@ -545,7 +545,7 @@ func sessionVerdict(s Session, found bool, expected, policy, audience string) *S
 
 // ownExporter returns the verifier's OWN RFC 9266 exporter for the connection that
 // carried this decision's proof, and whether every recorded connection authenticated
-// the same exporter. The agent's claimed value is never consulted (v3 P0-A/B fix):
+// the same exporter. The agent's claimed value is never consulted:
 // a relay cannot steer the verifier to a connection it did not terminate.
 func (r *Requester) ownExporter(d *Decision) (hexVal string, consistent bool) {
 	if d.conns == nil {

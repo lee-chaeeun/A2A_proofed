@@ -8,14 +8,9 @@ package zk
 // stage). The assertion in every negative case is the server's own count of task
 // requests, not the client's error.
 //
-// History: the pre-fix requester appraised the bound proof and then called
-// SendMessage directly, so a server that closed the proof connection received the
-// task on a replacement connection holding the same TLS credential and no signer
-// (reviewer characterization, retained verbatim in
-// results/reviewer-pq/20261108T135205Z/transport_test_with_review.go.txt and re-run
-// against the pre-edit source in results/audit/20261108T141124Z-pqcorr-prefix/).
-// TestPQTransport_ReplacementConnectionReceivesNothing is that scenario, now asserting
-// zero task receipts at the replacement.
+// TestPQTransport_ReplacementConnectionReceivesNothing covers a server that closes the
+// proof connection after a valid proof while a replacement connection with the same
+// TLS credential and no signer stands ready: it must receive zero task requests.
 
 import (
 	"bytes"
@@ -249,7 +244,7 @@ func TestPQTransport_HonestTaskDeliveredOnTheProofConnection(t *testing.T) {
 	}
 }
 
-// The reviewer's scenario: valid bound proof, server closes the proof connection, a
+// Connection replacement: valid bound proof, server closes the proof connection, a
 // replacement connection with the same certificate and no signer stands ready. The
 // corrected requester refuses before any byte; the server's task counter is zero.
 func TestPQTransport_ReplacementConnectionReceivesNothing(t *testing.T) {

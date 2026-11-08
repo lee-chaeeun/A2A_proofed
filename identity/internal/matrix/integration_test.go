@@ -38,7 +38,7 @@ func TestIntegration_DiscoveryChallengeDelivery(t *testing.T) {
 	os.Chdir(root)
 	defer os.Chdir(oldwd)
 	rows, apps, outDir := Run(RunOptions{RunDir: runDir, Out: filepath.Join(root, "results", "integration"), Fixtures: []string{"F1", "F2", "F6", "F14", "F15", "F16", "F20"},
-		Policies: []string{"C", "T", "C+url", "C+tls", "T+tls", "S-env+cb", "T+cb"}, Manifest: "fixtures/manifest-v2.json", Predictions: "fixtures/predictions-v2.md", Races: false, Bin: bin})
+		Policies: []string{"C", "T", "C+url", "C+tls", "T+tls", "S-env+cb", "T+cb"}, Manifest: "fixtures/manifest-broad.json", Predictions: "fixtures/predictions-broad.md", Races: false, Bin: bin})
 	t.Logf("outputs: %s (%d appraisals)", outDir, len(apps))
 	for _, r := range rows {
 		if r.ObservedResult == "n/a" {

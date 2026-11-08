@@ -1,5 +1,0 @@
-snapshot_utc=20261108T112430Z
-go version go1.27.1 linux/amd64
-rustc 1.93.0 (254b59607 2026-01-19)
-cargo-risczero 3.0.6
-risc0-r0vm 3.0.6

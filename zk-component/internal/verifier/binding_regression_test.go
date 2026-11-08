@@ -1,6 +1,6 @@
 package verifier
 
-// v3 P0-A regressions: a proof made under a weaker policy must not satisfy a
+// Binding regressions: a proof made under a weaker policy must not satisfy a
 // stronger one, and a +cb proof must be bound to the verifier's own exporter.
 // [UNIT/software-key]
 

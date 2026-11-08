@@ -21,35 +21,16 @@ pq-identity/tools/pqtpm/pqtpm
 *.a
 *.test
 *.out
-# New experiment runs: retained evidence is committed deliberately by path; anything new
-# under results/ must be added with `git add -f` after review
-**/results/zk/2*/
-**/results/zk-integration/2*/
-**/results/v3-final/2*/
-**/results/v2/2*/
-**/results/v3/2*/
-**/results/v3-repro/2*/
-**/results/audit/2*/
-**/results/pq/2*/
-**/results/pq-integration/2*/
-**/results/pq-bench/2*/
-**/results/pq-smoke/
-**/results/zk-pq-smoke/2*/
-**/results/reviewer-pq/2*/
-!**/results/zk/20261108-111817/
-!**/results/zk-integration/20261108-112143/
-!**/results/v3-final/20261108-004047/
-!**/results/v2/20261107-194025/
-!**/results/v3/20261107-203206/
-!**/results/v3-repro/20261107-202528/
-!**/results/audit/20261107T*/
-!**/results/audit/20261108T*/
-!**/results/pq/20261108-153049/
-!**/results/pq/20261108-152809/
-!**/results/pq-integration/20261108-164204/
-!**/results/pq-bench/20261108-132255/
-!**/results/zk-pq-smoke/20261108-154419/
-!**/results/reviewer-pq/20261108T135205Z/
+# New experiment runs are ignored; the published runs are listed explicitly.
+**/results/*/2*/
+!identity/results/binding/20261108-004047/
+!identity/results/broad/20261107-194025/
+!zk-component/results/zk/20261108-111817/
+!pq-identity/results/pq/20261108-153049/
+!pq-identity/results/device/20261108T130125Z/
+!pq-identity/results/pq-bench/20261108-132255/
+!pq-identity/results/zk-pq-smoke/20261108-154419/
+**/results/snapshots/
 # Paper build artifacts
 paper/*.aux
 paper/*.log

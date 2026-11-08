@@ -1,8 +1,8 @@
 {
- "built_utc": "2026-11-08T16:23:55Z",
+ "built_utc": "2026-11-08T16:36:17Z",
  "scope": "final source, selected evidence and publication documents; inventory excludes itself",
  "files": 2801,
- "bytes": 28840788,
+ "bytes": 28842489,
  "entries": [
   {
    "published_path": ".gitignore",
@@ -120,8 +120,8 @@
   {
    "published_path": "docs/SUBMISSION_READINESS.md",
    "origin": "publication-edited file; earlier source hash retained",
-   "sha256": "98c51409366794fe4ae70936da96f1a0337747a7ff3645e66656907b68e7422a",
-   "bytes": 3793,
+   "sha256": "e0f5c8f872fdbe276cb35e0c3cc020d6a9ba56f317ee1e036780799dd8b141c3",
+   "bytes": 4248,
    "original_source_sha256": "2fa09d346309ca4713bdb5631873e3d6c13c1c54f7a18f018b0b6d0abbedfe23"
   },
   {
@@ -5797,7 +5797,7 @@
   {
    "published_path": "paper/SHA256SUMS",
    "source_path": "paper/a2a-identity/output/pdf/SHA256SUMS",
-   "sha256": "d12956b257543829cb15da6719e8dc735b44810c3c3bfaaeaca7b310e813c25b",
+   "sha256": "7d20e60bf38af84b0c55102dff0dc3aebfa9358000b3371b7802da47a464d2d3",
    "bytes": 178,
    "origin": "publication-edited file; earlier source hash retained",
    "original_source_sha256": "ea231df5acba7ae18a46500d3e32ad7071039ca4a49f1414424b5f459d3ebde2"
@@ -5805,16 +5805,16 @@
   {
    "published_path": "paper/a2a-identity-latex.zip",
    "source_path": "paper/a2a-identity/a2a-identity-latex.zip",
-   "sha256": "1f04c3cd674f38936fb330dc0c45a89d17a13c3197a3f67ba3645a2ca33230cb",
-   "bytes": 338414,
+   "sha256": "c1fb4043a9e746be00fa428d143a6099beb98db267ddb94313372b7363cc74cf",
+   "bytes": 338627,
    "origin": "publication-edited file; earlier source hash retained",
    "original_source_sha256": "c7b32e86ebcf86de9a7fb4142839eba6ca2d7efc01bc7925897ee9429b37ce4e"
   },
   {
    "published_path": "paper/a2a-identity-paper.pdf",
    "source_path": "paper/a2a-identity/output/pdf/a2a-identity-paper.pdf",
-   "sha256": "700bd35997c8d7fa56358cc896b30cff513b6a657446a3d8fdcbda69034a5166",
-   "bytes": 146827,
+   "sha256": "4878599ab60811b7c04dcc23b9ba97e366424af514c4724e19c624f8f180ce4f",
+   "bytes": 147427,
    "origin": "publication-edited file; earlier source hash retained",
    "original_source_sha256": "f6a5b6d0a8114ecc963ffbcbdb8b2c1165176e85a9c9a3acb2b98402ef4f060a"
   },
@@ -5855,16 +5855,16 @@
   {
    "published_path": "paper/main.tex",
    "source_path": "paper/a2a-identity/main.tex",
-   "sha256": "18d7e994b07e85e26c046fd05e14ea7df0e80e8215c31f1a8755ab47ff0728fc",
-   "bytes": 68049,
+   "sha256": "3ac78c88808d1f85be950622114262eb5aecf42e468156b585c074250e032ca5",
+   "bytes": 68245,
    "origin": "publication-edited file; earlier source hash retained",
    "original_source_sha256": "9d2c5f8ef34bef5b7c7aa9c17c6480c7d263a2c74903e5deafb9fd93d3b80ff1"
   },
   {
    "published_path": "paper/md2tex.py",
    "source_path": "paper/a2a-identity/md2tex.py",
-   "sha256": "1e8a6460b3b320a13eed60741dce0d442046577af7c1fd68a6caa0f618668b69",
-   "bytes": 6763,
+   "sha256": "1fb65fbc29fdd8e999898e9f0002c888c61b9ac49986c59540c74f9f3741fccd",
+   "bytes": 7000,
    "origin": "publication-edited file; earlier source hash retained",
    "original_source_sha256": "32f0becfde17511b71bbbf8626bf2f7d3c6b29528644df05681b39b7b8abea89"
   },

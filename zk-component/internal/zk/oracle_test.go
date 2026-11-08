@@ -1,11 +1,9 @@
 package zk
 
-// Oracle v2 regressions over COPIES of the retained schema-1 run (legacy replay view
-// with the declared inventory) and, when present, the retained schema-2 run. They
-// re-run the pinned verifier on the retained genuine receipts, so they skip when the
-// run or the built zkverify binary is absent. The four reviewer false-clean cases
-// (removed fixture, duplicated row, replaced receipt bytes, removed approval events)
-// must be REJECTED; the unmodified runs must be clean.
+// Oracle controls over COPIES of the retained ZK run. They re-run the pinned verifier
+// on the retained genuine receipts, so they skip when the run or the built zkverify
+// binary is absent. A removed fixture, a duplicated row, replaced receipt bytes and
+// removed approval events must be rejected; the unmodified run must be clean.
 
 import (
 	"encoding/json"
@@ -16,17 +14,13 @@ import (
 )
 
 type oracleFixture struct {
-	root, run, openings, verify, legacyInv string
-	legacy                                 bool
+	root, run, openings, verify string
 }
 
-func retainedRun(t *testing.T, rel string, legacy bool) *oracleFixture {
+func retainedRun(t *testing.T, rel string) *oracleFixture {
 	t.Helper()
 	root, _ := filepath.Abs("../..")
-	f := &oracleFixture{root: root, run: filepath.Join(root, rel), openings: filepath.Join(root, "fixtures", "zk", "openings.json"), verify: filepath.Join(root, "zk", "target", "release", "zkverify"), legacy: legacy}
-	if legacy {
-		f.legacyInv = filepath.Join(root, "fixtures", "zk", "legacy-inventory-v1.json")
-	}
+	f := &oracleFixture{root: root, run: filepath.Join(root, rel), openings: filepath.Join(root, "fixtures", "zk", "openings.json"), verify: filepath.Join(root, "zk", "target", "release", "zkverify")}
 	if _, err := os.Stat(filepath.Join(f.run, "decisions.jsonl")); err != nil {
 		t.Skip("retained run not present: " + rel)
 	}
@@ -54,7 +48,7 @@ func (f *oracleFixture) copyRun(t *testing.T, mutate func(dir string)) string {
 
 func (f *oracleFixture) score(t *testing.T, dir string) *OracleSummary {
 	t.Helper()
-	sum, _, err := RunOracleOpts(OracleOptions{Run: dir, Openings: f.openings, VerifyBin: f.verify, LegacyInventory: f.legacyInv})
+	sum, _, err := RunOracleOpts(OracleOptions{Run: dir, Openings: f.openings, VerifyBin: f.verify})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -235,37 +229,23 @@ func runOracleCases(t *testing.T, f *oracleFixture) {
 	}
 }
 
-func TestOracleV2_LegacyViewOfRetainedSchema1Run(t *testing.T) {
-	f := retainedRun(t, filepath.Join("results", "zk", "20261108-002724"), true)
-	runOracleCases(t, f)
-	// the legacy view is refused for a schema-2 run and a schema-1 run is unsupported without it
-	sum := f.score(t, f.copyRun(t, nil))
-	if !strings.Contains(sum.Mode, "legacy") || len(sum.Limitations) < 5 {
-		t.Fatalf("legacy view must identify itself and its limitations: %+v", sum)
-	}
-	plain, _, _ := RunOracleOpts(OracleOptions{Run: f.copyRun(t, nil), Openings: f.openings, VerifyBin: f.verify})
-	if plain.ExitCode != 2 || plain.Expected != 0 {
-		t.Fatalf("schema-1 run without --legacy-inventory must be unsupported (exit 2): %+v", plain)
-	}
-}
-
-func TestOracleV2_RetainedSchema2Run(t *testing.T) {
+func TestOracle_RetainedRun(t *testing.T) {
 	root, _ := filepath.Abs("../..")
 	runs, _ := filepath.Glob(filepath.Join(root, "results", "zk", "*", "run-inventory.json"))
 	if len(runs) == 0 {
-		t.Skip("no schema-2 run retained yet")
+		t.Skip("no retained run present")
 	}
 	rel, _ := filepath.Rel(root, filepath.Dir(runs[len(runs)-1]))
-	f := retainedRun(t, rel, false)
+	f := retainedRun(t, rel)
 	runOracleCases(t, f)
-	// schema-2 specific: ledgers.json must agree with the events; legacy flag refused
+	// ledgers.json must agree with the events; an explicit inventory is refused for a run that declares its own
 	sum := f.score(t, f.copyRun(t, func(d string) { os.Remove(filepath.Join(d, "ledgers.json")) }))
 	if sum.ExitCode != 2 {
 		t.Fatalf("missing ledgers.json must be incomplete: %+v", sum)
 	}
-	bad, _, _ := RunOracleOpts(OracleOptions{Run: f.copyRun(t, nil), Openings: f.openings, VerifyBin: f.verify, LegacyInventory: filepath.Join(root, "fixtures", "zk", "legacy-inventory-v1.json")})
+	bad, _, _ := RunOracleOpts(OracleOptions{Run: f.copyRun(t, nil), Openings: f.openings, VerifyBin: f.verify, LegacyInventory: filepath.Join(t.TempDir(), "explicit-inventory.json")})
 	if bad.ExitCode != 2 {
-		t.Fatalf("legacy inventory on a schema-2 run must be refused: %+v", bad)
+		t.Fatalf("an explicit inventory for a run that declares its own must be refused: %+v", bad)
 	}
 }
 

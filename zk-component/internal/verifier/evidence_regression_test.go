@@ -1,0 +1,93 @@
+package verifier
+
+// Strict-evidence regressions: a missing quote, an unbound session and an unknown
+// policy must each be rejected. [UNIT/software-key]
+
+import (
+	"testing"
+
+	"a2aid/internal/wire"
+)
+
+func TestRegression_MissingQuoteRejected(t *testing.T) {
+	k := newKit(t)
+	for _, variant := range []string{"proof-only", "empty-evidence", "null-evidence"} {
+		t.Run(variant, func(t *testing.T) {
+			n, nb := k.issue(wire.PolicyP)
+			p := k.basePayload(nb)
+			switch variant {
+			case "proof-only":
+				p["proof"] = []byte("unverified")
+			case "empty-evidence":
+				p["evidence"] = []byte{}
+			case "null-evidence":
+				p["evidence"] = nil
+			}
+			d := k.appraise(wire.PolicyP, n, k.pResponse(p, k.coseSigner(k.ak), n))
+			assertInvariant(t, d)
+			if d.Accept || d.Quote != nil && d.Quote.OK() {
+				t.Fatalf("case %s accepted", variant)
+			}
+			if d.FailureStage != "schema" {
+				t.Fatalf("%s: expected schema rejection, got %s (%s)", variant, d.FailureStage, d.Reason)
+			}
+		})
+	}
+}
+
+func TestRegression_SessionBindingEnforced(t *testing.T) {
+	k := newKit(t)
+	nb := wire.NewNonce()
+	n := wire.B64(nb)
+	k.r.Store.Issue(n, "B", "different-action", wire.PolicyP, DefaultAudience)
+	d := k.appraise(wire.PolicySFile, n, k.validS(wire.PolicySFile, n, nb, k.sfile))
+	if d.Accept || d.FailureStage != "session" {
+		t.Fatalf("session context still ignored: %+v", d)
+	}
+}
+
+func TestRegression_UnknownPolicyRejected(t *testing.T) {
+	k := newKit(t)
+	nb := wire.NewNonce()
+	n := wire.B64(nb)
+	k.r.Store.Issue(n, "A", Action, "typo", DefaultAudience)
+	d := k.appraise("typo", n, map[string]any{"nonce": n})
+	if d.Accept || d.FailureStage != "policy" {
+		t.Fatalf("unknown policy still accepted: %+v", d)
+	}
+}
+
+// A routine envelope with triage_band absent, null or of the wrong type must be
+// rejected: required fields must be present with the correct CBOR type.
+func TestRegression_MissingTriageBandRejected(t *testing.T) {
+	k := newKit(t)
+	for _, variant := range []string{"absent", "null", "text"} {
+		n, nb := k.issue(wire.PolicyP)
+		q, s := k.quote(quoteOpts{nonce: k.eff(wire.PolicyP, nb)})
+		p := k.basePayload(nb)
+		p["evidence"] = k.evidenceBytes(q, s)
+		switch variant {
+		case "absent":
+			delete(p, "triage_band")
+		case "null":
+			p["triage_band"] = nil
+		case "text":
+			p["triage_band"] = "0"
+		}
+		d := k.appraise(wire.PolicyP, n, k.pResponse(p, k.coseSigner(k.ak), n))
+		assertInvariant(t, d)
+		if d.Accept || d.FailureStage != "schema" {
+			t.Fatalf("triage_band %s: accept=%v stage=%s", variant, d.Accept, d.FailureStage)
+		}
+	}
+	for _, f := range []string{"ptv_version", "msg_type", "nonce", "attester_id", "timestamp"} {
+		n, nb := k.issue(wire.PolicyP)
+		q, s := k.quote(quoteOpts{nonce: k.eff(wire.PolicyP, nb)})
+		p := k.basePayload(nb)
+		p["evidence"] = k.evidenceBytes(q, s)
+		delete(p, f)
+		if d := k.appraise(wire.PolicyP, n, k.pResponse(p, k.coseSigner(k.ak), n)); d.Accept {
+			t.Fatalf("missing %s accepted", f)
+		}
+	}
+}

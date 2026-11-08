@@ -1,7 +1,0 @@
-=== RUN   TestReviewerUnsignedCardStillGetsZKTask
-    reviewer_unsigned_card_test.go:35: network task POSTs=0; dispatch error=transport appraisal rejected; task not sent (stage card): card: AgentCard has no signatures to verify
-    reviewer_unsigned_card_test.go:36: did not reproduce: unsigned Agent Card was rejected before task delivery
---- FAIL: TestReviewerUnsignedCardStillGetsZKTask (0.00s)
-FAIL
-FAIL	a2aid/internal/zk	0.006s
-FAIL

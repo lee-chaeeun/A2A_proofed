@@ -1,7 +1,7 @@
 package verifier
 
-// [NETWORKED] v3 P1: a small, declared, reproducible connection-churn budget for the
-// defended +cb policy (the v2 500-trial race covered only unbound proof policies).
+// [NETWORKED] A small, declared, reproducible connection-churn budget for the bound
+// +cb policy (the randomized release-race trials cover the unbound proof policies).
 // 60 trials: in half, the proof connection is closed before dispatch (churn); each
 // trial's outcome is counted separately. T+cb shares this exact binding/dispatch
 // path (verified by the deterministic V-fixtures and the binding regressions); this

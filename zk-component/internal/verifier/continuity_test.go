@@ -1,6 +1,6 @@
 package verifier
 
-// [NETWORKED] v3 P0-B: proof-to-delivery connection continuity. Two real HTTPS A2A
+// [NETWORKED] Proof-to-delivery connection continuity. Two real HTTPS A2A
 // servers (honest A, swap-target B with A's stolen certificate) speak the a2a-go
 // JSON-RPC protocol through the real requester transport. The requester runs a real
 // S-env+cb decision (software-signed envelope bound to the server's own TLS
