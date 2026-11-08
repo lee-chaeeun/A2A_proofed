@@ -1,0 +1,177 @@
+package verifier
+
+// HISTORICAL P0-B TEST, added to an ISOLATED COPY of the archived v2 source
+// (results/audit/20261107T191625Z-v2snapshot/source-v2.tar.gz). It is not part of
+// the archive and not part of current production source. Attacker capabilities:
+// B holds A's TLS certificate and key and is placed at A's name after the proof;
+// B has NO proof key and NO signer access. Question: does the v2 requester write
+// the job to B after a valid S-env+cb proof from A?
+
+import (
+	"context"
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"crypto/tls"
+	"crypto/x509"
+	"crypto/x509/pkix"
+	"encoding/pem"
+	"io"
+	"iter"
+	"math/big"
+	"net/http"
+	"net/http/httptest"
+	"testing"
+	"time"
+
+	"github.com/a2aproject/a2a-go/v2/a2a"
+	"github.com/a2aproject/a2a-go/v2/a2asrv"
+	cose "github.com/veraison/go-cose"
+
+	"a2aid/internal/cardsig"
+	"a2aid/internal/senv"
+	"a2aid/internal/wire"
+)
+
+type hTLSKey struct{}
+
+type hSigner struct{ key *ecdsa.PrivateKey }
+
+func (s hSigner) Algorithm() cose.Algorithm { return cose.AlgorithmES256 }
+func (s hSigner) Sign(_ io.Reader, c []byte) ([]byte, error) {
+	cs, _ := cose.NewSigner(cose.AlgorithmES256, s.key)
+	return cs.Sign(rand.Reader, c)
+}
+
+type hCard struct{ card *a2a.AgentCard }
+
+func (c hCard) Card(ctx context.Context) (*a2a.AgentCard, error) { return c.card, nil }
+
+type hServer struct {
+	label    string
+	siso     *ecdsa.PrivateKey // nil = no proof key
+	received chan string
+	chals    int
+}
+
+func (s *hServer) Execute(ctx context.Context, ec *a2asrv.ExecutorContext) iter.Seq2[a2a.Event, error] {
+	return func(yield func(a2a.Event, error) bool) {
+		if ec.StoredTask == nil {
+			if !yield(a2a.NewSubmittedTask(ec, ec.Message), nil) {
+				return
+			}
+		}
+		var d map[string]any
+		for _, p := range ec.Message.Parts {
+			if m, ok := p.Data().(map[string]any); ok {
+				d = m
+			}
+		}
+		var out map[string]any
+		switch d["type"] {
+		case "challenge":
+			s.chals++
+			var ch wire.Challenge
+			_ = wire.FromMap(d, &ch)
+			if s.siso == nil {
+				out = map[string]any{"type": "error", "error": "no proof key"}
+				break
+			}
+			nb, _ := wire.UnB64(ch.Nonce)
+			var cb []byte
+			if cs, _ := ctx.Value(hTLSKey{}).(*tls.ConnectionState); cs != nil && ch.Binding == "tls-exporter" {
+				cb, _ = cs.ExportKeyingMaterial(wire.CBLabel, nil, 32)
+			}
+			eff := wire.BoundNonce(nb, cb) // v2 derivation
+			now := time.Now().UTC().Truncate(time.Second)
+			pb, _ := senv.Encode(&senv.Payload{Version: senv.Version, AttesterID: "dep-A", Nonce: eff, Action: ch.Action, Audience: ch.Audience, Policy: ch.Policy, IssuedAt: now, ExpiresAt: now.Add(2 * time.Minute)})
+			sealed, _ := senv.Seal(pb, "A-siso-k1", hSigner{s.siso})
+			out = wire.ToMap(wire.Evidence{Type: "evidence", Policy: ch.Policy, DeploymentID: "dep-A", Nonce: ch.Nonce, COSESign1: wire.B64(sealed)})
+		case "job":
+			var job wire.Job
+			_ = wire.FromMap(d, &job)
+			s.received <- s.label + ":" + job.Token
+			out = wire.ToMap(wire.JobAck{Type: "job_ack", DeploymentID: "dep-" + s.label, Token: job.Token})
+		}
+		if !yield(a2a.NewArtifactEvent(ec, a2a.NewDataPart(out)), nil) {
+			return
+		}
+		yield(a2a.NewStatusUpdateEvent(ec, a2a.TaskStateCompleted, nil), nil)
+	}
+}
+func (s *hServer) Cancel(ctx context.Context, ec *a2asrv.ExecutorContext) iter.Seq2[a2a.Event, error] {
+	return func(yield func(a2a.Event, error) bool) { yield(nil, context.Canceled) }
+}
+
+func hCert(t *testing.T, name string) tls.Certificate {
+	key, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	tpl := &x509.Certificate{SerialNumber: big.NewInt(1), Subject: pkix.Name{CommonName: name}, DNSNames: []string{name}, NotBefore: time.Now().Add(-time.Hour), NotAfter: time.Now().Add(time.Hour), KeyUsage: x509.KeyUsageDigitalSignature, ExtKeyUsage: []x509.ExtKeyUsage{x509.ExtKeyUsageServerAuth}, BasicConstraintsValid: true}
+	der, _ := x509.CreateCertificate(rand.Reader, tpl, tpl, &key.PublicKey, key)
+	leaf, _ := x509.ParseCertificate(der)
+	kd, _ := x509.MarshalECPrivateKey(key)
+	c, err := tls.X509KeyPair(pem.EncodeToMemory(&pem.Block{Type: "CERTIFICATE", Bytes: der}), pem.EncodeToMemory(&pem.Block{Type: "EC PRIVATE KEY", Bytes: kd}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	c.Leaf = leaf
+	return c
+}
+
+func hStart(t *testing.T, srv *hServer, cardKey *ecdsa.PrivateKey, cert tls.Certificate) string {
+	card := &a2a.AgentCard{Name: "Atlas Prime", Version: "1.0.0", DefaultInputModes: []string{"application/json"}, DefaultOutputModes: []string{"application/json"},
+		SupportedInterfaces: []*a2a.AgentInterface{{ProtocolBinding: a2a.TransportProtocolJSONRPC, ProtocolVersion: "1.0", URL: "https://a.a2aid.test:9443"}}, Skills: []a2a.AgentSkill{{ID: "attest", Name: "attest"}}}
+	signed, err := cardsig.Sign(card, cardKey, "A-card-k1")
+	if err != nil {
+		t.Fatal(err)
+	}
+	mux := http.NewServeMux()
+	mux.Handle(a2asrv.WellKnownAgentCardPath, a2asrv.NewAgentCardHandler(hCard{signed}))
+	mux.Handle("/", a2asrv.NewJSONRPCHandler(a2asrv.NewHandler(srv)))
+	ts := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		mux.ServeHTTP(w, r.WithContext(context.WithValue(r.Context(), hTLSKey{}, r.TLS)))
+	}))
+	ts.TLS = &tls.Config{MinVersion: tls.VersionTLS13, Certificates: []tls.Certificate{cert}}
+	ts.StartTLS()
+	t.Cleanup(ts.Close)
+	return ts.Listener.Addr().String()
+}
+
+func TestHistoricalV2_CloseThenSwap_SEnvCB(t *testing.T) {
+	k := newKit(t)
+	cardKey, _ := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	k.r.Reg.Deployments["A"].CardKeyID = "A-card-k1"
+	k.r.Reg.Deployments["A"].CardPublicPEM = pemPub(cardKey)
+	cert := hCert(t, "a.a2aid.test")
+	pool := x509.NewCertPool()
+	pool.AddCert(cert.Leaf)
+	a := &hServer{label: "A", siso: k.siso, received: make(chan string, 4)}
+	b := &hServer{label: "B", siso: nil, received: make(chan string, 4)} // A's TLS cert+key only
+	aAddr, bAddr := hStart(t, a, cardKey, cert), hStart(t, b, cardKey, cert)
+	r := New(k.r.Reg, nil, nil) // v2 requester, real clock
+	r.RootCAs = pool
+	res := map[string]string{"a.a2aid.test:9443": aAddr}
+	r.Resolver = res
+	r.Hook = func(stage string, d *Decision) {
+		if stage == "after-appraise" && d.Accept {
+			for _, c := range d.conns.all() {
+				c.Close()
+			}
+			d.http.CloseIdleConnections()
+			res["a.a2aid.test:9443"] = bAddr
+		}
+	}
+	d, err := r.Run(context.Background(), "S-env+cb", "https://a.a2aid.test:9443", "A", nil)
+	t.Logf("v2 decision: err=%v accept=%v stage=%s reason=%s job_released=%v token=%s ack_claimed=%s job_error=%q", err, d.Accept, d.FailureStage, d.Reason, d.JobReleased, d.JobToken, d.JobAckDeployment, d.JobError)
+	select {
+	case got := <-b.received:
+		t.Logf("RESULT: B RECEIVED THE JOB %s after a valid proof from A (v2 code has no connection pin). B answered %d challenges.", got, b.chals)
+	case <-time.After(2 * time.Second):
+		t.Logf("RESULT: B did not receive the job within 2s")
+	}
+	select {
+	case got := <-a.received:
+		t.Logf("A received %s", got)
+	default:
+		t.Logf("A received nothing")
+	}
+}

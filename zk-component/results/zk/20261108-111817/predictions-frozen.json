@@ -1,0 +1,20 @@
+{
+  "frozen_at": "2026-11-08T01:20:00Z",
+  "note": "Frozen before the first ZK matrix run (see ZK_COMPONENT_PLAN.md). Values are the predicted approval (true) per policy for each fixture cell; 'verify_fails' marks cells where the receipt must fail verification under every policy.",
+  "policies": ["V0", "VT", "VI", "VTI"],
+  "fixtures": {
+    "Z1":  {"title": "honest Pinned v1, below limit",                                      "approve": {"V0": true,  "VT": true,  "VI": true,  "VTI": true}},
+    "Z2":  {"title": "honest Current at v2, above limit (proof valid, pass=false)",        "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}},
+    "Z3":  {"title": "genuine passing receipt of request A delivered for request B",       "approve": {"V0": true,  "VT": false, "VI": true,  "VTI": false}},
+    "Z3P": {"title": "positive control: correctly bound genuine proof for B",             "approve": {"V0": true,  "VT": true,  "VI": true,  "VTI": true}},
+    "Z4":  {"title": "B's challenge, REAL proof over obsolete v1 witness, Current at v2",  "approve": {"V0": true,  "VT": true,  "VI": false, "VTI": false}},
+    "Z5":  {"title": "wrong challenge AND obsolete v1 witness under Current",              "approve": {"V0": true,  "VT": false, "VI": false, "VTI": false}},
+    "Z6":  {"title": "delayed Pinned(v1) result after authority moved to v2",              "approve": {"V0": true,  "VT": true,  "VI": true,  "VTI": true}},
+    "Z7":  {"title": "identical bytes+challenge as Z6, isolated Current contract at v2",   "approve": {"V0": true,  "VT": true,  "VI": false, "VTI": false}},
+    "Z8":  {"title": "genuine failing journal, outer metadata claims pass",               "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}},
+    "Z9a": {"title": "corrupted genuine receipt",                                          "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}, "verify_fails": true},
+    "Z9b": {"title": "wrong expected image id (requester misconfiguration)",              "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}, "verify_fails": true},
+    "Z10": {"title": "fake/dev receipt through the production verifier path",             "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}, "verify_fails": true},
+    "Z11": {"title": "duplicate accepted result after a recorded approval (second delivery)", "approve": {"V0": false, "VT": false, "VI": false, "VTI": false}, "note": "first delivery approves under all four (as Z1); the second must add no approval"}
+  }
+}

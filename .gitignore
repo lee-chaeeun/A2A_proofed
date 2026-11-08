@@ -1,0 +1,51 @@
+# Regenerated lab state and credentials (scripts/setup.sh creates a fresh lab CA, TLS
+# keys, swtpm state and registry under run/; never publish them)
+**/run/
+*.pem
+*.key
+*.pid
+*.sock
+# Local toolchains, build output, caches
+**/.toolchain/
+**/target/
+**/bin/
+**/zk/proof-cache/*
+!**/zk/proof-cache/README.md
+**/__pycache__/
+*.test
+*.out
+# New experiment runs: retained evidence is committed deliberately by path; anything new
+# under results/ must be added with `git add -f` after review
+**/results/zk/2*/
+**/results/zk-integration/2*/
+**/results/v3-final/2*/
+**/results/v2/2*/
+**/results/v3/2*/
+**/results/v3-repro/2*/
+**/results/audit/2*/
+!**/results/zk/20261108-111817/
+!**/results/zk/20261108-002724/
+!**/results/zk/20261108-002012/
+!**/results/zk/20261108-002316/
+!**/results/zk-integration/20261108-112143/
+!**/results/zk-integration/20261108-003306/
+!**/results/v3-final/20261108-004047/
+!**/results/v3-final/20261108-000017/
+!**/results/v3-final/20261107-235740/
+!**/results/v3-final/20261107-235908/
+!**/results/v2/20261107-194025/
+!**/results/v3/20261107-203206/
+!**/results/v3-repro/20261107-202528/
+!**/results/audit/20261107T*/
+!**/results/audit/20261108T*/
+# Paper build artifacts
+paper/*.aux
+paper/*.log
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/main.pdf
+paper/ziptest/
+# Editor / OS
+.DS_Store
+*.swp

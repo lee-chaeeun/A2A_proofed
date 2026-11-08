@@ -1,0 +1,6 @@
+rustc 1.93.0 (254b59607 2026-01-19)
+cargo 1.93.0 (083ac5135 2025-12-15)
+cargo-risczero 3.0.6
+risc0-r0vm 3.0.6
+rzup 0.6.0
+rustc 1.97.0-dev (e638c6cfe 2026-07-15)

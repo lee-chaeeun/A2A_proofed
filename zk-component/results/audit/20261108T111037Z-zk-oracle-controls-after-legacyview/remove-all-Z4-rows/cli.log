@@ -1,0 +1,1 @@
+zk-oracle: mode="legacy replay/audit view of a schema-1 run (declared inventory supplied afterwards)" declared=52 rows=48 scored=48 agree=48 disagree=0 violations=0 evidence_mismatch=0 incomplete=4 malformed=0 attack_successes=5 wrong_context=3/8 unsafe=3/8 denied_legit=0/12 exit=2

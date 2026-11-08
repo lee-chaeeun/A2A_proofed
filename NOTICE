@@ -1,0 +1,14 @@
+Valid Proofs, Wrong Decisions: Identity and Task Binding in A2A
+Copyright 2026 Chae Eun Lee
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository includes code adapted from the a2a-samples project
+(https://github.com/a2aproject/a2a-samples, Apache License 2.0):
+identity/internal/cardsig/cardsig.go and zk-component/internal/cardsig/cardsig.go
+adapt the Go "sign and verify agent card" sample (canonicalization and JWS layout);
+the key provider was changed to resolve key ids through the operator registry.
+
+Third-party dependencies are fetched by the build tools under their own licences
+(see docs/ATTRIBUTION.md). The paper template fonts (Old Standard TT) are under the
+SIL Open Font License 1.1 (paper/fonts/).

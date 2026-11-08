@@ -1,0 +1,101 @@
+{
+  "decisions": [
+    {
+      "policy": "T+tls",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "933399f8ca97c614f919d8f0093e1f760b3f9a4a710e37d7378448051439121c",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "T+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T19:25:31.70026432Z",
+        "expires_at": "2026-11-07T19:27:31.70026432Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "P1sITbJWAqsY0goDfwPepOoHfxXmZ5e3lkHUPVrMoiM=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-07T19:25:31Z",
+      "sig_verdict": "n/a",
+      "quote": {
+        "parsed": true,
+        "magic_ok": true,
+        "type_ok": true,
+        "sig_alg_ok": true,
+        "nonce_match": false,
+        "signer_match": true,
+        "signature_valid": true,
+        "pcr_selection_ok": true,
+        "pcr_digest_match": true,
+        "pcr_digest_hex": "7937ff10293c6b23b77cfff3550cf277198848aaa569b4dbe6fc63f2eb057677",
+        "qualified_signer_hex": "000bcf47de310102348c45f95692af7d706359d119ae4936e0bd8751fbf8419025e1",
+        "reason": "quote extraData != issued nonce"
+      },
+      "accept": false,
+      "code": "PTV_ERR_006",
+      "failure_stage": "nonce",
+      "reason": "quote extraData != issued nonce",
+      "appraised_at": "2026-11-07T19:25:31.705657125Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_ack_received": false,
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "P1sITbJWAqsY0goDfwPepOoHfxXmZ5e3lkHUPVrMoiM=",
+        "policy": "T+tls",
+        "quote": {
+          "ak_name": "",
+          "bank": "sha256",
+          "index": 16,
+          "pcr_value_hex": "7ac91e2ac03e4e0a4690a16e805c60fb1cd3aa1388853dd945a9836415f9a4d6",
+          "quoted": "/1RDR4AYACIAC89H3jEBAjSMRflWkq99cGNZ0RmuSTbgvYdR+/hBkCXhACA8PM+ruZHaWwVVr+ArAfeh7f4wxSdyZVXu5N/H4yqpswAAAAAAMXYar8gMQcDWwIYBP6qy4V+rFiYAAAABAAsDAAABACB5N/8QKTxrI7d8//NVDPJ3GYhIqqVptNvm/GPy6wV2dw==",
+          "signature": "ABgACwAgXIB6lSLExTn1b3d3UErBo4oga4ZnyDNNNEKJrRLSSx0AIGmEPdy9+z9w7RjalJT20UIFsE6WyQktfiaGcTVsFRM5"
+        },
+        "timestamp": "2026-11-07T19:25:31Z",
+        "type": "evidence"
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "P1sITbJWAqsY0goDfwPepOoHfxXmZ5e3lkHUPVrMoiM=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "T+tls",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T19:25:31.70026432Z",
+      "expires_at": "2026-11-07T19:27:31.70026432Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T19:25:31.705659014Z",
+      "result": "reject:nonce",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

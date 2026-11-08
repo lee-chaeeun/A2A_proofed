@@ -1,0 +1,83 @@
+[
+ {
+  "control": "unmodified",
+  "exit": 0,
+  "scored": 52,
+  "incomplete": 0,
+  "disagreements": 0,
+  "stdout": "zk-oracle: rows=52 scored=52 incomplete=0 disagreements=0 wrong_context=3/8 unsafe=5/12 denied_legit=0/12 exit=0",
+  "stderr": ""
+ },
+ {
+  "control": "missing-request-record-Z4",
+  "exit": 2,
+  "scored": 48,
+  "incomplete": 4,
+  "disagreements": 0,
+  "stdout": "zk-oracle: rows=52 scored=48 incomplete=4 disagreements=0 wrong_context=3/8 unsafe=3/8 denied_legit=0/12 exit=2",
+  "stderr": ""
+ },
+ {
+  "control": "wrong-task-challenge-in-contract-Z1",
+  "exit": 1,
+  "scored": 52,
+  "incomplete": 0,
+  "disagreements": 2,
+  "stdout": "zk-oracle: rows=52 scored=52 incomplete=0 disagreements=2 wrong_context=7/16 unsafe=5/12 denied_legit=0/8 exit=1",
+  "stderr": ""
+ },
+ {
+  "control": "wrong-input-commitment-in-journal-Z1",
+  "exit": 2,
+  "scored": 48,
+  "incomplete": 4,
+  "disagreements": 0,
+  "stdout": "zk-oracle: rows=52 scored=48 incomplete=4 disagreements=0 wrong_context=3/8 unsafe=5/12 denied_legit=0/8 exit=2",
+  "stderr": ""
+ },
+ {
+  "control": "reordered-events-reset-before-Z7-decision",
+  "exit": 1,
+  "scored": 52,
+  "incomplete": 0,
+  "disagreements": 2,
+  "stdout": "zk-oracle: rows=52 scored=52 incomplete=0 disagreements=2 wrong_context=3/8 unsafe=3/8 denied_legit=2/16 exit=1",
+  "stderr": ""
+ },
+ {
+  "control": "missing-decision-marker-Z6",
+  "exit": 2,
+  "scored": 48,
+  "incomplete": 4,
+  "disagreements": 0,
+  "stdout": "zk-oracle: rows=52 scored=48 incomplete=4 disagreements=0 wrong_context=3/8 unsafe=5/12 denied_legit=0/8 exit=2",
+  "stderr": ""
+ },
+ {
+  "control": "missing-receipt-files",
+  "exit": 2,
+  "scored": 0,
+  "incomplete": 52,
+  "disagreements": 0,
+  "stdout": "zk-oracle: rows=52 scored=0 incomplete=52 disagreements=0 wrong_context=0/0 unsafe=0/0 denied_legit=0/0 exit=2",
+  "stderr": ""
+ },
+ {
+  "control": "recorded-approval-flag-flipped-Z4-VTI",
+  "exit": 1,
+  "scored": 52,
+  "incomplete": 0,
+  "disagreements": 1,
+  "stdout": "zk-oracle: rows=52 scored=52 incomplete=0 disagreements=1 wrong_context=3/8 unsafe=6/12 denied_legit=0/12 exit=1",
+  "stderr": ""
+ },
+ {
+  "control": "malformed-decisions",
+  "exit": 2,
+  "scored": null,
+  "incomplete": null,
+  "disagreements": null,
+  "stdout": "",
+  "stderr": "zk-oracle: decisions.jsonl: invalid character 'n' looking for beginning of object key string"
+ }
+]

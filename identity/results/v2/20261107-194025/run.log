@@ -1,0 +1,313 @@
+19:40:26.127 booted: controller, gate, A(pid 235863), B(pid 235864), operator pid 235825
+19:40:26.127 === F1 honest baseline
+19:40:26.286 F1_C           expected=accept         observed=accept         job->A keys=[] 
+19:40:26.442 F1_S-file      expected=accept         observed=accept         job->A keys=[A] 
+19:40:26.600 F1_S-iso       expected=accept         observed=accept         job->A keys=[A] 
+19:40:26.756 F1_S-env       expected=accept         observed=accept         job->A keys=[A] 
+19:40:26.913 F1_T           expected=accept         observed=accept         job->A keys=[A] 
+19:40:27.071 F1_P           expected=accept         observed=accept         job->A keys=[A] 
+19:40:27.226 F1_C+url       expected=accept         observed=accept         job->A keys=[] 
+19:40:27.381 F1_C+tls       expected=accept         observed=accept         job->A keys=[] 
+19:40:27.539 F1_T+tls       expected=accept         observed=accept         job->A keys=[A] 
+19:40:27.697 F1_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+19:40:27.855 F1_T+cb        expected=accept         observed=accept         job->A keys=[A] 
+19:40:27.856 === F2 legitimate rename of A
+19:40:28.014 F2_C           expected=accept         observed=accept         job->A keys=[] 
+19:40:28.170 F2_S-file      expected=accept         observed=accept         job->A keys=[A] 
+19:40:28.326 F2_S-iso       expected=accept         observed=accept         job->A keys=[A] 
+19:40:28.483 F2_S-env       expected=accept         observed=accept         job->A keys=[A] 
+19:40:28.641 F2_T           expected=accept         observed=accept         job->A keys=[A] 
+19:40:28.799 F2_P           expected=accept         observed=accept         job->A keys=[A] 
+19:40:28.963 F2_C+url       expected=accept         observed=accept         job->A keys=[] 
+19:40:29.118 F2_C+tls       expected=accept         observed=accept         job->A keys=[] 
+19:40:29.277 F2_T+tls       expected=accept         observed=accept         job->A keys=[A] 
+19:40:29.435 F2_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+19:40:29.593 F2_T+cb        expected=accept         observed=accept         job->A keys=[A] 
+19:40:29.594 === F3 B claims A's display name with B's own key
+19:40:29.750 F3_C           expected=reject         observed=reject         job->none keys=[] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:29.905 F3_S-file      expected=reject         observed=reject         job->none keys=[B] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.059 F3_S-iso       expected=reject         observed=reject         job->none keys=[B] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.215 F3_S-env       expected=reject         observed=reject         job->none keys=[B] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.370 F3_T           expected=reject         observed=reject         job->none keys=[B] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.526 F3_P           expected=reject         observed=reject         job->none keys=[B] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.679 F3_C+url       expected=reject         observed=reject         job->none keys=[] card: kid "B-card-k1": kid is not the enrolled publisher key of A
+19:40:30.682 cell F3_C+tls: transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:30.833 F3_C+tls       expected=reject         observed=reject         job->none keys=[] transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:30.835 cell F3_T+tls: transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:30.986 F3_T+tls       expected=reject         observed=reject         job->none keys=[] transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:30.988 cell F3_S-env+cb: transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:31.139 F3_S-env+cb    expected=reject         observed=reject         job->none keys=[] transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:31.142 cell F3_T+cb: transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:31.293 F3_T+cb        expected=reject         observed=reject         job->none keys=[] transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test
+19:40:31.297 === F4 B serves copy of A's card and replays an old proof
+19:40:31.451 F4_C           expected=accept         observed=accept         job->B keys=[] 
+19:40:31.607 F4_S-file      expected=reject         observed=reject         job->none keys=[A] response nonce != issued nonce (stale or replayed proof)
+19:40:31.764 F4_S-iso       expected=reject         observed=reject         job->none keys=[A] response nonce != issued nonce (stale or replayed proof)
+19:40:31.922 F4_S-env       expected=reject         observed=reject         job->none keys=[A] response nonce != issued nonce (stale or replayed proof)
+19:40:32.079 F4_T           expected=reject         observed=reject         job->none keys=[A] response nonce != issued nonce (stale or replayed proof)
+19:40:32.238 F4_P           expected=reject         observed=reject         job->none keys=[A] response nonce != issued nonce (stale or replayed proof)
+19:40:32.239 cell F4_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:32.390 F4_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:32.392 cell F4_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.543 F4_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.551 cell F4_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.701 F4_T+tls       expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.707 cell F4_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.858 F4_S-env+cb    expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:32.866 cell F4_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:33.016 F4_T+cb        expected=reject         observed=reject         job->none keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:33.017 === F5 B copies A's application volume
+19:40:33.172 F5_C           expected=accept         observed=accept         job->B keys=[] 
+19:40:33.328 F5_S-file      expected=accept         observed=accept         job->B keys=[A] 
+19:40:33.483 F5_S-iso       expected=reject         observed=reject         job->none keys=[B] challenge signature does not verify under enrolled key A-siso-k1 (kid presented: "B-siso-k1")
+19:40:33.639 F5_S-env       expected=reject         observed=reject         job->none keys=[B] software envelope signature invalid under the enrolled S-iso key of A
+19:40:33.796 F5_T           expected=reject         observed=reject         job->none keys=[B] quote signature invalid under enrolled AK
+19:40:33.953 F5_P           expected=reject         observed=reject         job->none keys=[B] COSE_Sign1 signature invalid under the enrolled AK of A
+19:40:33.955 cell F5_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:34.106 F5_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:34.108 cell F5_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.259 F5_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.261 cell F5_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.412 F5_T+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.450 cell F5_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.600 F5_S-env+cb    expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.603 cell F5_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.754 F5_T+cb        expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:34.754 === F6 B relays the live challenge to A
+19:40:34.908 F6_C           expected=accept         observed=accept         job->B keys=[] 
+19:40:35.066 F6_S-file      expected=accept         observed=accept         job->B keys=[A] 
+19:40:35.223 F6_S-iso       expected=accept         observed=accept         job->B keys=[A] 
+19:40:35.382 F6_S-env       expected=accept         observed=accept         job->B keys=[A] 
+19:40:35.541 F6_T           expected=accept         observed=accept         job->B keys=[A] 
+19:40:35.701 F6_P           expected=accept         observed=accept         job->B keys=[A] 
+19:40:35.703 cell F6_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:35.854 F6_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:35.857 cell F6_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.008 F6_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.010 cell F6_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.161 F6_T+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.164 cell F6_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.315 F6_S-env+cb    expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.317 cell F6_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.468 F6_T+cb        expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:36.469 === F7 B granted A's signer sockets and authorizations
+19:40:36.623 F7_C           expected=accept         observed=accept         job->B keys=[] 
+19:40:36.780 F7_S-file      expected=accept         observed=accept         job->B keys=[A] 
+19:40:36.936 F7_S-iso       expected=accept         observed=accept         job->B keys=[A] 
+19:40:37.093 F7_S-env       expected=accept         observed=accept         job->B keys=[A] 
+19:40:37.250 F7_T           expected=accept         observed=accept         job->B keys=[A] 
+19:40:37.456 F7_P           expected=accept         observed=accept         job->B keys=[A] 
+19:40:37.458 cell F7_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:37.609 F7_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:37.612 cell F7_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:37.763 F7_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:37.765 cell F7_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:37.916 F7_T+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:37.920 cell F7_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:38.070 F7_S-env+cb    expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:38.073 cell F7_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:38.224 F7_T+cb        expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:38.225 === F8 relay with outer timestamp edited, inner quote preserved
+19:40:38.379 F8_C           expected=accept         observed=accept         job->B keys=[] 
+19:40:38.537 F8_S-file      expected=accept         observed=accept         job->B keys=[A] 
+19:40:38.697 F8_S-iso       expected=accept         observed=accept         job->B keys=[A] 
+19:40:38.853 F8_S-env       expected=reject         observed=reject         job->none keys=[A] software envelope signature invalid under the enrolled S-iso key of A
+19:40:39.013 F8_T           expected=accept         observed=accept         job->B keys=[A] 
+19:40:39.170 F8_P           expected=reject         observed=reject         job->none keys=[A] COSE_Sign1 signature invalid under the enrolled AK of A
+19:40:39.172 cell F8_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:39.323 F8_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:39.326 cell F8_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.477 F8_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.489 cell F8_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.639 F8_T+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.642 cell F8_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.793 F8_S-env+cb    expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.796 cell F8_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.947 F8_T+cb        expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:39.947 === F9 A's appraised PCR changed
+19:40:40.102 F9_C           expected=accept         observed=accept         job->A keys=[] 
+19:40:40.259 F9_S-file      expected=accept         observed=accept         job->A keys=[A] 
+19:40:40.416 F9_S-iso       expected=accept         observed=accept         job->A keys=[A] 
+19:40:40.573 F9_S-env       expected=accept         observed=accept         job->A keys=[A] 
+19:40:40.729 F9_T           expected=reject         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:40.885 F9_P           expected=reject         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:41.039 F9_C+url       expected=accept         observed=accept         job->A keys=[] 
+19:40:41.196 F9_C+tls       expected=accept         observed=accept         job->A keys=[] 
+19:40:41.352 F9_T+tls       expected=reject         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:41.510 F9_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+19:40:41.667 F9_T+cb        expected=reject         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:41.669 PCR16 of A restored to reference
+19:40:41.669 === F10 routine envelope with both evidence and proof, correctly signed
+19:40:41.826 F10_P          expected=reject         observed=reject         job->none keys=[A] routine band requires evidence XOR proof (both present)
+19:40:41.826 === F11 B presents a never-enrolled key claiming A
+19:40:41.980 F11_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:42.134 F11_S-file     expected=reject         observed=reject         job->none keys=[unenrolled] challenge signature does not verify under enrolled key A-sfile-k1 (kid presented: "unknown-sfile")
+19:40:42.288 F11_S-iso      expected=reject         observed=reject         job->none keys=[unenrolled] challenge signature does not verify under enrolled key A-siso-k1 (kid presented: "unknown-siso")
+19:40:42.443 F11_S-env      expected=reject         observed=reject         job->none keys=[unenrolled] software envelope signature invalid under the enrolled S-iso key of A
+19:40:42.600 F11_T          expected=reject         observed=reject         job->none keys=[unenrolled] quote signature invalid under enrolled AK
+19:40:42.759 F11_P          expected=reject         observed=reject         job->none keys=[unenrolled B] COSE_Sign1 signature invalid under the enrolled AK of A
+19:40:42.760 cell F11_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:42.911 F11_C+url      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:42.913 cell F11_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.064 F11_C+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.066 cell F11_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.217 F11_T+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.221 cell F11_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.372 F11_S-env+cb   expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.378 cell F11_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.529 F11_T+cb       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:43.529 === F12 one nonce: invalid first (B), valid second (A)
+19:40:43.687 F12_S-file     expected=reject,reject  observed=reject,reject  job->none keys=[garbage A] challenge signature does not verify under enrolled key A-sfile-k1 (kid presented: "sfile-garbage")
+19:40:43.844 F12_S-iso      expected=reject,reject  observed=reject,reject  job->none keys=[garbage A] challenge signature does not verify under enrolled key A-siso-k1 (kid presented: "siso-garbage")
+19:40:44.041 F12_S-env      expected=reject,reject  observed=reject,reject  job->none keys=[unenrolled A] software envelope signature invalid under the enrolled S-iso key of A
+19:40:44.200 F12_T          expected=reject,reject  observed=reject,reject  job->none keys=[B A] quote signature invalid under enrolled AK
+19:40:44.389 F12_P          expected=reject,reject  observed=reject,reject  job->none keys=[B A] COSE_Sign1 signature invalid under the enrolled AK of A
+19:40:44.549 F12_T+tls      expected=reject,accept  observed=reject,accept  job->A keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:44.764 F12_S-env+cb   expected=reject,accept  observed=reject,accept  job->A keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:44.926 F12_T+cb       expected=reject,accept  observed=reject,accept  job->A keys=[A] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:44.926 === F13 one nonce: two simultaneous valid responses
+19:40:45.085 F13_S-file     expected=one            observed=one            job->A keys=[A] 
+19:40:45.247 F13_S-iso      expected=one            observed=one            job->B keys=[A] nonce already consumed by an earlier appraisal
+19:40:45.406 F13_S-env      expected=one            observed=one            job->B keys=[A] nonce already consumed by an earlier appraisal
+19:40:45.579 F13_T          expected=one            observed=one            job->B keys=[A] nonce already consumed by an earlier appraisal
+19:40:45.745 F13_P          expected=one            observed=one            job->B keys=[A] nonce already consumed by an earlier appraisal
+19:40:45.909 F13_T+tls      expected=one            observed=one            job->A keys=[A] 
+19:40:46.075 F13_S-env+cb   expected=one            observed=one            job->A keys=[A] 
+19:40:46.238 F13_T+cb       expected=one            observed=one            job->A keys=[A] 
+19:40:46.238 === F14 attacker at the expected address without A's credentials (address hijack, relay)
+19:40:46.393 F14_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:46.555 F14_S-file     expected=accept         observed=accept         job->B keys=[A] 
+19:40:46.717 F14_S-iso      expected=accept         observed=accept         job->B keys=[A] 
+19:40:46.878 F14_S-env      expected=accept         observed=accept         job->B keys=[A] 
+19:40:47.041 F14_T          expected=accept         observed=accept         job->B keys=[A] 
+19:40:47.216 F14_P          expected=accept         observed=accept         job->B keys=[A] 
+19:40:47.370 F14_C+url      expected=accept         observed=accept         job->B keys=[] 
+19:40:47.372 cell F14_C+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.523 F14_C+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.525 cell F14_T+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.676 F14_T+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.678 cell F14_S-env+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.828 F14_S-env+cb   expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.830 cell F14_T+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.981 F14_T+cb       expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+19:40:47.982 === F15 attacker at the expected address with A's TLS credentials (relay)
+19:40:48.136 F15_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:48.294 F15_S-file     expected=accept         observed=accept         job->B keys=[A] 
+19:40:48.452 F15_S-iso      expected=accept         observed=accept         job->B keys=[A] 
+19:40:48.611 F15_S-env      expected=accept         observed=accept         job->B keys=[A] 
+19:40:48.770 F15_T          expected=accept         observed=accept         job->B keys=[A] 
+19:40:48.931 F15_P          expected=accept         observed=accept         job->B keys=[A] 
+19:40:49.085 F15_C+url      expected=accept         observed=accept         job->B keys=[] 
+19:40:49.240 F15_C+tls      expected=accept         observed=accept         job->B keys=[] 
+19:40:49.403 F15_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+19:40:49.561 F15_S-env+cb   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+19:40:49.721 F15_T+cb       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+19:40:49.722 === F16 F15 plus relay injects its observed channel binding into the forwarded challenge
+19:40:49.883 F16_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+19:40:50.042 F16_S-env+cb   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+19:40:50.201 F16_T+cb       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+19:40:50.201 === F17 attacker at the expected address with a self-signed certificate for A's name (relay)
+19:40:50.355 F17_C+url      expected=accept         observed=accept         job->B keys=[] 
+19:40:50.358 cell F17_C+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.509 F17_C+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.511 cell F17_T+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.662 F17_T+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.664 cell F17_S-env+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.815 F17_S-env+cb   expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.817 cell F17_T+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.968 F17_T+cb       expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate signed by unknown authority
+19:40:50.968 === F18 configuration changed between successful appraisal and job delivery (TOCTOU)
+19:40:50.972 PCR16 of A restored to reference
+19:40:51.123 F18_C          expected=accept         observed=accept         job->A keys=[] 
+19:40:51.129 PCR16 of A restored to reference
+19:40:51.280 F18_S-file     expected=accept         observed=accept         job->A keys=[A] 
+19:40:51.287 PCR16 of A restored to reference
+19:40:51.438 F18_S-iso      expected=accept         observed=accept         job->A keys=[A] 
+19:40:51.445 PCR16 of A restored to reference
+19:40:51.596 F18_S-env      expected=accept         observed=accept         job->A keys=[A] 
+19:40:51.604 PCR16 of A restored to reference
+19:40:51.754 F18_T          expected=accept         observed=accept         job->A keys=[A] 
+19:40:51.765 PCR16 of A restored to reference
+19:40:51.916 F18_P          expected=accept         observed=accept         job->A keys=[A] 
+19:40:51.922 PCR16 of A restored to reference
+19:40:52.073 F18_C+url      expected=accept         observed=accept         job->A keys=[] 
+19:40:52.079 PCR16 of A restored to reference
+19:40:52.230 F18_C+tls      expected=accept         observed=accept         job->A keys=[] 
+19:40:52.238 PCR16 of A restored to reference
+19:40:52.389 F18_T+tls      expected=accept         observed=accept         job->A keys=[A] 
+19:40:52.397 PCR16 of A restored to reference
+19:40:52.548 F18_S-env+cb   expected=accept         observed=accept         job->A keys=[A] 
+19:40:52.556 PCR16 of A restored to reference
+19:40:52.707 F18_T+cb       expected=accept         observed=accept         job->A keys=[A] 
+19:40:52.707 === F19 B runs a byte clone of A's emulator state and holds A's AK password
+19:40:52.874 F19_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:53.030 F19_S-file     expected=accept         observed=accept         job->B keys=[A] 
+19:40:53.187 F19_S-iso      expected=reject         observed=reject         job->none keys=[B] challenge signature does not verify under enrolled key A-siso-k1 (kid presented: "B-siso-k1")
+19:40:53.343 F19_S-env      expected=reject         observed=reject         job->none keys=[B] software envelope signature invalid under the enrolled S-iso key of A
+19:40:53.500 F19_T          expected=accept         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:53.657 F19_P          expected=accept         observed=reject         job->none keys=[A] PCR digest != reference value
+19:40:53.660 cell F19_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:53.811 F19_C+url      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:53.813 cell F19_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:53.964 F19_C+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:53.967 cell F19_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.118 F19_T+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.121 cell F19_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.272 F19_S-env+cb   expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.274 cell F19_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.425 F19_T+cb       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:54.426 === F20 attacker at the expected address with A's TLS credentials AND A's signer access
+19:40:54.580 F20_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:54.736 F20_S-file     expected=accept         observed=accept         job->B keys=[A] 
+19:40:54.893 F20_S-iso      expected=accept         observed=accept         job->B keys=[A] 
+19:40:55.053 F20_S-env      expected=accept         observed=accept         job->B keys=[A] 
+19:40:55.212 F20_T          expected=accept         observed=accept         job->B keys=[A] 
+19:40:55.370 F20_P          expected=accept         observed=accept         job->B keys=[A] 
+19:40:55.525 F20_C+url      expected=accept         observed=accept         job->B keys=[] 
+19:40:55.682 F20_C+tls      expected=accept         observed=accept         job->B keys=[] 
+19:40:55.844 F20_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+19:40:56.002 F20_S-env+cb   expected=accept         observed=accept         job->B keys=[A] 
+19:40:56.161 F20_T+cb       expected=accept         observed=accept         job->B keys=[A] 
+19:40:56.162 === F21 F19 plus attacker re-extends the clone's PCR 16 with the public configuration string
+19:40:56.329 F21_C          expected=accept         observed=accept         job->B keys=[] 
+19:40:56.485 F21_S-file     expected=accept         observed=accept         job->B keys=[A] 
+19:40:56.641 F21_S-iso      expected=reject         observed=reject         job->none keys=[B] challenge signature does not verify under enrolled key A-siso-k1 (kid presented: "B-siso-k1")
+19:40:56.796 F21_S-env      expected=reject         observed=reject         job->none keys=[B] software envelope signature invalid under the enrolled S-iso key of A
+19:40:56.954 F21_T          expected=accept         observed=accept         job->B keys=[A] 
+19:40:57.113 F21_P          expected=accept         observed=accept         job->B keys=[A] 
+19:40:57.114 cell F21_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:57.265 F21_C+url      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+19:40:57.268 cell F21_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.419 F21_C+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.423 cell F21_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.574 F21_T+tls      expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.577 cell F21_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.728 F21_S-env+cb   expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.730 cell F21_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:57.881 F21_T+cb       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+19:40:58.073 race S-file trial 0: winner=A releases=1
+19:41:02.048 race S-file trial 20: winner=A releases=1
+19:41:05.881 race S-file trial 40: winner=A releases=1
+19:41:09.852 race S-file trial 60: winner=A releases=1
+19:41:13.870 race S-file trial 80: winner=A releases=1
+19:41:18.038 race S-iso trial 0: winner=A releases=1
+19:41:21.968 race S-iso trial 20: winner=A releases=1
+19:41:25.835 race S-iso trial 40: winner=A releases=1
+19:41:29.762 race S-iso trial 60: winner=A releases=1
+19:41:33.819 race S-iso trial 80: winner=A releases=1
+19:41:37.973 race S-env trial 0: winner=A releases=1
+19:41:41.889 race S-env trial 20: winner=A releases=1
+19:41:45.697 race S-env trial 40: winner=A releases=1
+19:41:49.611 race S-env trial 60: winner=A releases=1
+19:41:53.633 race S-env trial 80: winner=A releases=1
+19:41:57.797 race T trial 0: winner=A releases=1
+19:42:01.734 race T trial 20: winner=A releases=1
+19:42:05.560 race T trial 40: winner=A releases=1
+19:42:09.499 race T trial 60: winner=A releases=1
+19:42:13.534 race T trial 80: winner=A releases=1
+19:42:17.737 race P trial 0: winner=A releases=1
+19:42:21.733 race P trial 20: winner=A releases=1
+19:42:25.595 race P trial 40: winner=A releases=1
+19:42:29.580 race P trial 60: winner=A releases=1
+19:42:33.639 race P trial 80: winner=A releases=1
+19:42:37.633 done: 231 cells, 217 appraisals, outputs in results/v2/20261107-194025

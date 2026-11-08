@@ -1,0 +1,79 @@
+{
+  "cells": [
+    {
+      "attacker_capabilities": null,
+      "cell": "1_honest_uninterrupted",
+      "class": "honest",
+      "expected_decision": "accept",
+      "expected_decisions": 1,
+      "expected_recipient": "A",
+      "fixture": "1_honest_uninterrupted",
+      "policy": "S-env+cb"
+    },
+    {
+      "attacker_capabilities": [
+        "tls_credentials_A",
+        "address_hijack"
+      ],
+      "cell": "2_close_then_swap_to_B",
+      "class": "malicious",
+      "expected_decision": "accept",
+      "expected_decisions": 1,
+      "expected_recipient": "none",
+      "fixture": "2_close_then_swap_to_B",
+      "policy": "S-env+cb"
+    },
+    {
+      "attacker_capabilities": null,
+      "cell": "3_split_connection",
+      "class": "honest",
+      "expected_decision": "reject",
+      "expected_decisions": 1,
+      "expected_recipient": "none",
+      "fixture": "3_split_connection",
+      "policy": "S-env+cb"
+    },
+    {
+      "attacker_capabilities": [
+        "address_hijack",
+        "cert_for_other_enrolled_name"
+      ],
+      "cell": "4_cert_swap_sealed",
+      "class": "malicious",
+      "expected_decision": "accept",
+      "expected_decisions": 1,
+      "expected_recipient": "none",
+      "fixture": "4_cert_swap_sealed",
+      "policy": "S-env+cb"
+    },
+    {
+      "attacker_capabilities": [
+        "address_hijack",
+        "cert_for_other_enrolled_name"
+      ],
+      "cell": "4_cert_swap_noseal_ABLATION",
+      "class": "ablation",
+      "expected_decision": "accept",
+      "expected_decisions": 1,
+      "expected_recipient": "none",
+      "fixture": "4_cert_swap_noseal_ABLATION",
+      "policy": "S-env+cb"
+    },
+    {
+      "attacker_capabilities": null,
+      "cell": "5_honest_recovery_new_decision",
+      "class": "honest",
+      "expected_decision": "accept",
+      "expected_decisions": 2,
+      "expected_recipient": "A",
+      "fixture": "5_honest_recovery_new_decision",
+      "policy": "S-env+cb"
+    }
+  ],
+  "declared_before_execution": true,
+  "evidence_schema": 2,
+  "inventory_schema": 2,
+  "kind": "continuity",
+  "policy": "S-env+cb",
+  "run_id": "20261107T234054Z"
+}

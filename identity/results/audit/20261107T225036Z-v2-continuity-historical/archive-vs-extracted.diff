@@ -1,0 +1,10 @@
+6a7
+> 22a761cbe1a91382ffdf0bb5d2984f0b0b1dd3fbafeb73006e6b191a45ebf0e7  internal/wire/testdata/fuzz/FuzzNormalizeURL/22a761cbe1a91382
+9c10
+< 2d7c92cb61893220a70eae895e61bac143b80bb31f5236636c937ceba49448e4  RESULTS_V2.md
+---
+> 2dec022cc8234f08ded7a606f5c24ce1e86d57aa4d34fdff5adba0e478dd3b66  internal/wire/testdata/fuzz/FuzzNormalizeURL/2dec022cc8234f08
+31a33
+> 9176cdd4a9884fed0abeeabe82da09f0f9f9527c3060294f41e80c3e0849f7bf  internal/wire/testdata/fuzz/FuzzNormalizeURL/9176cdd4a9884fed
+46d47
+< e15eb0b8b549f19fc8a73811d8fff813fd733432e275a75f767bc8e3ef7bbdf2  README.md

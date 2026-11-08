@@ -1,0 +1,54 @@
+01:23:16.930 booted: controller, gate, A(pid 325271), B(pid 325272), operator pid 325175
+01:23:40.319 Z1   V0  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:23:40.319 Z1   VT  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:23:40.319 Z1   VI  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:23:40.319 Z1   VTI approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:23:40.339 Z11  V0  approve=false expected=false valid=true pass=true ctx=true input=true head=v1 approval already recorded for this request; no additional approval
+01:23:40.339 Z11  VT  approve=false expected=false valid=true pass=true ctx=true input=true head=v1 approval already recorded for this request; no additional approval
+01:23:40.339 Z11  VI  approve=false expected=false valid=true pass=true ctx=true input=true head=v1 approval already recorded for this request; no additional approval
+01:23:40.339 Z11  VTI approve=false expected=false valid=true pass=true ctx=true input=true head=v1 approval already recorded for this request; no additional approval
+01:23:40.350 Z9a  V0  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: verification indicates proof is invalid
+01:23:40.350 Z9a  VT  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: verification indicates proof is invalid
+01:23:40.350 Z9a  VI  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: verification indicates proof is invalid
+01:23:40.350 Z9a  VTI approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: verification indicates proof is invalid
+01:23:40.372 Z9b  V0  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: claim digest does not match the expected digest e409f14009faa32e9e5511dd3805abe9afcd714ddd45bc4c1ab4355cee37d268; expected 30ae9a09b0b7d15f0a70469054cad5eeea3c6f0d3543a033fa9b10e24ff23ba4
+01:23:40.372 Z9b  VT  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: claim digest does not match the expected digest e409f14009faa32e9e5511dd3805abe9afcd714ddd45bc4c1ab4355cee37d268; expected 30ae9a09b0b7d15f0a70469054cad5eeea3c6f0d3543a033fa9b10e24ff23ba4
+01:23:40.372 Z9b  VI  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: claim digest does not match the expected digest e409f14009faa32e9e5511dd3805abe9afcd714ddd45bc4c1ab4355cee37d268; expected 30ae9a09b0b7d15f0a70469054cad5eeea3c6f0d3543a033fa9b10e24ff23ba4
+01:23:40.372 Z9b  VTI approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind succinct): verification failed: claim digest does not match the expected digest e409f14009faa32e9e5511dd3805abe9afcd714ddd45bc4c1ab4355cee37d268; expected 30ae9a09b0b7d15f0a70469054cad5eeea3c6f0d3543a033fa9b10e24ff23ba4
+01:24:03.716 Z2   V0  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:24:03.716 Z2   VT  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:24:03.716 Z2   VI  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:24:03.716 Z2   VTI approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:24:03.749 Z3   V0  approve=true expected=true valid=true pass=true ctx=false input=true head=v1 approved
+01:24:03.750 Z3   VT  approve=false expected=false valid=true pass=true ctx=false input=true head=v1 journal challenge does not match the stored request challenge
+01:24:03.750 Z3   VI  approve=true expected=true valid=true pass=true ctx=false input=true head=v1 approved
+01:24:03.750 Z3   VTI approve=false expected=false valid=true pass=true ctx=false input=true head=v1 journal challenge does not match the stored request challenge
+01:24:27.197 Z3P  V0  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:24:27.197 Z3P  VT  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:24:27.197 Z3P  VI  approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:24:27.197 Z3P  VTI approve=true expected=true valid=true pass=true ctx=true input=true head=v1 approved
+01:24:50.551 Z4   V0  approve=true expected=true valid=true pass=true ctx=true input=false head=v2 approved
+01:24:50.551 Z4   VT  approve=true expected=true valid=true pass=true ctx=true input=false head=v2 approved
+01:24:50.551 Z4   VI  approve=false expected=false valid=true pass=true ctx=true input=false head=v2 journal commitment is not the authorized input under the current contract (authority head v2)
+01:24:50.551 Z4   VTI approve=false expected=false valid=true pass=true ctx=true input=false head=v2 journal commitment is not the authorized input under the current contract (authority head v2)
+01:25:13.841 Z5   V0  approve=true expected=true valid=true pass=true ctx=false input=false head=v2 approved
+01:25:13.841 Z5   VT  approve=false expected=false valid=true pass=true ctx=false input=false head=v2 journal challenge does not match the stored request challenge
+01:25:13.841 Z5   VI  approve=false expected=false valid=true pass=true ctx=false input=false head=v2 journal commitment is not the authorized input under the current contract (authority head v2)
+01:25:13.841 Z5   VTI approve=false expected=false valid=true pass=true ctx=false input=false head=v2 journal challenge does not match the stored request challenge
+01:25:37.124 Z6   V0  approve=true expected=true valid=true pass=true ctx=true input=true head=v2 approved
+01:25:37.124 Z6   VT  approve=true expected=true valid=true pass=true ctx=true input=true head=v2 approved
+01:25:37.124 Z6   VI  approve=true expected=true valid=true pass=true ctx=true input=true head=v2 approved
+01:25:37.124 Z6   VTI approve=true expected=true valid=true pass=true ctx=true input=true head=v2 approved
+01:25:37.142 Z7   V0  approve=true expected=true valid=true pass=true ctx=true input=false head=v2 approved
+01:25:37.142 Z7   VT  approve=true expected=true valid=true pass=true ctx=true input=false head=v2 approved
+01:25:37.142 Z7   VI  approve=false expected=false valid=true pass=true ctx=true input=false head=v2 journal commitment is not the authorized input under the current contract (authority head v2)
+01:25:37.142 Z7   VTI approve=false expected=false valid=true pass=true ctx=true input=false head=v2 journal commitment is not the authorized input under the current contract (authority head v2)
+01:26:00.561 Z8   V0  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:26:00.561 Z8   VT  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:26:00.561 Z8   VI  approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:26:00.561 Z8   VTI approve=false expected=false valid=true pass=false ctx=true input=true head=v2 verified result is fail (sum above limit)
+01:26:00.599 Z10  V0  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind fake): fake/dev receipt rejected
+01:26:00.599 Z10  VT  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind fake): fake/dev receipt rejected
+01:26:00.599 Z10  VI  approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind fake): fake/dev receipt rejected
+01:26:00.599 Z10  VTI approve=false expected=false valid=false pass=false ctx=false input=false head=v0 verification failed: receipt did not verify (exit 1, kind fake): fake/dev receipt rejected
+01:26:00.601 done: 52 rows, 7 new genuine proofs cached, outputs in results/zk/20261108-002316

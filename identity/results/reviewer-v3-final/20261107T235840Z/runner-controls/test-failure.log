@@ -1,0 +1,9 @@
+audit-release v2: NO UNEXPECTED VIOLATION (8 fixture-predicted attack successes: the invariant was violated as declared) exit=0 decisions=24 dispatches=14 receipts=14 outcomes=map[verified_dispatch:6 verified_non_dispatch:10 violation_expected_by_fixture:8] missing_cells=0 unexpected_cells=0 cardinality_errors=0 malformed=0; wrote /tmp/tmp.gODIP6MlFG/runcopy2/release-audit.md
+gate ok: audit /tmp/tmp.gODIP6MlFG/runcopy2 (exit 0)
+audit-release v2: NO UNEXPECTED VIOLATION exit=0 decisions=7 dispatches=6 receipts=2 outcomes=map[ablation_excluded:1 verified_dispatch:2 verified_non_dispatch:4] missing_cells=0 unexpected_cells=0 cardinality_errors=0 malformed=0; wrote /tmp/tmp.gODIP6MlFG/runcopy2/continuity/S-env_cb/release-audit.md
+gate ok: audit /tmp/tmp.gODIP6MlFG/runcopy2/continuity/S-env_cb (exit 0)
+audit-release v2: NO UNEXPECTED VIOLATION exit=0 decisions=7 dispatches=6 receipts=2 outcomes=map[ablation_excluded:1 verified_dispatch:2 verified_non_dispatch:4] missing_cells=0 unexpected_cells=0 cardinality_errors=0 malformed=0; wrote /tmp/tmp.gODIP6MlFG/runcopy2/continuity/T_cb/release-audit.md
+gate ok: audit /tmp/tmp.gODIP6MlFG/runcopy2/continuity/T_cb (exit 0)
+audit-release v2: INCOMPLETE exit=2 decisions=24 dispatches=0 receipts=0 outcomes=map[unsupported_historical_schema:24] missing_cells=0 unexpected_cells=0 cardinality_errors=24 malformed=0; wrote /tmp/tmp.gODIP6MlFG/runcopy2/audit-historical/historical-copy/release-audit.md
+gate ok: historical-schema audit (expected exit 2) (exit 2)
+GATE FAILED: audit negative controls (exit 1, expected 0)

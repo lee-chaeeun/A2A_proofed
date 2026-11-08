@@ -1,0 +1,30 @@
+=== RUN   TestAudit_BaseIsClean
+--- PASS: TestAudit_BaseIsClean (0.02s)
+=== RUN   TestAudit_LegitimateRejectionIsVerifiedNonDispatch
+--- PASS: TestAudit_LegitimateRejectionIsVerifiedNonDispatch (0.02s)
+=== RUN   TestAudit_MissingReceiptForSentDispatch
+--- PASS: TestAudit_MissingReceiptForSentDispatch (0.01s)
+=== RUN   TestAudit_MissingConnectionEvidence
+--- PASS: TestAudit_MissingConnectionEvidence (0.02s)
+=== RUN   TestAudit_WrongRecipient
+--- PASS: TestAudit_WrongRecipient (0.02s)
+=== RUN   TestAudit_DispatchOnAnotherConnection
+--- PASS: TestAudit_DispatchOnAnotherConnection (0.02s)
+=== RUN   TestAudit_ChangedContext
+--- PASS: TestAudit_ChangedContext (0.02s)
+=== RUN   TestAudit_RemovedAuthorization
+--- PASS: TestAudit_RemovedAuthorization (0.02s)
+=== RUN   TestAudit_ReorderedRequesterEvents
+--- PASS: TestAudit_ReorderedRequesterEvents (0.02s)
+=== RUN   TestAudit_DuplicateBusinessRelease
+--- PASS: TestAudit_DuplicateBusinessRelease (0.02s)
+=== RUN   TestAudit_MalformedInput
+--- PASS: TestAudit_MalformedInput (0.03s)
+=== RUN   TestAudit_MissingCellAgainstInventory
+--- PASS: TestAudit_MissingCellAgainstInventory (0.01s)
+=== RUN   TestAudit_UnknownPolicyAndUnsupportedSchema
+--- PASS: TestAudit_UnknownPolicyAndUnsupportedSchema (0.03s)
+=== RUN   TestAudit_OrphanReceiptAndReceiptExporterMismatch
+--- PASS: TestAudit_OrphanReceiptAndReceiptExporterMismatch (0.03s)
+PASS
+ok  	a2aid/internal/audit	1.284s

@@ -1,0 +1,2 @@
+churn policy=S-env+cb trials=60 attempts=60 appraisals_accepted=60 dispatch_attempts=60 written_to_transport=32 refused_reconnect=28 client_unknown_outcome=2 acks=30 errors=0 A_receipts=30 A_receipts_matching_acked_tokens=30 B_receipts=0
+churn policy=T+cb trials=60 attempts=60 appraisals_accepted=60 dispatch_attempts=60 written_to_transport=30 refused_reconnect=30 client_unknown_outcome=0 acks=30 errors=0 A_receipts=30 A_receipts_matching_acked_tokens=30 B_receipts=0

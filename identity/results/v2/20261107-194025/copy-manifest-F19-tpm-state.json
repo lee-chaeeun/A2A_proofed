@@ -1,0 +1,24 @@
+{
+  "fixture": "F19",
+  "source": "/home/bitchae/aisafety/swarmalign/a2a-identity/run/tpmA/state",
+  "dest": "/home/bitchae/aisafety/swarmalign/a2a-identity/run/tpmAclone/state",
+  "included_sha256": {
+    "state/.lock": "(copied; emulator state is not hashed into results)",
+    "state/tpm2-00.permall": "(copied; emulator state is not hashed into results)"
+  },
+  "excluded": [
+    "run/A/signer/siso_token",
+    "run/A/signer/siso.key",
+    "run/A/publisher/card.key",
+    "run/A/tls",
+    "run/gate/tpmA.sock access (B uses tpmAclone instead)"
+  ],
+  "extra": {
+    "ak_auth_granted": true,
+    "note": "emulator NVRAM is an ordinary file; a hardware TPM is supposed to make this copy impossible. This fixture measures the emulator, not hardware.",
+    "state_files_bytes": {
+      ".lock": 0,
+      "tpm2-00.permall": 1655
+    }
+  }
+}

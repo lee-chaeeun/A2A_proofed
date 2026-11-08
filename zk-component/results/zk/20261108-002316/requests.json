@@ -1,0 +1,92 @@
+[
+ {
+  "request_id": "Z1",
+  "challenge_hex": "b24c86040e8f9c35d9f6e08570601d13",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b889-bcc6-70f5-b1f8-eb29dd12481d"
+ },
+ {
+  "request_id": "Z2",
+  "challenge_hex": "68d4e4352f3d45b24148f2b414c41da5",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88a-1856-764b-9788-c638987d8c39"
+ },
+ {
+  "request_id": "Z3-B",
+  "challenge_hex": "fa56bd636ea9abf5a646e746b8576d6b",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88a-7388-7746-b8c8-9dcf99dbf2f0"
+ },
+ {
+  "request_id": "Z3P-B",
+  "challenge_hex": "1669d19982c0a93c38fa44be83715628",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88a-73a8-7805-8a96-e694499283f4"
+ },
+ {
+  "request_id": "Z4",
+  "challenge_hex": "dd83854c316757299500632308033bd8",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88a-cf3f-7df6-9ec9-c47e535fcefb"
+ },
+ {
+  "request_id": "Z5",
+  "challenge_hex": "c3c213e49935b1ec3bdb862ff28b6076",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88b-2a7a-72af-b03b-cdd8a9366ee0"
+ },
+ {
+  "request_id": "Z6",
+  "challenge_hex": "7a6ed7f2ef594ded448dd280f2c0a5b6",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88b-8573-791e-946e-f68d2628e741"
+ },
+ {
+  "request_id": "Z7",
+  "challenge_hex": "7a6ed7f2ef594ded448dd280f2c0a5b6",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88b-8573-791e-946e-f68d2628e741"
+ },
+ {
+  "request_id": "Z8",
+  "challenge_hex": "ae5f617551cbbe274108bfdfa9e68d1c",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88b-e07a-7356-98b4-68aac0d8f0c5"
+ },
+ {
+  "request_id": "Z10",
+  "challenge_hex": "a331e36521c503ae3b346f747e3c4932",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b88c-3bf4-7ce1-a07c-b7667f5c3fbf"
+ }
+]

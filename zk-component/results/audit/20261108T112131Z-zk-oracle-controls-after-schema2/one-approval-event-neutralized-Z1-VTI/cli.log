@@ -1,0 +1,2 @@
+zk-oracle: mode="schema-2 (inventory declared before execution)" declared=52 rows=52 scored=50 agree=50 disagree=0 violations=0 evidence_mismatch=0 incomplete=3 malformed=0 attack_successes=7 wrong_context=3/8 unsafe=5/12 denied_legit=0/11 exit=2
+  incomplete: ledgers.json records 1 approvals for Z1/VTI but the events support only 0

@@ -1,0 +1,202 @@
+{
+  "decisions": [
+    {
+      "policy": "S-env+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "d9d339fec258a5355c2338bd3496879baeaaad71c26eb8a0240c75b83b98461f",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "5a1b68db15e227024bb8734752313896311c24883a2047a52d24b573fc392229",
+        "proof_bound_to_requester_connection": true
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T23:40:52.636635371Z",
+        "expires_at": "2026-11-07T23:42:52.636635371Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "sig_verdict": "ok",
+      "senv": {
+        "decoded": true,
+        "signature_valid_under_enrolled_siso_key": true,
+        "metadata_ok": true,
+        "iat": "2026-11-07T23:40:52Z",
+        "exp": "2026-11-07T23:42:52Z"
+      },
+      "accept": true,
+      "appraised_at": "2026-11-07T23:40:52.646237502Z",
+      "dispatch_attempted": true,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_token": "d02f4bb68e8b834beb43489f",
+      "job_ack_received": false,
+      "job_error": "job dispatch required a NEW connection after the proof; refused before any task bytes were sent (fresh proof required before dispatch)",
+      "raw_evidence": {
+        "cose_sign1": "0oROogEmBElBLXNpc28tazGgWKmoYXZtYTJhaWQtc2Vudi12MWNleHDBGmrvt3xjaWF0wRpq77cEZW5vbmNlWCADRIRnNGOdnSSGEAyqUul7V4fjOjKDOEFjbnhy6JwVmWZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZnBvbGljeWhTLWVuditjYmhhdWRpZW5jZXNyZXF1ZXN0ZXI6YTJhaWQtbGFia2F0dGVzdGVyX2lkZWRlcC1BWEBP3iq3gl6opLuPKuXkri4sCr08IGBGz4m64qX2Pt5EMH8xgR7goEGGpErL4aH1lLp3UCZcBwFxhB0UuLSZM4kh",
+        "deployment_id": "dep-A",
+        "nonce": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+        "policy": "S-env+cb",
+        "timestamp": "",
+        "type": "evidence"
+      },
+      "decision_id": "d46f44175e1c6a76",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "d9d339fec258a5355c2338bd3496879baeaaad71c26eb8a0240c75b83b98461f",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "5a1b68db15e227024bb8734752313896311c24883a2047a52d24b573fc392229",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "pinned_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 2,
+      "tls_dials_refused": 1,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-07T23:40:52.631212304Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-07T23:40:52.63596058Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+          "at": "2026-11-07T23:40:52.636640119Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-07T23:40:52.646232484Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=true stage=",
+          "at": "2026-11-07T23:40:52.646678617Z"
+        },
+        {
+          "seq": 6,
+          "kind": "authorized",
+          "conn_id": 1,
+          "token": "d02f4bb68e8b834beb43489f",
+          "detail": "policy=S-env+cb expected=A nonce=yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+          "at": "2026-11-07T23:40:52.646772947Z"
+        },
+        {
+          "seq": 7,
+          "kind": "sealed",
+          "conn_id": 1,
+          "token": "d02f4bb68e8b834beb43489f",
+          "at": "2026-11-07T23:40:52.646776967Z"
+        },
+        {
+          "seq": 8,
+          "kind": "dispatch_attempt",
+          "conn_id": 1,
+          "token": "d02f4bb68e8b834beb43489f",
+          "at": "2026-11-07T23:40:52.646781669Z"
+        },
+        {
+          "seq": 9,
+          "kind": "refused_reconnect",
+          "token": "d02f4bb68e8b834beb43489f",
+          "detail": "new_dials=1 refused=1",
+          "at": "2026-11-07T23:40:52.647048563Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "context": {
+        "decision_id": "d46f44175e1c6a76",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c="
+      },
+      "authorization_context": {
+        "decision_id": "d46f44175e1c6a76",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+        "token": "d02f4bb68e8b834beb43489f"
+      },
+      "dispatch_context": {
+        "decision_id": "d46f44175e1c6a76",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+        "token": "d02f4bb68e8b834beb43489f"
+      }
+    }
+  ],
+  "note": "proof accepted; reconnect refused pre-send; B holds A's TLS cert/key only",
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "yFUT2BUsDMSP39TnUpVIiab14V0EMrUjn6iLqg1Ua/c=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "S-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T23:40:52.636635371Z",
+      "expires_at": "2026-11-07T23:42:52.636635371Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T23:40:52.646241505Z",
+      "result": "accept",
+      "released": true,
+      "job_token": "d02f4bb68e8b834beb43489f",
+      "appraisals": 1
+    }
+  ]
+}

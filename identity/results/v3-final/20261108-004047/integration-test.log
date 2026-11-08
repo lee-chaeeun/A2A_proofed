@@ -1,0 +1,68 @@
+=== RUN   TestIntegration_DiscoveryChallengeDelivery
+00:41:09.151 booted: controller, gate, A(pid 301143), B(pid 301144), operator pid 301039
+00:41:09.151 === F1 honest baseline
+00:41:09.308 F1_C           expected=accept         observed=accept         job->A keys=[] 
+00:41:09.467 F1_T           expected=accept         observed=accept         job->A keys=[A] 
+00:41:09.622 F1_C+url       expected=accept         observed=accept         job->A keys=[] 
+00:41:09.780 F1_C+tls       expected=accept         observed=accept         job->A keys=[] 
+00:41:09.941 F1_T+tls       expected=accept         observed=accept         job->A keys=[A] 
+00:41:10.102 F1_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+00:41:10.263 F1_T+cb        expected=accept         observed=accept         job->A keys=[A] 
+00:41:10.264 === F2 legitimate rename of A
+00:41:10.424 F2_C           expected=accept         observed=accept         job->A keys=[] 
+00:41:10.583 F2_T           expected=accept         observed=accept         job->A keys=[A] 
+00:41:10.739 F2_C+url       expected=accept         observed=accept         job->A keys=[] 
+00:41:10.896 F2_C+tls       expected=accept         observed=accept         job->A keys=[] 
+00:41:11.057 F2_T+tls       expected=accept         observed=accept         job->A keys=[A] 
+00:41:11.215 F2_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+00:41:11.376 F2_T+cb        expected=accept         observed=accept         job->A keys=[A] 
+00:41:11.376 === F6 B relays the live challenge to A
+00:41:11.531 F6_C           expected=accept         observed=accept         job->B keys=[] 
+00:41:11.691 F6_T           expected=accept         observed=accept         job->B keys=[A] 
+00:41:11.693 cell F6_C+url: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+00:41:11.844 F6_C+url       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102
+00:41:11.848 cell F6_C+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:11.999 F6_C+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.003 cell F6_T+tls: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.153 F6_T+tls       expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.156 cell F6_S-env+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.307 F6_S-env+cb    expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.310 cell F6_T+cb: signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.461 F6_T+cb        expected=reject         observed=reject         job->none keys=[] signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444
+00:41:12.461 === F14 attacker at the expected address without A's credentials (address hijack, relay)
+00:41:12.618 F14_C          expected=accept         observed=accept         job->B keys=[] 
+00:41:12.778 F14_T          expected=accept         observed=accept         job->B keys=[A] 
+00:41:12.935 F14_C+url      expected=accept         observed=accept         job->B keys=[] 
+00:41:12.938 cell F14_C+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.089 F14_C+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.092 cell F14_T+tls: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.243 F14_T+tls      expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.246 cell F14_S-env+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.397 F14_S-env+cb   expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.399 cell F14_T+cb: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.550 F14_T+cb       expected=reject         observed=reject         job->none keys=[] card fetch: card request failed: Get "https://a.a2aid.test:9443/.well-known/agent-card.json": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test
+00:41:13.551 === F15 attacker at the expected address with A's TLS credentials (relay)
+00:41:13.707 F15_C          expected=accept         observed=accept         job->B keys=[] 
+00:41:13.868 F15_T          expected=accept         observed=accept         job->B keys=[A] 
+00:41:14.024 F15_C+url      expected=accept         observed=accept         job->B keys=[] 
+00:41:14.182 F15_C+tls      expected=accept         observed=accept         job->B keys=[] 
+00:41:14.345 F15_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+00:41:14.506 F15_S-env+cb   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:41:14.667 F15_T+cb       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:41:14.667 === F16 F15 plus relay injects its observed channel binding into the forwarded challenge
+00:41:14.831 F16_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+00:41:14.990 F16_S-env+cb   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:41:15.154 F16_T+cb       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:41:15.154 === F20 attacker at the expected address with A's TLS credentials AND A's signer access
+00:41:15.311 F20_C          expected=accept         observed=accept         job->B keys=[] 
+00:41:15.471 F20_T          expected=accept         observed=accept         job->B keys=[A] 
+00:41:15.627 F20_C+url      expected=accept         observed=accept         job->B keys=[] 
+00:41:15.784 F20_C+tls      expected=accept         observed=accept         job->B keys=[] 
+00:41:15.945 F20_T+tls      expected=accept         observed=accept         job->B keys=[A] 
+00:41:16.107 F20_S-env+cb   expected=accept         observed=accept         job->B keys=[A] 
+00:41:16.267 F20_T+cb       expected=accept         observed=accept         job->B keys=[A] 
+00:41:16.302 done: 49 cells, 45 appraisals, outputs in /home/bitchae/aisafety/swarmalign/a2a-identity/results/integration/20261108-004108
+    integration_test.go:42: outputs: /home/bitchae/aisafety/swarmalign/a2a-identity/results/integration/20261108-004108 (45 appraisals)
+--- PASS: TestIntegration_DiscoveryChallengeDelivery (7.72s)
+PASS
+ok  	a2aid/internal/matrix	7.722s

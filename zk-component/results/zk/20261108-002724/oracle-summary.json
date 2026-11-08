@@ -1,0 +1,12 @@
+{
+  "run_dir": "results/zk/20261108-002724",
+  "rows": 52,
+  "scored": 52,
+  "incomplete": 0,
+  "observed_vs_policy_semantics_disagreements": 0,
+  "wrong_context_accepted": "3/8",
+  "unsafe_approvals": "5/12",
+  "legitimate_denied": "0/12",
+  "exit_code": 0,
+  "note": "Offline business-decision oracle: recomputes sums/commitments from the fixture openings and joins the trusted request contract with the ordered authority/approval events. Receipt validity is the pinned verifier CLI's recorded status; the oracle does not reimplement the proof system. Trusted: fixture authority history and openings."
+}

@@ -1,0 +1,38 @@
+package zk
+
+import (
+ "context"
+ "crypto/x509"
+ "encoding/json"
+ "net/http"
+ "net/http/httptest"
+ "sync/atomic"
+ "testing"
+
+ "a2aid/internal/registry"
+ "github.com/a2aproject/a2a-go/v2/a2a"
+)
+
+// Characterization only: PASS means the missing-card-validation behaviour was
+// reproduced. Run in an isolated source extraction, never production tests.
+func TestReviewerUnsignedCardStillGetsZKTask(t *testing.T) {
+ var posts atomic.Int32
+ var endpoint string
+ s:=httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter,r *http.Request){
+  if r.Method==http.MethodGet {
+   w.Header().Set("Content-Type","application/json")
+   card:=&a2a.AgentCard{Name:"Unsigned worker",Version:"1",DefaultInputModes:[]string{"application/json"},DefaultOutputModes:[]string{"application/json"},SupportedInterfaces:[]*a2a.AgentInterface{{URL:endpoint,ProtocolBinding:a2a.TransportProtocolJSONRPC,ProtocolVersion:"1.0"}},Skills:[]a2a.AgentSkill{{ID:"zk",Name:"zk"}}}
+   json.NewEncoder(w).Encode(card);return
+  }
+  posts.Add(1)
+  http.Error(w,"intentional stop after observing the task",http.StatusInternalServerError)
+ }))
+ defer s.Close();endpoint=s.URL
+ pool:=x509.NewCertPool();pool.AddCert(s.Certificate())
+ reg:=&registry.Registry{Deployments:map[string]*registry.Deployment{"A":{DeploymentID:"dep-A",AttesterID:"dep-A",TLSName:"127.0.0.1",CardKeyID:"expected-publisher"}}}
+ req:=&Requester{Reg:reg,RootCAs:pool,Policy:"C+tls"}
+ _,_,err:=req.Dispatch(context.Background(),endpoint,NewRequest("review","p",Pinned,1,"A"))
+ t.Logf("network task POSTs=%d; dispatch error=%v",posts.Load(),err)
+ if posts.Load()==0 {t.Fatal("did not reproduce: unsigned Agent Card was rejected before task delivery")}
+ t.Log("REPRODUCED: a valid-TLS worker with an unsigned Agent Card received the ZK task")
+}

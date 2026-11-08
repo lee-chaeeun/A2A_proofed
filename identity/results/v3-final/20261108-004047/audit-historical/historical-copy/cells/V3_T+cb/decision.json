@@ -1,0 +1,82 @@
+{
+  "decisions": [
+    {
+      "policy": "T+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "933399f8ca97c614f919d8f0093e1f760b3f9a4a710e37d7378448051439121c",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "71e668f522fcf63580058098ec4396ebaad2dea5755aa7d86cd4328a465894b9",
+        "proof_bound_to_requester_connection": false
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "T+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T19:32:09.396555398Z",
+        "expires_at": "2026-11-07T19:34:09.396555398Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "RvekPF6Oo7DXNCVVqgRm52Dk23PPKajq0L8Rq1pvc6M=",
+      "nonce_verdict": "ok",
+      "sig_verdict": "n/a",
+      "accept": false,
+      "code": "PTV_ERR_001",
+      "failure_stage": "quote",
+      "reason": "no quote in response",
+      "appraised_at": "2026-11-07T19:32:09.401250862Z",
+      "dispatch_attempted": false,
+      "job_released": false,
+      "job_ack_received": false,
+      "agent_error": "binding field inconsistent with policy",
+      "raw_evidence": {
+        "error": "binding field inconsistent with policy",
+        "nonce": "RvekPF6Oo7DXNCVVqgRm52Dk23PPKajq0L8Rq1pvc6M=",
+        "type": "error"
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "RvekPF6Oo7DXNCVVqgRm52Dk23PPKajq0L8Rq1pvc6M=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "T+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T19:32:09.396555398Z",
+      "expires_at": "2026-11-07T19:34:09.396555398Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T19:32:09.401252782Z",
+      "result": "reject:quote",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}

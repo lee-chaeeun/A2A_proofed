@@ -1,0 +1,33 @@
+{
+  "checker_version": "2",
+  "run_dir": "/home/bitchae/aisafety/swarmalign/a2a-identity/results/v3-final/20261108-004047",
+  "inventory_source": "run-inventory.json",
+  "inventory_schema": 2,
+  "producer_evidence_schemas_seen": {
+    "2": 24
+  },
+  "inventory_cells": 24,
+  "cells_found": 24,
+  "decisions": 24,
+  "dispatch_attempts": 14,
+  "receipts": 14,
+  "outcomes": {
+    "verified_dispatch": 6,
+    "verified_non_dispatch": 10,
+    "violation_expected_by_fixture": 8
+  },
+  "checks_by_class": {
+    "cooperative_event": 28,
+    "copied_appraisal": 24,
+    "recomputed": 502,
+    "requester_tls_observation": 22,
+    "stipulated_order": 14
+  },
+  "failed_checks_by_class": {
+    "cooperative_event": 8
+  },
+  "orphan_receipts": 0,
+  "exit_code": 0,
+  "verdict": "NO UNEXPECTED VIOLATION (8 fixture-predicted attack successes: the invariant was violated as declared)",
+  "conditional_note": "Structural audit of retained records (checker version 2). Authorization validity is conditional on the recorded appraisal (copied_appraisal); TLS facts are the requester's own run-time observations; receipts are cooperative events attributed by the controller; cross-process order rests on causal ids (decision id, session key, token) and requester sequence numbers, with any remainder stipulated by the controller. Not tamper-proof evidence and not a security proof."
+}

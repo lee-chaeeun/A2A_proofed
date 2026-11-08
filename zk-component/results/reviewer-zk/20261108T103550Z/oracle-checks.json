@@ -1,0 +1,42 @@
+[
+  {
+    "case": "baseline",
+    "exit": 0,
+    "rows": 52,
+    "scored": 52,
+    "incomplete": 0,
+    "disagreements": 0
+  },
+  {
+    "case": "removed-stale-witness-fixture",
+    "exit": 0,
+    "rows": 48,
+    "scored": 48,
+    "incomplete": 0,
+    "disagreements": 0
+  },
+  {
+    "case": "duplicated-policy-cell",
+    "exit": 0,
+    "rows": 53,
+    "scored": 53,
+    "incomplete": 0,
+    "disagreements": 0
+  },
+  {
+    "case": "all-receipt-bytes-corrupted",
+    "exit": 0,
+    "rows": 52,
+    "scored": 52,
+    "incomplete": 0,
+    "disagreements": 0
+  },
+  {
+    "case": "all-approval-events-removed",
+    "exit": 0,
+    "rows": 52,
+    "scored": 52,
+    "incomplete": 0,
+    "disagreements": 0
+  }
+]

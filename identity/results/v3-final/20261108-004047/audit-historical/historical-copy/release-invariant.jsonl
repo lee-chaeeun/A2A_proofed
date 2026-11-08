@@ -1,0 +1,39 @@
+{"cell":"NEG-CONTROL","job_token":"synthetic","class":"unverified","invariant":"missing-recipient record flagged incomplete","ok":true,"detail":"a record with no observed_recipient is reported incomplete, not agreed"}
+{"cell":"V1_C+tls","job_token":"48ec0161f181942af761ae59","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_C+tls","job_token":"48ec0161f181942af761ae59","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_C+tls","job_token":"48ec0161f181942af761ae59","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V1_C+url","job_token":"0b17b3d06fc0ff9cebd3b3c4","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_C+url","job_token":"0b17b3d06fc0ff9cebd3b3c4","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_S-env+cb","job_token":"e3ac29b05f5f48ea344f97f7","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_S-env+cb","job_token":"e3ac29b05f5f48ea344f97f7","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V1_S-env+cb","job_token":"e3ac29b05f5f48ea344f97f7","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_S-env+tls","job_token":"96da73277a45a4b118d07fd2","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_S-env+tls","job_token":"96da73277a45a4b118d07fd2","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V1_S-env+tls","job_token":"96da73277a45a4b118d07fd2","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_T+cb","job_token":"a3869c18d45c0e2b5474774a","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_T+cb","job_token":"a3869c18d45c0e2b5474774a","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_T+cb","job_token":"a3869c18d45c0e2b5474774a","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V1_T+tls","job_token":"a2ba8736197b4a72feaea4d9","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V1_T+tls","job_token":"a2ba8736197b4a72feaea4d9","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":true}
+{"cell":"V1_T+tls","job_token":"a2ba8736197b4a72feaea4d9","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V2_C+tls","job_token":"d4eff6e28c3b83253f19f2e4","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V2_C+tls","job_token":"d4eff6e28c3b83253f19f2e4","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V2_C+tls","job_token":"d4eff6e28c3b83253f19f2e4","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V2_C+url","job_token":"805af2a5b9c9ce0f27976ce8","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V2_C+url","job_token":"805af2a5b9c9ce0f27976ce8","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V2_S-env+tls","job_token":"10cda7c3f194255ef8c651fd","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V2_S-env+tls","job_token":"10cda7c3f194255ef8c651fd","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V2_S-env+tls","job_token":"10cda7c3f194255ef8c651fd","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V2_T+tls","job_token":"74ac3cfd4bf047569e30b3cf","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V2_T+tls","job_token":"74ac3cfd4bf047569e30b3cf","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V2_T+tls","job_token":"74ac3cfd4bf047569e30b3cf","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V3_C+tls","job_token":"c70387d827202d30f0e21305","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V3_C+tls","job_token":"c70387d827202d30f0e21305","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V3_C+tls","job_token":"c70387d827202d30f0e21305","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V3_C+url","job_token":"aeafea2b26592aa4af12f2d8","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V3_C+url","job_token":"aeafea2b26592aa4af12f2d8","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V4_C+tls","job_token":"e91e1cd8c78d904805091ed5","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V4_C+tls","job_token":"e91e1cd8c78d904805091ed5","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}
+{"cell":"V4_C+tls","job_token":"e91e1cd8c78d904805091ed5","class":"unverified","invariant":"job reused the proof connection (no reconnect before dispatch)","ok":false,"detail":"no connection-reuse record"}
+{"cell":"V4_C+url","job_token":"97a63af8aa9acc400cfc070e","class":"shared_code","invariant":"dispatch had a preceding accepted appraisal","ok":true}
+{"cell":"V4_C+url","job_token":"97a63af8aa9acc400cfc070e","class":"copied_fact","invariant":"observed recipient is the expected deployment","ok":false,"detail":"job reached B"}

@@ -1,0 +1,54 @@
+=== RUN   TestAudit_BaseIsClean
+--- PASS: TestAudit_BaseIsClean (0.03s)
+=== RUN   TestAudit_LegitimateRejectionIsVerifiedNonDispatch
+--- PASS: TestAudit_LegitimateRejectionIsVerifiedNonDispatch (0.02s)
+=== RUN   TestAudit_MissingReceiptForSentDispatch
+--- PASS: TestAudit_MissingReceiptForSentDispatch (0.02s)
+=== RUN   TestAudit_MissingConnectionEvidence
+--- PASS: TestAudit_MissingConnectionEvidence (0.02s)
+=== RUN   TestAudit_WrongRecipient
+--- PASS: TestAudit_WrongRecipient (0.02s)
+=== RUN   TestAudit_DispatchOnAnotherConnection
+--- PASS: TestAudit_DispatchOnAnotherConnection (0.02s)
+=== RUN   TestAudit_ChangedContext
+--- PASS: TestAudit_ChangedContext (0.02s)
+=== RUN   TestAudit_RemovedAuthorization
+--- PASS: TestAudit_RemovedAuthorization (0.02s)
+=== RUN   TestAudit_ReorderedRequesterEvents
+--- PASS: TestAudit_ReorderedRequesterEvents (0.02s)
+=== RUN   TestAudit_DuplicateBusinessRelease
+--- PASS: TestAudit_DuplicateBusinessRelease (0.03s)
+=== RUN   TestAudit_MalformedInput
+--- PASS: TestAudit_MalformedInput (0.04s)
+=== RUN   TestAudit_MissingCellAgainstInventory
+--- PASS: TestAudit_MissingCellAgainstInventory (0.02s)
+=== RUN   TestAudit_UnknownPolicyAndUnsupportedSchema
+--- PASS: TestAudit_UnknownPolicyAndUnsupportedSchema (0.04s)
+=== RUN   TestAudit_OrphanReceiptAndReceiptExporterMismatch
+--- PASS: TestAudit_OrphanReceiptAndReceiptExporterMismatch (0.04s)
+=== RUN   TestReviewer1_EmptyDecisionsInInventoriedRejectedCell
+--- PASS: TestReviewer1_EmptyDecisionsInInventoriedRejectedCell (0.06s)
+=== RUN   TestReviewer2_UndeclaredMalformedCell
+--- PASS: TestReviewer2_UndeclaredMalformedCell (0.08s)
+=== RUN   TestReviewer3_MissingAppraisedEventRenumbered
+--- PASS: TestReviewer3_MissingAppraisedEventRenumbered (0.02s)
+=== RUN   TestReviewer4_ChangedSessionActionAndAudience
+--- PASS: TestReviewer4_ChangedSessionActionAndAudience (0.06s)
+=== RUN   TestReviewer5_InventoryPolicyDiffersFromDecision
+--- PASS: TestReviewer5_InventoryPolicyDiffersFromDecision (0.02s)
+=== RUN   TestRule_DuplicateCriticalEventAndContradiction
+--- PASS: TestRule_DuplicateCriticalEventAndContradiction (0.06s)
+=== RUN   TestRule_EventTokenAndConnectionMismatch
+--- PASS: TestRule_EventTokenAndConnectionMismatch (0.05s)
+=== RUN   TestRule_ExtraDecisionAndDuplicateIDs
+--- PASS: TestRule_ExtraDecisionAndDuplicateIDs (0.06s)
+=== RUN   TestRule_AbsentTypedContextIsUnsupportedNotClean
+--- PASS: TestRule_AbsentTypedContextIsUnsupportedNotClean (0.09s)
+=== RUN   TestRule_InventoryIntegrity
+--- PASS: TestRule_InventoryIntegrity (0.02s)
+=== RUN   TestRule_ExpectedAttackSuccessStaysVisible
+--- PASS: TestRule_ExpectedAttackSuccessStaysVisible (0.02s)
+=== RUN   TestRule_RefusedCaseStaysClean
+--- PASS: TestRule_RefusedCaseStaysClean (0.02s)
+PASS
+ok  	a2aid/internal/audit	1.945s

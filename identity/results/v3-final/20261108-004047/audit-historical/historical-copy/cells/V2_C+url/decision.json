@@ -1,0 +1,56 @@
+{
+  "decisions": [
+    {
+      "policy": "C+url",
+      "expected_deployment": "A",
+      "endpoint_url": "http://a.a2aid.test:9101",
+      "card_name": "Atlas Prime",
+      "card_url": "http://a.a2aid.test:9101",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": false,
+        "authenticated": false,
+        "expected_name": "a.a2aid.test",
+        "name_match": false,
+        "connections": 0,
+        "reason": "no TLS connection was used"
+      },
+      "nonce_verdict": "n/a",
+      "sig_verdict": "n/a",
+      "accept": true,
+      "appraised_at": "2026-11-07T19:32:07.655057025Z",
+      "dispatch_attempted": true,
+      "job_released": true,
+      "job_token": "805af2a5b9c9ce0f27976ce8",
+      "job_ack_received": true,
+      "job_ack_claimed_deployment": "dep-B",
+      "job_ack_pcr_at_receipt_hex": "6ca65e2b00fd47d168fd33416d76e0a100a8b4cc930596a35a094a98829d567f"
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "C:http://a.a2aid.test:9101:1794079927655058275",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "C+url",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T19:32:07.655060108Z",
+      "expires_at": "2026-11-07T19:34:07.655060108Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T19:32:07.655060937Z",
+      "released": true,
+      "job_token": "805af2a5b9c9ce0f27976ce8",
+      "appraisals": 1
+    }
+  ]
+}

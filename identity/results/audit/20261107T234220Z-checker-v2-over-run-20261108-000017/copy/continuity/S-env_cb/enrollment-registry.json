@@ -1,0 +1,39 @@
+{
+  "frozen_at": "",
+  "deployments": {
+    "A": {
+      "deployment_id": "dep-A",
+      "attester_id": "dep-A",
+      "card_key_id": "A-card-k1",
+      "card_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEiLNP5ZB8CfQPnrqcQBPxFyPtEwtd\n1pK9+b13t/+oXww9z/SBXHuadBkgJ8OX54ty3A70eJs5u1aWbJkE6+rxtQ==\n-----END PUBLIC KEY-----\n",
+      "sfile_key_id": "A-sfile-k1",
+      "sfile_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEM+639BlkGqeqz/vm+24NfAT2Qdn3\neGizcy+JRH+ZLF5znzhteU7KZJCnG4pA2iyG6Mo+tDE0m1+ZXnMVs661og==\n-----END PUBLIC KEY-----\n",
+      "siso_key_id": "A-siso-k1",
+      "siso_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEM3jWEm2PDlMnfDeI2J3GHMz6F0lP\nkM0XF1X6oIvY8u6dEuKP99AxOJOMa0Hea/PLH8ReVpREA0ayAguVQtL1zA==\n-----END PUBLIC KEY-----\n",
+      "ak_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEa1IbYTzxhNpLZ0e5kaFulj5wgLCH\nEtf/6qCfHOFgYJcX9PZeB/rKCwx3rDmITPUoprp6zwCAV5iDfMFQEU3ciQ==\n-----END PUBLIC KEY-----\n",
+      "ak_name": "",
+      "ak_qualified_name": "4662591804f3d3b4f299d9987dc6aeb9940df2098893be992ab31f61d085bbbccff3",
+      "pcr_bank": "sha256",
+      "pcr_index": 16,
+      "pcr_reference_hex": "67e00cc8b1737f6129e4b80882592e1c2744a3761842789b44565fd0f61dade0",
+      "tls_name": "a.a2aid.test"
+    },
+    "B": {
+      "deployment_id": "dep-B",
+      "attester_id": "dep-B",
+      "card_key_id": "B-card-k1",
+      "card_public_pem": "",
+      "sfile_key_id": "B-sfile-k1",
+      "sfile_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEdKFqSWlM8sbX0Ek0xknIztcyNACJ\nZbYNsyzLJ6JYVWgaWJf4xkwzufxbF0nBrU3cB83sgNBsFw/HGWhEnlhIkg==\n-----END PUBLIC KEY-----\n",
+      "siso_key_id": "B-siso-k1",
+      "siso_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEdKFqSWlM8sbX0Ek0xknIztcyNACJ\nZbYNsyzLJ6JYVWgaWJf4xkwzufxbF0nBrU3cB83sgNBsFw/HGWhEnlhIkg==\n-----END PUBLIC KEY-----\n",
+      "ak_public_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEdKFqSWlM8sbX0Ek0xknIztcyNACJ\nZbYNsyzLJ6JYVWgaWJf4xkwzufxbF0nBrU3cB83sgNBsFw/HGWhEnlhIkg==\n-----END PUBLIC KEY-----\n",
+      "ak_name": "",
+      "ak_qualified_name": "00",
+      "pcr_bank": "",
+      "pcr_index": 0,
+      "pcr_reference_hex": "67e00cc8b1737f6129e4b80882592e1c2744a3761842789b44565fd0f61dade0",
+      "tls_name": "b.a2aid.test"
+    }
+  }
+}

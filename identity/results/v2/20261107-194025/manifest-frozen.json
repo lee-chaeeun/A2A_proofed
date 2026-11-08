@@ -1,0 +1,553 @@
+{
+ "version": 2,
+ "frozen_at": "2026-11-07T19:30+01:00",
+ "note": "Expected job decisions per cell for matrix v2, frozen before the first v2 run. 'n/a' = policy inapplicable or redundant for the fixture; 'reject,reject' / 'reject,accept' = two sequential appraisals; 'one' = exactly one release among concurrent deliveries. Policies C, S-file, S-iso, T, P keep their v1 definitions (historical baseline); S-env, +url, +tls, +cb are v2 controls/defenses. See predictions-v2.md. F21 added 2026-11-07 19:50 CET after run 2 (see predictions-v2.md change log) and frozen before run 3.",
+ "policies": [
+  "C",
+  "S-file",
+  "S-iso",
+  "S-env",
+  "T",
+  "P",
+  "C+url",
+  "C+tls",
+  "T+tls",
+  "S-env+cb",
+  "T+cb"
+ ],
+ "fixtures": [
+  {
+   "id": "F1",
+   "title": "honest baseline",
+   "endpoint": "A",
+   "capabilities": [],
+   "permissions": "B idle",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "accept",
+    "S-env+cb": "accept",
+    "T+cb": "accept"
+   },
+   "expected_recipient": "A"
+  },
+  {
+   "id": "F2",
+   "title": "legitimate rename of A",
+   "endpoint": "A",
+   "capabilities": [
+    "operator_republishes_card"
+   ],
+   "permissions": "B idle; operator republishes A's card (both origins) under the same publisher key",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "accept",
+    "S-env+cb": "accept",
+    "T+cb": "accept"
+   },
+   "expected_recipient": "A"
+  },
+  {
+   "id": "F3",
+   "title": "B claims A's display name with B's own key",
+   "endpoint": "B",
+   "capabilities": [
+    "own_enrollment",
+    "display_name_collision"
+   ],
+   "permissions": "B publishes a card named like A, signed with B's enrolled publisher key",
+   "expected": {
+    "C": "reject",
+    "S-file": "reject",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "reject",
+    "P": "reject",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "none"
+  },
+  {
+   "id": "F4",
+   "title": "B serves copy of A's card and replays an old proof",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "captured_response"
+   ],
+   "permissions": "verbatim copy of A's signed card; a complete earlier response captured from A; no fresh proofs",
+   "expected": {
+    "C": "accept",
+    "S-file": "reject",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "reject",
+    "P": "reject",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C only"
+  },
+  {
+   "id": "F5",
+   "title": "B copies A's application volume",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "volume_copy(sfile_key)"
+   ],
+   "permissions": "byte copy of run/A/app (signed card, config, S-file key); own TPM and signer; gate ACL denies B on tpmA/swA; no AK password, isolated-signer token or TLS key of A",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "reject",
+    "P": "reject",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C and S-file"
+  },
+  {
+   "id": "F6",
+   "title": "B relays the live challenge to A",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "live_relay"
+   ],
+   "permissions": "copy of A's card; live A2A client to A; forwards untouched response",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for the six v1/S-env policies; none under +url/+tls/+cb (B is at its own address)"
+  },
+  {
+   "id": "F7",
+   "title": "B granted A's signer sockets and authorizations",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "volume_copy(sfile_key)",
+    "gate_acl_A",
+    "ak_auth_A",
+    "siso_token_A"
+   ],
+   "permissions": "F5 plus gate ACL for tpmA and swA plus A's AK password and isolated-signer token",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for the six base policies; none under +url/+tls/+cb"
+  },
+  {
+   "id": "F8",
+   "title": "relay with outer timestamp edited, inner quote preserved",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "metadata_edit"
+   ],
+   "permissions": "F6 plus edit of the outer timestamp (+60 s, inside the window); S-env/P: edit inside the signed payload keeping the signature bytes",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "reject",
+    "T": "accept",
+    "P": "reject",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C, S-file, S-iso, T"
+  },
+  {
+   "id": "F9",
+   "title": "A's appraised PCR changed",
+   "endpoint": "A",
+   "capabilities": [
+    "operator_pcr_change"
+   ],
+   "permissions": "B idle; operator extends A's PCR 16 with a non-reference value",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "reject",
+    "P": "reject",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "reject",
+    "S-env+cb": "accept",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "A for policies without configuration appraisal"
+  },
+  {
+   "id": "F10",
+   "title": "routine envelope with both evidence and proof, correctly signed",
+   "endpoint": "A",
+   "capabilities": [
+    "lab_hook_malformed_envelope"
+   ],
+   "permissions": "B idle; lab hook makes honest A emit a malformed envelope",
+   "expected": {
+    "C": "n/a",
+    "S-file": "n/a",
+    "S-iso": "n/a",
+    "S-env": "n/a",
+    "T": "n/a",
+    "P": "reject",
+    "C+url": "n/a",
+    "C+tls": "n/a",
+    "T+tls": "n/a",
+    "S-env+cb": "n/a",
+    "T+cb": "n/a"
+   },
+   "expected_recipient": "none"
+  },
+  {
+   "id": "F11",
+   "title": "B presents a never-enrolled key claiming A",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "unenrolled_key"
+   ],
+   "permissions": "copy of A's card; fresh unenrolled key (TPM-resident for T/P, software for S/S-env)",
+   "expected": {
+    "C": "accept",
+    "S-file": "reject",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "reject",
+    "P": "reject",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C only"
+  },
+  {
+   "id": "F12",
+   "title": "one nonce: invalid first (B), valid second (A)",
+   "endpoint": "B-then-A",
+   "capabilities": [
+    "card_copy",
+    "nonce_observation",
+    "garbage_proof"
+   ],
+   "permissions": "B answers first with an invalid proof; the same nonce is then sent to honest A. Under +url/+tls the B leg fails at connect before a nonce exists, so A receives a fresh nonce",
+   "expected": {
+    "C": "n/a",
+    "S-file": "reject,reject",
+    "S-iso": "reject,reject",
+    "S-env": "reject,reject",
+    "T": "reject,reject",
+    "P": "reject,reject",
+    "C+url": "n/a",
+    "C+tls": "n/a",
+    "T+tls": "reject,accept",
+    "S-env+cb": "reject,accept",
+    "T+cb": "reject,accept"
+   },
+   "expected_recipient": "none for v1/S-env (burned nonce); A under +tls/+cb"
+  },
+  {
+   "id": "F13",
+   "title": "one nonce: two simultaneous valid responses",
+   "endpoint": "A-and-B",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "concurrent_delivery"
+   ],
+   "permissions": "B relays as in F6 while the same nonce goes to A directly; both responses complete, then both are appraised concurrently",
+   "expected": {
+    "C": "n/a",
+    "S-file": "one",
+    "S-iso": "one",
+    "S-env": "one",
+    "T": "one",
+    "P": "one",
+    "C+url": "n/a",
+    "C+tls": "n/a",
+    "T+tls": "one",
+    "S-env+cb": "one",
+    "T+cb": "one"
+   },
+   "expected_recipient": "exactly one of A or B for v1/S-env; A under +tls/+cb (B's connect fails)"
+  },
+  {
+   "id": "F14",
+   "title": "attacker at the expected address without A's credentials (address hijack, relay)",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack"
+   ],
+   "permissions": "requester's resolver sends A's name to B's listeners; B serves A's card copy and relays to the real A; B has no key, token or certificate of A",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for every policy without authenticated transport, including C+url"
+  },
+  {
+   "id": "F15",
+   "title": "attacker at the expected address with A's TLS credentials (relay)",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A"
+   ],
+   "permissions": "F14 plus a copy of A's server certificate and private key; B terminates TLS as a.a2aid.test and relays to the real A",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "accept",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for everything except the channel-bound policies"
+  },
+  {
+   "id": "F16",
+   "title": "F15 plus relay injects its observed channel binding into the forwarded challenge",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A",
+    "cb_injection"
+   ],
+   "permissions": "F15; B adds the exporter value of its own connection with the requester to the challenge it forwards to A",
+   "expected": {
+    "C": "n/a",
+    "S-file": "n/a",
+    "S-iso": "n/a",
+    "S-env": "n/a",
+    "T": "n/a",
+    "P": "n/a",
+    "C+url": "n/a",
+    "C+tls": "n/a",
+    "T+tls": "accept",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B under T+tls (control); none under +cb if A ignores supplied bindings"
+  },
+  {
+   "id": "F17",
+   "title": "attacker at the expected address with a self-signed certificate for A's name (relay)",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "self_signed_cert_for_A"
+   ],
+   "permissions": "F14 but B presents a certificate for a.a2aid.test that does not chain to the lab root",
+   "expected": {
+    "C": "n/a",
+    "S-file": "n/a",
+    "S-iso": "n/a",
+    "S-env": "n/a",
+    "T": "n/a",
+    "P": "n/a",
+    "C+url": "accept",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B under C+url (control); none under authenticated transport"
+  },
+  {
+   "id": "F18",
+   "title": "configuration changed between successful appraisal and job delivery (TOCTOU)",
+   "endpoint": "A",
+   "capabilities": [
+    "operator_pcr_change_after_appraisal"
+   ],
+   "permissions": "honest A; after the requester accepts and before it releases the job, the operator extends A's PCR 16; A reports its PCR when the job lands",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "accept",
+    "S-env+cb": "accept",
+    "T+cb": "accept"
+   },
+   "expected_recipient": "A (job delivered to a deployment whose configuration no longer matches; no policy enforces continuity)"
+  },
+  {
+   "id": "F19",
+   "title": "B runs a byte clone of A's emulator state and holds A's AK password",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "volume_copy(sfile_key)",
+    "tpm_state_clone",
+    "ak_auth_A"
+   ],
+   "permissions": "F5 plus a third swtpm started from a copy of run/tpmA/state (exposed through the gate as tpmAclone, ACL B) plus A's AK password; no isolated-signer token, no TLS key of A",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C, S-file, T, P (emulator state is an ordinary file)"
+  },
+  {
+   "id": "F20",
+   "title": "attacker at the expected address with A's TLS credentials AND A's signer access",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "volume_copy(sfile_key)",
+    "address_hijack",
+    "tls_credentials_A",
+    "gate_acl_A",
+    "ak_auth_A",
+    "siso_token_A"
+   ],
+   "permissions": "F15's transport capabilities plus F7's signer capabilities; B answers itself (no relay)",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "accept",
+    "S-env": "accept",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "accept",
+    "C+tls": "accept",
+    "T+tls": "accept",
+    "S-env+cb": "accept",
+    "T+cb": "accept"
+   },
+   "expected_recipient": "B for every policy: this capability class is outside what any tested defense covers"
+  },
+  {
+   "id": "F21",
+   "title": "F19 plus attacker re-extends the clone's PCR 16 with the public configuration string",
+   "endpoint": "B",
+   "capabilities": [
+    "card_copy",
+    "volume_copy(sfile_key)",
+    "tpm_state_clone",
+    "ak_auth_A",
+    "pcr_replay_public_config"
+   ],
+   "permissions": "F19; before the cell the attacker extends PCR 16 of the cloned emulator with 'deployment-A-config-v1' (not a secret) so the digest equals the operator reference",
+   "expected": {
+    "C": "accept",
+    "S-file": "accept",
+    "S-iso": "reject",
+    "S-env": "reject",
+    "T": "accept",
+    "P": "accept",
+    "C+url": "reject",
+    "C+tls": "reject",
+    "T+tls": "reject",
+    "S-env+cb": "reject",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B for C, S-file, T, P"
+  }
+ ],
+ "race_trials": {
+  "policies": [
+   "S-file",
+   "S-iso",
+   "S-env",
+   "T",
+   "P"
+  ],
+  "count": 100,
+  "seed_base": 20261107,
+  "max_delay_ms": 40
+ }
+}

@@ -1,0 +1,125 @@
+[
+ {
+  "case": "baseline",
+  "exit": 0,
+  "verdict": "NO UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 2,
+   "verified_non_dispatch": 4
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ },
+ {
+  "case": "empty-inventoried-rejected-cell",
+  "exit": 2,
+  "verdict": "INCOMPLETE",
+  "decisions": 6,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 2,
+   "verified_non_dispatch": 3
+  },
+  "unexpected": null,
+  "cardinality": [
+   "3_split_connection: no decisions in record (missing, null or empty array)"
+  ],
+  "malformed": null
+ },
+ {
+  "case": "unexpected-malformed-cell",
+  "exit": 2,
+  "verdict": "INCOMPLETE (cells not in the declared inventory)",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 2,
+   "verified_non_dispatch": 4
+  },
+  "unexpected": [
+   "UNDECLARED"
+  ],
+  "cardinality": null,
+  "malformed": [
+   "UNDECLARED/decision.json: invalid character 'n' looking for beginning of object key string"
+  ]
+ },
+ {
+  "case": "removed-appraised-event",
+  "exit": 1,
+  "verdict": "UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 1,
+   "verified_non_dispatch": 4,
+   "violation": 1
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ },
+ {
+  "case": "changed-session-action-audience",
+  "exit": 1,
+  "verdict": "UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 1,
+   "verified_non_dispatch": 4,
+   "violation": 1
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ },
+ {
+  "case": "changed-session-action-only",
+  "exit": 1,
+  "verdict": "UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 1,
+   "verified_non_dispatch": 4,
+   "violation": 1
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ },
+ {
+  "case": "changed-session-audience-only",
+  "exit": 1,
+  "verdict": "UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 1,
+   "verified_non_dispatch": 4,
+   "violation": 1
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ },
+ {
+  "case": "inventory-policy-mismatch",
+  "exit": 1,
+  "verdict": "UNEXPECTED VIOLATION",
+  "decisions": 7,
+  "outcomes": {
+   "ablation_excluded": 1,
+   "verified_dispatch": 1,
+   "verified_non_dispatch": 4,
+   "violation": 1
+  },
+  "unexpected": null,
+  "cardinality": null,
+  "malformed": null
+ }
+]

@@ -1,0 +1,1 @@
+audit-release: NO UNEXPECTED VIOLATION exit=0 decisions=7 dispatches=6 receipts=2 outcomes=map[ablation_excluded:1 verified_dispatch:2 verified_non_dispatch:4] missing_cells=0 malformed=0; wrote /home/bitchae/aisafety/swarmalign/a2a-identity/results/reviewer-v3-final/20261107T232312Z/removed-appraised-event/release-audit.md

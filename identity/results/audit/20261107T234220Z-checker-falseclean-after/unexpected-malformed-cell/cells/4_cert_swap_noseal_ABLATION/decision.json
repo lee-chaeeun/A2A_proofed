@@ -1,0 +1,202 @@
+{
+  "decisions": [
+    {
+      "policy": "S-env+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "10ac75f7f807fb6425095a968b1fb851d30b57d010239688598bfa397f868301",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "03b31c0dcb624300515eed0e74a8526dd45f7cfc311f5eabb98dcad7f9a44d64",
+        "proof_bound_to_requester_connection": true
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T23:38:56.488804131Z",
+        "expires_at": "2026-11-07T23:40:56.488804131Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "sig_verdict": "ok",
+      "senv": {
+        "decoded": true,
+        "signature_valid_under_enrolled_siso_key": true,
+        "metadata_ok": true,
+        "iat": "2026-11-07T23:38:56Z",
+        "exp": "2026-11-07T23:40:56Z"
+      },
+      "accept": true,
+      "appraised_at": "2026-11-07T23:38:56.489974814Z",
+      "dispatch_attempted": true,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_token": "ad890ce202c78fbaf5753b2e",
+      "job_ack_received": false,
+      "job_error": "ABLATION (seal disabled): new connection attempted after the proof: failed to send HTTP request: Post \"https://a.a2aid.test:9443\": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",
+      "raw_evidence": {
+        "cose_sign1": "0oROogEmBElBLXNpc28tazGgWKmoYXZtYTJhaWQtc2Vudi12MWNleHDBGmrvtwhjaWF0wRpq77aQZW5vbmNlWCBZ9GCljYPob5hNn4uo+pUVhQKhSz3LxgWzYqXYL+2TxmZhY3Rpb251cmVsZWFzZS1zeW50aGV0aWMtam9iZnBvbGljeWhTLWVuditjYmhhdWRpZW5jZXNyZXF1ZXN0ZXI6YTJhaWQtbGFia2F0dGVzdGVyX2lkZWRlcC1BWEBqGtpG91Ng4WIx4a8MhucSds0VoFuE4KFn+1ZOWoE8hXj+dT75InnmNjtbr4trBQ3mHDvG/9hLk3+pjVGSJgoG",
+        "deployment_id": "dep-A",
+        "nonce": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+        "policy": "S-env+cb",
+        "timestamp": "",
+        "type": "evidence"
+      },
+      "decision_id": "bea15b92e679a1d7",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "10ac75f7f807fb6425095a968b1fb851d30b57d010239688598bfa397f868301",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "03b31c0dcb624300515eed0e74a8526dd45f7cfc311f5eabb98dcad7f9a44d64",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 2,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-07T23:38:56.487562348Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-07T23:38:56.488677105Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+          "at": "2026-11-07T23:38:56.488805162Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-07T23:38:56.48997275Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=true stage=",
+          "at": "2026-11-07T23:38:56.490140481Z"
+        },
+        {
+          "seq": 6,
+          "kind": "authorized",
+          "conn_id": 1,
+          "token": "ad890ce202c78fbaf5753b2e",
+          "detail": "policy=S-env+cb expected=A nonce=fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+          "at": "2026-11-07T23:38:56.490196879Z"
+        },
+        {
+          "seq": 7,
+          "kind": "seal_disabled_ablation",
+          "conn_id": 1,
+          "token": "ad890ce202c78fbaf5753b2e",
+          "detail": "ABLATION: transport not sealed",
+          "at": "2026-11-07T23:38:56.490198395Z"
+        },
+        {
+          "seq": 8,
+          "kind": "dispatch_attempt",
+          "conn_id": 1,
+          "token": "ad890ce202c78fbaf5753b2e",
+          "at": "2026-11-07T23:38:56.490199457Z"
+        },
+        {
+          "seq": 9,
+          "kind": "ablation_reconnect",
+          "token": "ad890ce202c78fbaf5753b2e",
+          "detail": "ABLATION (seal disabled): new connection attempted after the proof: failed to send HTTP request: Post \"https://a.a2aid.test:9443\": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",
+          "at": "2026-11-07T23:38:56.491168424Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "context": {
+        "decision_id": "bea15b92e679a1d7",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o="
+      },
+      "authorization_context": {
+        "decision_id": "bea15b92e679a1d7",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+        "token": "ad890ce202c78fbaf5753b2e"
+      },
+      "dispatch_context": {
+        "decision_id": "bea15b92e679a1d7",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "S-env+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+        "token": "ad890ce202c78fbaf5753b2e"
+      }
+    }
+  ],
+  "note": "ABLATION (seal disabled): layer=tls (hostname validation rejected the other enrolled name)",
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "fxcnnDByaLd68hGi0MAQT2Ns1aVb2ui/Jw0LVkzMY9o=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "S-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T23:38:56.488804131Z",
+      "expires_at": "2026-11-07T23:40:56.488804131Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T23:38:56.489975904Z",
+      "result": "accept",
+      "released": true,
+      "job_token": "ad890ce202c78fbaf5753b2e",
+      "appraisals": 1
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+ "version": 3,
+ "frozen_at": "2026-11-07T20:30:00+01:00",
+ "note": "Matched baseline + Priority-0 attack fixtures for v3, frozen before the first v3 run. Policies: C+url (ablation), C+tls, S-env+tls (new), S-env+cb, T+tls, T+cb. V3/V4 expectations are the POST-FIX predictions; the pre-fix reproduction (results/v3-repro) is expected to ACCEPT the +cb cells to B, which is the bug. Connection-continuity (P0-B) is tested in internal/verifier/continuity_test.go, not here.",
+ "policies": [
+  "C+url",
+  "C+tls",
+  "S-env+tls",
+  "S-env+cb",
+  "T+tls",
+  "T+cb"
+ ],
+ "fixtures": [
+  {
+   "id": "V1",
+   "title": "honest baseline (positive control)",
+   "endpoint": "A",
+   "capabilities": [],
+   "permissions": "B idle",
+   "expected": {
+    "C+url": "accept",
+    "C+tls": "accept",
+    "S-env+tls": "accept",
+    "S-env+cb": "accept",
+    "T+tls": "accept",
+    "T+cb": "accept"
+   },
+   "expected_recipient": "A"
+  },
+  {
+   "id": "V2",
+   "title": "F15 relay: stolen TLS key, untouched relay",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A"
+   ],
+   "permissions": "B holds A's server certificate+key, terminates the requester's TLS and relays A's untouched response; no signer access",
+   "expected": {
+    "C+url": "accept",
+    "C+tls": "accept",
+    "S-env+tls": "accept",
+    "S-env+cb": "reject",
+    "T+tls": "accept",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B except +cb"
+  },
+  {
+   "id": "V3",
+   "title": "binding downgrade: chosen nonce, +cb kept but binding stripped",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A",
+    "chosen_nonce"
+   ],
+   "permissions": "V2 capabilities; B computes the bound nonce for its own requester connection and sends it to A under +cb with the binding field omitted, so A signs the exact value the requester expects",
+   "expected": {
+    "C+url": "accept",
+    "C+tls": "accept",
+    "S-env+tls": "accept",
+    "S-env+cb": "reject",
+    "T+tls": "accept",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B except +cb (fixed); on the v2 code the +cb cells accept to B"
+  },
+  {
+   "id": "V4",
+   "title": "cross-policy oracle: chosen nonce forwarded to A under a weaker mode",
+   "endpoint": "A-hijacked",
+   "capabilities": [
+    "card_copy",
+    "live_relay",
+    "address_hijack",
+    "tls_credentials_A",
+    "chosen_nonce",
+    "weaker_mode_oracle"
+   ],
+   "permissions": "V2 capabilities; B asks A for a proof over the chosen nonce under the plain (non-binding) policy, then presents it to the +cb verifier",
+   "expected": {
+    "C+url": "accept",
+    "C+tls": "accept",
+    "S-env+tls": "accept",
+    "S-env+cb": "reject",
+    "T+tls": "accept",
+    "T+cb": "reject"
+   },
+   "expected_recipient": "B except +cb (fixed); on the v2 code the +cb cells accept to B"
+  }
+ ]
+}

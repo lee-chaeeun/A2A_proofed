@@ -1,0 +1,6 @@
+audit-release v2: INCOMPLETE exit=2 decisions=24 dispatches=0 receipts=0 outcomes=map[unsupported_historical_schema:24] missing_cells=0 unexpected_cells=0 cardinality_errors=24 malformed=0; wrote results/audit/20261107T2
+exit=2
+audit-release v2: INCOMPLETE exit=2 decisions=7 dispatches=0 receipts=0 outcomes=map[ablation_excluded:1 unsupported_historical_schema:6] missing_cells=0 unexpected_cells=0 cardinality_errors=6 malformed=0; wrote results
+exit=2
+audit-release v2: INCOMPLETE exit=2 decisions=7 dispatches=0 receipts=0 outcomes=map[ablation_excluded:1 unsupported_historical_schema:6] missing_cells=0 unexpected_cells=0 cardinality_errors=6 malformed=0; wrote results
+exit=2

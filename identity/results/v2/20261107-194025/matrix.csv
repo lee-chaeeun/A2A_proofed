@@ -1,0 +1,232 @@
+cell,fixture,policy,attacker_capabilities,appraisals,endpoint_contacted,decision,job_recipients,releases,receipts,duplicate_dispatch,duplicate_receipt,failure_stage,code,reason,expected_result,observed_result,match,notes
+F1_C,F1,C,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_S-file,F1,S-file,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_S-iso,F1,S-iso,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_S-env,F1,S-env,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_T,F1,T,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_P,F1,P,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_C+url,F1,C+url,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_C+tls,F1,C+tls,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_T+tls,F1,T+tls,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_S-env+cb,F1,S-env+cb,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F1_T+cb,F1,T+cb,,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_C,F2,C,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_S-file,F2,S-file,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_S-iso,F2,S-iso,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_S-env,F2,S-env,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_T,F2,T,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_P,F2,P,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_C+url,F2,C+url,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_C+tls,F2,C+tls,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_T+tls,F2,T+tls,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_S-env+cb,F2,S-env+cb,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F2_T+cb,F2,T+cb,operator_republishes_card,1,A,accept,A,1,1,false,false,,,,accept,accept,true,
+F3_C,F3,C,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_S-file,F3,S-file,own_enrollment;display_name_collision,1,B,reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_S-iso,F3,S-iso,own_enrollment;display_name_collision,1,B,reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_S-env,F3,S-env,own_enrollment;display_name_collision,1,B,reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_T,F3,T,own_enrollment;display_name_collision,1,B,reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_P,F3,P,own_enrollment;display_name_collision,1,B,reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_C+url,F3,C+url,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,card,,"card: kid ""B-card-k1"": kid is not the enrolled publisher key of A",reject,reject,true,
+F3_C+tls,F3,C+tls,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,connect-tls,,transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test,reject,reject,true,
+F3_T+tls,F3,T+tls,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,connect-tls,,transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test,reject,reject,true,
+F3_S-env+cb,F3,S-env+cb,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,connect-tls,,transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test,reject,reject,true,
+F3_T+cb,F3,T+cb,own_enrollment;display_name_collision,1,(none contacted),reject,none,0,0,false,false,connect-tls,,transport not authenticated as the enrolled deployment: authenticated peer b.a2aid.test is not the enrolled name a.a2aid.test,reject,reject,true,
+F4_C,F4,C,card_copy;captured_response,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F4_S-file,F4,S-file,card_copy;captured_response,1,A>B,reject,none,0,0,false,false,nonce,PTV_ERR_006,response nonce != issued nonce (stale or replayed proof),reject,reject,true,B replayed a response for nonce O6WNMF89zshz…
+F4_S-iso,F4,S-iso,card_copy;captured_response,1,A>B,reject,none,0,0,false,false,nonce,PTV_ERR_006,response nonce != issued nonce (stale or replayed proof),reject,reject,true,B replayed a response for nonce d/7yH/HQa2Oa…
+F4_S-env,F4,S-env,card_copy;captured_response,1,A>B,reject,none,0,0,false,false,nonce,PTV_ERR_006,response nonce != issued nonce (stale or replayed proof),reject,reject,true,B replayed a response for nonce gd/l56x7ohNI…
+F4_T,F4,T,card_copy;captured_response,1,A>B,reject,none,0,0,false,false,nonce,PTV_ERR_006,response nonce != issued nonce (stale or replayed proof),reject,reject,true,B replayed a response for nonce h5SU4bQe/7x0…
+F4_P,F4,P,card_copy;captured_response,1,A>B,reject,none,0,0,false,false,nonce,PTV_ERR_006,response nonce != issued nonce (stale or replayed proof),reject,reject,true,B replayed a response for nonce mr6lol/UKn3q…
+F4_C+url,F4,C+url,card_copy;captured_response,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F4_C+tls,F4,C+tls,card_copy;captured_response,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F4_T+tls,F4,T+tls,card_copy;captured_response,1,A,reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F4_S-env+cb,F4,S-env+cb,card_copy;captured_response,1,A,reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F4_T+cb,F4,T+cb,card_copy;captured_response,1,A,reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F5_C,F5,C,card_copy;volume_copy(sfile_key),1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F5_S-file,F5,S-file,card_copy;volume_copy(sfile_key),1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F5_S-iso,F5,S-iso,card_copy;volume_copy(sfile_key),1,B,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-siso-k1 (kid presented: ""B-siso-k1"")",reject,reject,true,gate denied swA to B
+F5_S-env,F5,S-env,card_copy;volume_copy(sfile_key),1,B,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,reject,reject,true,gate denied swA to B
+F5_T,F5,T,card_copy;volume_copy(sfile_key),1,B,reject,none,0,0,false,false,trust-anchor,PTV_ERR_010,quote signature invalid under enrolled AK,reject,reject,true,gate denied tpmA to B
+F5_P,F5,P,card_copy;volume_copy(sfile_key),1,B,reject,none,0,0,false,false,envelope-signature,PTV_ERR_010,COSE_Sign1 signature invalid under the enrolled AK of A,reject,reject,true,gate denied tpmA to B
+F5_C+url,F5,C+url,card_copy;volume_copy(sfile_key),1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F5_C+tls,F5,C+tls,card_copy;volume_copy(sfile_key),1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F5_T+tls,F5,T+tls,card_copy;volume_copy(sfile_key),1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F5_S-env+cb,F5,S-env+cb,card_copy;volume_copy(sfile_key),1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F5_T+cb,F5,T+cb,card_copy;volume_copy(sfile_key),1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F6_C,F6,C,card_copy;live_relay,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F6_S-file,F6,S-file,card_copy;live_relay,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F6_S-iso,F6,S-iso,card_copy;live_relay,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F6_S-env,F6,S-env,card_copy;live_relay,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F6_T,F6,T,card_copy;live_relay,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F6_P,F6,P,card_copy;live_relay,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F6_C+url,F6,C+url,card_copy;live_relay,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F6_C+tls,F6,C+tls,card_copy;live_relay,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F6_T+tls,F6,T+tls,card_copy;live_relay,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F6_S-env+cb,F6,S-env+cb,card_copy;live_relay,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F6_T+cb,F6,T+cb,card_copy;live_relay,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F7_C,F7,C,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_S-file,F7,S-file,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_S-iso,F7,S-iso,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_S-env,F7,S-env,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_T,F7,T,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_P,F7,P,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F7_C+url,F7,C+url,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F7_C+tls,F7,C+tls,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F7_T+tls,F7,T+tls,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F7_S-env+cb,F7,S-env+cb,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F7_T+cb,F7,T+cb,card_copy;volume_copy(sfile_key);gate_acl_A;ak_auth_A;siso_token_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F8_C,F8,C,card_copy;live_relay;metadata_edit,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F8_S-file,F8,S-file,card_copy;live_relay;metadata_edit,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay edited timestamp 2026-11-07T18:40:38Z -> 2026-11-07T18:41:38Z
+F8_S-iso,F8,S-iso,card_copy;live_relay;metadata_edit,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay edited timestamp 2026-11-07T18:40:38Z -> 2026-11-07T18:41:38Z
+F8_S-env,F8,S-env,card_copy;live_relay;metadata_edit,1,B>A,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,reject,reject,true,relay edited iat/exp 2026-11-07T18:40:38Z -> 2026-11-07T18:41:38Z
+F8_T,F8,T,card_copy;live_relay;metadata_edit,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay edited timestamp 2026-11-07T18:40:38Z -> 2026-11-07T18:41:38Z; inner quote sha256 before=9bf884941026… after=9bf884941026…
+F8_P,F8,P,card_copy;live_relay;metadata_edit,1,B>A,reject,none,0,0,false,false,envelope-signature,PTV_ERR_010,COSE_Sign1 signature invalid under the enrolled AK of A,reject,reject,true,relay edited timestamp 2026-11-07T18:40:39Z -> 2026-11-07T18:41:39Z; inner quote sha256 before=19cfe59d602c… after=19cfe59d602c…
+F8_C+url,F8,C+url,card_copy;live_relay;metadata_edit,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F8_C+tls,F8,C+tls,card_copy;live_relay;metadata_edit,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F8_T+tls,F8,T+tls,card_copy;live_relay;metadata_edit,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F8_S-env+cb,F8,S-env+cb,card_copy;live_relay;metadata_edit,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F8_T+cb,F8,T+cb,card_copy;live_relay;metadata_edit,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F9_C,F9,C,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_S-file,F9,S-file,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_S-iso,F9,S-iso,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_S-env,F9,S-env,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_T,F9,T,operator_pcr_change,1,A,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,reject,reject,true,
+F9_P,F9,P,operator_pcr_change,1,A,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,reject,reject,true,
+F9_C+url,F9,C+url,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_C+tls,F9,C+tls,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_T+tls,F9,T+tls,operator_pcr_change,1,A,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,reject,reject,true,
+F9_S-env+cb,F9,S-env+cb,operator_pcr_change,1,A,accept,A,1,1,false,false,,,,accept,accept,true,configuration changed between appraisal and delivery (PCR at receipt != reference)
+F9_T+cb,F9,T+cb,operator_pcr_change,1,A,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,reject,reject,true,
+F10_C,F10,C,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_S-file,F10,S-file,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_S-iso,F10,S-iso,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_S-env,F10,S-env,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_T,F10,T,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_P,F10,P,lab_hook_malformed_envelope,1,A,reject,none,0,0,false,false,schema,PTV_ERR_008,routine band requires evidence XOR proof (both present),reject,reject,true,ptv_malform=both
+F10_C+url,F10,C+url,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_C+tls,F10,C+tls,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_T+tls,F10,T+tls,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_S-env+cb,F10,S-env+cb,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F10_T+cb,F10,T+cb,lab_hook_malformed_envelope,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F11_C,F11,C,card_copy;unenrolled_key,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F11_S-file,F11,S-file,card_copy;unenrolled_key,1,B,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-sfile-k1 (kid presented: ""unknown-sfile"")",reject,reject,true,
+F11_S-iso,F11,S-iso,card_copy;unenrolled_key,1,B,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-siso-k1 (kid presented: ""unknown-siso"")",reject,reject,true,
+F11_S-env,F11,S-env,card_copy;unenrolled_key,1,B,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,reject,reject,true,
+F11_T,F11,T,card_copy;unenrolled_key,1,B,reject,none,0,0,false,false,trust-anchor,PTV_ERR_010,quote signature invalid under enrolled AK,reject,reject,true,
+F11_P,F11,P,card_copy;unenrolled_key,1,B,reject,none,0,0,false,false,envelope-signature,PTV_ERR_010,COSE_Sign1 signature invalid under the enrolled AK of A,reject,reject,true,
+F11_C+url,F11,C+url,card_copy;unenrolled_key,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F11_C+tls,F11,C+tls,card_copy;unenrolled_key,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F11_T+tls,F11,T+tls,card_copy;unenrolled_key,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F11_S-env+cb,F11,S-env+cb,card_copy;unenrolled_key,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F11_T+cb,F11,T+cb,card_copy;unenrolled_key,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F12_C,F12,C,card_copy;nonce_observation;garbage_proof,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F12_S-file,F12,S-file,card_copy;nonce_observation;garbage_proof,2,B>A,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-sfile-k1 (kid presented: ""sfile-garbage"")","reject,reject","reject,reject",true,appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F12_S-iso,F12,S-iso,card_copy;nonce_observation;garbage_proof,2,B>A,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-siso-k1 (kid presented: ""siso-garbage"")","reject,reject","reject,reject",true,appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F12_S-env,F12,S-env,card_copy;nonce_observation;garbage_proof,2,B>A,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,"reject,reject","reject,reject",true,appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F12_T,F12,T,card_copy;nonce_observation;garbage_proof,2,B>A,reject,none,0,0,false,false,trust-anchor,PTV_ERR_010,quote signature invalid under enrolled AK,"reject,reject","reject,reject",true,appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F12_P,F12,P,card_copy;nonce_observation;garbage_proof,2,B>A,reject,none,0,0,false,false,envelope-signature,PTV_ERR_010,COSE_Sign1 signature invalid under the enrolled AK of A,"reject,reject","reject,reject",true,appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F12_C+url,F12,C+url,card_copy;nonce_observation;garbage_proof,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F12_C+tls,F12,C+tls,card_copy;nonce_observation;garbage_proof,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F12_T+tls,F12,T+tls,card_copy;nonce_observation;garbage_proof,2,A,reject,A,1,1,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444","reject,accept","reject,accept",true,appraisal 2: accept stage= code= reason=
+F12_S-env+cb,F12,S-env+cb,card_copy;nonce_observation;garbage_proof,2,A,reject,A,1,1,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444","reject,accept","reject,accept",true,appraisal 2: accept stage= code= reason=
+F12_T+cb,F12,T+cb,card_copy;nonce_observation;garbage_proof,2,A,reject,A,1,1,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444","reject,accept","reject,accept",true,appraisal 2: accept stage= code= reason=
+F13_C,F13,C,card_copy;live_relay;concurrent_delivery,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F13_S-file,F13,S-file,card_copy;live_relay;concurrent_delivery,2,B>A,accept,A,1,1,false,false,,,,one,one,true,relay forwarded A's response unmodified / appraisal 2: reject stage=nonce code=PTV_ERR_006 reason=nonce already consumed by an earlier appraisal
+F13_S-iso,F13,S-iso,card_copy;live_relay;concurrent_delivery,2,B>A,reject,B,1,1,false,false,nonce,PTV_ERR_006,nonce already consumed by an earlier appraisal,one,one,true,relay forwarded A's response unmodified / appraisal 2: accept stage= code= reason=
+F13_S-env,F13,S-env,card_copy;live_relay;concurrent_delivery,2,B>A,reject,B,1,1,false,false,nonce,PTV_ERR_006,nonce already consumed by an earlier appraisal,one,one,true,relay forwarded A's response unmodified / appraisal 2: accept stage= code= reason=
+F13_T,F13,T,card_copy;live_relay;concurrent_delivery,2,A>B,reject,B,1,1,false,false,nonce,PTV_ERR_006,nonce already consumed by an earlier appraisal,one,one,true,relay forwarded A's response unmodified / appraisal 2: accept stage= code= reason=
+F13_P,F13,P,card_copy;live_relay;concurrent_delivery,2,B>A,reject,B,1,1,false,false,nonce,PTV_ERR_006,nonce already consumed by an earlier appraisal,one,one,true,relay forwarded A's response unmodified / appraisal 2: accept stage= code= reason=
+F13_C+url,F13,C+url,card_copy;live_relay;concurrent_delivery,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F13_C+tls,F13,C+tls,card_copy;live_relay;concurrent_delivery,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F13_T+tls,F13,T+tls,card_copy;live_relay;concurrent_delivery,2,A,accept,A,1,1,false,false,,,,one,one,true,"appraisal 2: reject stage=connect-url code= reason=signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444"
+F13_S-env+cb,F13,S-env+cb,card_copy;live_relay;concurrent_delivery,2,A,accept,A,1,1,false,false,,,,one,one,true,"appraisal 2: reject stage=connect-url code= reason=signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444"
+F13_T+cb,F13,T+cb,card_copy;live_relay;concurrent_delivery,2,A,accept,A,1,1,false,false,,,,one,one,true,"appraisal 2: reject stage=connect-url code= reason=signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444"
+F14_C,F14,C,card_copy;live_relay;address_hijack,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F14_S-file,F14,S-file,card_copy;live_relay;address_hijack,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F14_S-iso,F14,S-iso,card_copy;live_relay;address_hijack,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F14_S-env,F14,S-env,card_copy;live_relay;address_hijack,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F14_T,F14,T,card_copy;live_relay;address_hijack,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F14_P,F14,P,card_copy;live_relay;address_hijack,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F14_C+url,F14,C+url,card_copy;live_relay;address_hijack,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F14_C+tls,F14,C+tls,card_copy;live_relay;address_hijack,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",reject,reject,true,
+F14_T+tls,F14,T+tls,card_copy;live_relay;address_hijack,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",reject,reject,true,
+F14_S-env+cb,F14,S-env+cb,card_copy;live_relay;address_hijack,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",reject,reject,true,
+F14_T+cb,F14,T+cb,card_copy;live_relay;address_hijack,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate is valid for b.a2aid.test, not a.a2aid.test",reject,reject,true,
+F15_C,F15,C,card_copy;live_relay;address_hijack;tls_credentials_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F15_S-file,F15,S-file,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_S-iso,F15,S-iso,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_S-env,F15,S-env,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_T,F15,T,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_P,F15,P,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_C+url,F15,C+url,card_copy;live_relay;address_hijack;tls_credentials_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F15_C+tls,F15,C+tls,card_copy;live_relay;address_hijack;tls_credentials_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F15_T+tls,F15,T+tls,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,relay forwarded A's response unmodified
+F15_S-env+cb,F15,S-env+cb,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,reject,none,0,0,false,false,envelope-metadata,,software envelope metadata: nonce != issued (bound) nonce,reject,reject,true,relay forwarded A's response unmodified
+F15_T+cb,F15,T+cb,card_copy;live_relay;address_hijack;tls_credentials_A,1,B>A,reject,none,0,0,false,false,nonce,PTV_ERR_006,quote extraData != issued nonce,reject,reject,true,relay forwarded A's response unmodified
+F16_C,F16,C,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_S-file,F16,S-file,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_S-iso,F16,S-iso,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_S-env,F16,S-env,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_T,F16,T,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_P,F16,P,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_C+url,F16,C+url,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_C+tls,F16,C+tls,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F16_T+tls,F16,T+tls,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,1,B>A,accept,B,1,1,false,false,,,,accept,accept,true,A ignored a requester-supplied cb / relay injected its observed channel binding into the forwarded challenge / relay forwarded A's response unmodified
+F16_S-env+cb,F16,S-env+cb,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,1,B>A,reject,none,0,0,false,false,envelope-metadata,,software envelope metadata: nonce != issued (bound) nonce,reject,reject,true,A ignored a requester-supplied cb / relay injected its observed channel binding into the forwarded challenge / relay forwarded A's response unmodified
+F16_T+cb,F16,T+cb,card_copy;live_relay;address_hijack;tls_credentials_A;cb_injection,1,B>A,reject,none,0,0,false,false,nonce,PTV_ERR_006,quote extraData != issued nonce,reject,reject,true,A ignored a requester-supplied cb / relay injected its observed channel binding into the forwarded challenge / relay forwarded A's response unmodified
+F17_C,F17,C,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_S-file,F17,S-file,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_S-iso,F17,S-iso,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_S-env,F17,S-env,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_T,F17,T,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_P,F17,P,card_copy;live_relay;address_hijack;self_signed_cert_for_A,0,,n/a,n/a,0,0,false,false,,,,n/a,n/a,true,
+F17_C+url,F17,C+url,card_copy;live_relay;address_hijack;self_signed_cert_for_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F17_C+tls,F17,C+tls,card_copy;live_relay;address_hijack;self_signed_cert_for_A,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate signed by unknown authority",reject,reject,true,
+F17_T+tls,F17,T+tls,card_copy;live_relay;address_hijack;self_signed_cert_for_A,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate signed by unknown authority",reject,reject,true,
+F17_S-env+cb,F17,S-env+cb,card_copy;live_relay;address_hijack;self_signed_cert_for_A,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate signed by unknown authority",reject,reject,true,
+F17_T+cb,F17,T+cb,card_copy;live_relay;address_hijack;self_signed_cert_for_A,1,(none contacted),reject,none,0,0,false,false,connect,,"card fetch: card request failed: Get ""https://a.a2aid.test:9443/.well-known/agent-card.json"": tls: failed to verify certificate: x509: certificate signed by unknown authority",reject,reject,true,
+F18_C,F18,C,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_S-file,F18,S-file,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_S-iso,F18,S-iso,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_S-env,F18,S-env,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_T,F18,T,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_P,F18,P,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_C+url,F18,C+url,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_C+tls,F18,C+tls,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_T+tls,F18,T+tls,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_S-env+cb,F18,S-env+cb,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F18_T+cb,F18,T+cb,operator_pcr_change_after_appraisal,1,A,accept,A,1,1,false,false,,,,accept,accept,true,"operator extended PCR16 of A (after appraisal, before job release) / configuration changed between appraisal and delivery (PCR at receipt != reference)"
+F19_C,F19,C,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F19_S-file,F19,S-file,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F19_S-iso,F19,S-iso,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-siso-k1 (kid presented: ""B-siso-k1"")",reject,reject,true,gate denied swA to B
+F19_S-env,F19,S-env,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,reject,reject,true,gate denied swA to B
+F19_T,F19,T,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,accept,reject,false,
+F19_P,F19,P,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,B,reject,none,0,0,false,false,config,PTV_ERR_007,PCR digest != reference value,accept,reject,false,
+F19_C+url,F19,C+url,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F19_C+tls,F19,C+tls,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F19_T+tls,F19,T+tls,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F19_S-env+cb,F19,S-env+cb,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F19_T+cb,F19,T+cb,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F20_C,F20,C,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_S-file,F20,S-file,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_S-iso,F20,S-iso,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_S-env,F20,S-env,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_T,F20,T,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_P,F20,P,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_C+url,F20,C+url,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_C+tls,F20,C+tls,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_T+tls,F20,T+tls,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_S-env+cb,F20,S-env+cb,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F20_T+cb,F20,T+cb,card_copy;volume_copy(sfile_key);address_hijack;tls_credentials_A;gate_acl_A;ak_auth_A;siso_token_A,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F21_C,F21,C,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F21_S-file,F21,S-file,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F21_S-iso,F21,S-iso,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,reject,none,0,0,false,false,signature,,"challenge signature does not verify under enrolled key A-siso-k1 (kid presented: ""B-siso-k1"")",reject,reject,true,gate denied swA to B
+F21_S-env,F21,S-env,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,reject,none,0,0,false,false,envelope-signature,,software envelope signature invalid under the enrolled S-iso key of A,reject,reject,true,gate denied swA to B
+F21_T,F21,T,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F21_P,F21,P,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,B,accept,B,1,1,false,false,,,,accept,accept,true,
+F21_C+url,F21,C+url,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is http://b.a2aid.test:9102",reject,reject,true,
+F21_C+tls,F21,C+tls,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F21_T+tls,F21,T+tls,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F21_S-env+cb,F21,S-env+cb,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,
+F21_T+cb,F21,T+cb,card_copy;volume_copy(sfile_key);tpm_state_clone;ak_auth_A;pcr_replay_public_config,1,(none contacted),reject,none,0,0,false,false,connect-url,,"signed card declares [http://a.a2aid.test:9101 https://a.a2aid.test:9443], discovery endpoint is https://b.a2aid.test:9444",reject,reject,true,

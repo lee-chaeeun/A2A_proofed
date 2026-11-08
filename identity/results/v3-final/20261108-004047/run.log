@@ -1,0 +1,30 @@
+00:40:47.218 booted: controller, gate, A(pid 299983), B(pid 299984), operator pid 299960
+00:40:47.218 === V1 honest baseline (positive control)
+00:40:47.374 V1_C+url       expected=accept         observed=accept         job->A keys=[] 
+00:40:47.531 V1_C+tls       expected=accept         observed=accept         job->A keys=[] 
+00:40:47.691 V1_S-env+tls   expected=accept         observed=accept         job->A keys=[A] 
+00:40:47.851 V1_S-env+cb    expected=accept         observed=accept         job->A keys=[A] 
+00:40:48.010 V1_T+tls       expected=accept         observed=accept         job->A keys=[A] 
+00:40:48.170 V1_T+cb        expected=accept         observed=accept         job->A keys=[A] 
+00:40:48.170 === V2 F15 relay: stolen TLS key, untouched relay
+00:40:48.326 V2_C+url       expected=accept         observed=accept         job->B keys=[] 
+00:40:48.481 V2_C+tls       expected=accept         observed=accept         job->B keys=[] 
+00:40:48.644 V2_S-env+tls   expected=accept         observed=accept         job->B keys=[A] 
+00:40:48.804 V2_S-env+cb    expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:40:48.967 V2_T+tls       expected=accept         observed=accept         job->B keys=[A] 
+00:40:49.127 V2_T+cb        expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:40:49.128 === V3 binding downgrade: chosen nonce, +cb kept but binding stripped
+00:40:49.285 V3_C+url       expected=accept         observed=accept         job->B keys=[] 
+00:40:49.442 V3_C+tls       expected=accept         observed=accept         job->B keys=[] 
+00:40:49.602 V3_S-env+tls   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:40:49.760 V3_S-env+cb    expected=reject         observed=reject         job->none keys=[] no software envelope in response
+00:40:49.920 V3_T+tls       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:40:50.078 V3_T+cb        expected=reject         observed=reject         job->none keys=[] no quote in response
+00:40:50.079 === V4 cross-policy oracle: chosen nonce forwarded to A under a weaker mode
+00:40:50.233 V4_C+url       expected=accept         observed=accept         job->B keys=[] 
+00:40:50.390 V4_C+tls       expected=accept         observed=accept         job->B keys=[] 
+00:40:50.550 V4_S-env+tls   expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:40:50.710 V4_S-env+cb    expected=reject         observed=reject         job->none keys=[A] software envelope metadata: nonce != issued (bound) nonce
+00:40:50.872 V4_T+tls       expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:40:51.032 V4_T+cb        expected=reject         observed=reject         job->none keys=[A] quote extraData != issued nonce
+00:40:51.037 done: 24 cells, 24 appraisals, outputs in results/v3-final/20261108-004047

@@ -1,0 +1,4 @@
+== snapshot /tmp/tmp.gODIP6MlFG/snap/20261107T235832Z-v3final-snapshot
+== build (trimpath) from the working tree and from the extracted snapshot
+INJECTED go build FAILURE
+GATE FAILED: go build (tree) (exit 1, expected 0)

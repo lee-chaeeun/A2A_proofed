@@ -1,0 +1,185 @@
+{
+  "decisions": [
+    {
+      "policy": "T+cb",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "bb68fcbf9be389d1f11631b8adb24f47c7de4672f8b0b51a0625c1a2b2e03763",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "channel_binding": {
+        "requested": true,
+        "requester_exporter_available": true,
+        "requester_exporter_hex": "8d81051e80c6d21d33f94ce204f8b9f3634f17c212d90d79231f9e312ec80b5e",
+        "proof_bound_to_requester_connection": true
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "T+cb",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T23:00:23.391024167Z",
+        "expires_at": "2026-11-07T23:02:23.391024167Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "AM70R0F4SOPqR1zLbcOGbik5UTrRyaHOjvdnYkP7hbg=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "sig_verdict": "n/a",
+      "quote": {
+        "parsed": true,
+        "magic_ok": true,
+        "type_ok": true,
+        "sig_alg_ok": true,
+        "nonce_match": true,
+        "signer_match": true,
+        "signature_valid": true,
+        "pcr_selection_ok": true,
+        "pcr_digest_match": true,
+        "pcr_digest_hex": "7937ff10293c6b23b77cfff3550cf277198848aaa569b4dbe6fc63f2eb057677",
+        "qualified_signer_hex": "000b5e326128fa22a2baaa2e255beffc35efa3e2c27a7ad87620503872eeb9bf246f"
+      },
+      "accept": true,
+      "appraised_at": "2026-11-07T23:00:23.401375049Z",
+      "dispatch_attempted": true,
+      "job_released": false,
+      "job_reused_proof_connection": false,
+      "job_token": "f1523c4aab283da3b7069596",
+      "job_ack_received": false,
+      "job_error": "job dispatch required a NEW connection after the proof; refused before any task bytes were sent (fresh proof required before dispatch)",
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "AM70R0F4SOPqR1zLbcOGbik5UTrRyaHOjvdnYkP7hbg=",
+        "policy": "T+cb",
+        "quote": {
+          "ak_name": "",
+          "bank": "sha256",
+          "index": 16,
+          "pcr_value_hex": "7ac91e2ac03e4e0a4690a16e805c60fb1cd3aa1388853dd945a9836415f9a4d6",
+          "quoted": "/1RDR4AYACIAC14yYSj6IqK6qi4lW+/8Ne+j4sJ6eth2IFA4cu65vyRvACB4mvsGKKW6N5lMwoU457j9UGZBhY3vIavEvV+VMz1ZLgAAAAAAAAAy37xulHDqvz8BgDdhqmkh7ScAAAABAAsDAAABACB5N/8QKTxrI7d8//NVDPJ3GYhIqqVptNvm/GPy6wV2dw==",
+          "signature": "ABgACwAglurxhDVk+1E8HXgOWT+5FDoO9I+VOCShWgaDN89aMLAAIPHeTmASFZMb0ghONq0sLcDR9Ncz5sCEA8oey1SuoOS5"
+        },
+        "timestamp": "",
+        "type": "evidence"
+      },
+      "decision_id": "d6ba239dba72c314",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "bb68fcbf9be389d1f11631b8adb24f47c7de4672f8b0b51a0625c1a2b2e03763",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "8d81051e80c6d21d33f94ce204f8b9f3634f17c212d90d79231f9e312ec80b5e",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "pinned_conn_id": 1,
+      "job_sent": false,
+      "tls_dials": 2,
+      "tls_dials_refused": 1,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-07T23:00:23.38477713Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-07T23:00:23.390360016Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=AM70R0F4SOPqR1zLbcOGbik5UTrRyaHOjvdnYkP7hbg=",
+          "at": "2026-11-07T23:00:23.391027222Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-07T23:00:23.401367743Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=true stage=",
+          "at": "2026-11-07T23:00:23.402067623Z"
+        },
+        {
+          "seq": 6,
+          "kind": "authorized",
+          "conn_id": 1,
+          "token": "f1523c4aab283da3b7069596",
+          "detail": "policy=T+cb expected=A nonce=AM70R0F4SOPqR1zLbcOGbik5UTrRyaHOjvdnYkP7hbg=",
+          "at": "2026-11-07T23:00:23.402195178Z"
+        },
+        {
+          "seq": 7,
+          "kind": "sealed",
+          "conn_id": 1,
+          "token": "f1523c4aab283da3b7069596",
+          "at": "2026-11-07T23:00:23.402200481Z"
+        },
+        {
+          "seq": 8,
+          "kind": "dispatch_attempt",
+          "conn_id": 1,
+          "token": "f1523c4aab283da3b7069596",
+          "at": "2026-11-07T23:00:23.402206086Z"
+        },
+        {
+          "seq": 9,
+          "kind": "refused_reconnect",
+          "token": "f1523c4aab283da3b7069596",
+          "detail": "new_dials=1 refused=1",
+          "at": "2026-11-07T23:00:23.402545877Z"
+        }
+      ]
+    }
+  ],
+  "note": "proof accepted; reconnect refused pre-send; B holds A's TLS cert/key only",
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "AM70R0F4SOPqR1zLbcOGbik5UTrRyaHOjvdnYkP7hbg=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "T+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T23:00:23.391024167Z",
+      "expires_at": "2026-11-07T23:02:23.391024167Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T23:00:23.40137993Z",
+      "result": "accept",
+      "released": true,
+      "job_token": "f1523c4aab283da3b7069596",
+      "appraisals": 1
+    }
+  ]
+}

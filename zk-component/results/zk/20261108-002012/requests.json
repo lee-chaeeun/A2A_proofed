@@ -1,0 +1,83 @@
+[
+ {
+  "request_id": "Z1",
+  "challenge_hex": "91223a8d33fd1a704ba76317f7911c22",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z2",
+  "challenge_hex": "a45266c82467b510d21872c5045fa2eb",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z3-B",
+  "challenge_hex": "cd6bcfbed22fdc17cf96eec80057e4da",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z3P-B",
+  "challenge_hex": "af35f2ae80c94143a75e7f9a51d7a5b9",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z4",
+  "challenge_hex": "07848429ad5badf9d39d00da92332bc0",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z5",
+  "challenge_hex": "d544e71ddffadab810eab2facebf4fed",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z6",
+  "challenge_hex": "bf347d9552fe2e1f6b43b4ae8a74cbca",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z7",
+  "challenge_hex": "bf347d9552fe2e1f6b43b4ae8a74cbca",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 1,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z8",
+  "challenge_hex": "33754aa62a4edc9769918eb6f1f57c7e",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "current",
+  "pinned_version": 2,
+  "expected_worker": "A"
+ },
+ {
+  "request_id": "Z10",
+  "challenge_hex": "ad00f8051985c0d0c44ba47d7c3def87",
+  "portfolio": "desk-1/portfolio-7",
+  "contract": "pinned",
+  "pinned_version": 1,
+  "expected_worker": "A",
+  "a2a_task_id": "01a1b889-6047-70cc-bb6c-fcf8fb54bc9e"
+ }
+]

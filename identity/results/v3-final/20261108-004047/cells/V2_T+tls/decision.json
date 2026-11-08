@@ -1,0 +1,228 @@
+{
+  "decisions": [
+    {
+      "policy": "T+tls",
+      "expected_deployment": "A",
+      "endpoint_url": "https://a.a2aid.test:9443",
+      "card_name": "Atlas Prime",
+      "card_url": "https://a.a2aid.test:9443",
+      "card_urls": [
+        "http://a.a2aid.test:9101",
+        "https://a.a2aid.test:9443"
+      ],
+      "endpoint_equal": true,
+      "card": {
+        "present": true,
+        "kid": "A-card-k1",
+        "valid": true
+      },
+      "tls": {
+        "used": true,
+        "authenticated": true,
+        "version": "TLS 1.3",
+        "peer_name": "a.a2aid.test",
+        "peer_cert_sha256": "933399f8ca97c614f919d8f0093e1f760b3f9a4a710e37d7378448051439121c",
+        "expected_name": "a.a2aid.test",
+        "name_match": true,
+        "connections": 1
+      },
+      "session": {
+        "found": true,
+        "expected_deployment": "A",
+        "policy": "T+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "issued_at": "2026-11-07T23:40:48.80714308Z",
+        "expires_at": "2026-11-07T23:42:48.80714308Z",
+        "expired": false,
+        "context_match": true
+      },
+      "nonce": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+      "nonce_verdict": "ok",
+      "claimed_deployment": "dep-A",
+      "outer_timestamp": "2026-11-07T23:40:48Z",
+      "sig_verdict": "n/a",
+      "quote": {
+        "parsed": true,
+        "magic_ok": true,
+        "type_ok": true,
+        "sig_alg_ok": true,
+        "nonce_match": true,
+        "signer_match": true,
+        "signature_valid": true,
+        "pcr_selection_ok": true,
+        "pcr_digest_match": true,
+        "pcr_digest_hex": "7937ff10293c6b23b77cfff3550cf277198848aaa569b4dbe6fc63f2eb057677",
+        "qualified_signer_hex": "000bcf47de310102348c45f95692af7d706359d119ae4936e0bd8751fbf8419025e1"
+      },
+      "accept": true,
+      "appraised_at": "2026-11-07T23:40:48.813801502Z",
+      "dispatch_attempted": true,
+      "job_released": true,
+      "job_reused_proof_connection": true,
+      "job_token": "a19cc3f39db32339301be5c0",
+      "job_ack_received": true,
+      "job_ack_claimed_deployment": "dep-B",
+      "job_ack_pcr_at_receipt_hex": "6ca65e2b00fd47d168fd33416d76e0a100a8b4cc930596a35a094a98829d567f",
+      "raw_evidence": {
+        "deployment_id": "dep-A",
+        "nonce": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+        "policy": "T+tls",
+        "quote": {
+          "ak_name": "",
+          "bank": "sha256",
+          "index": 16,
+          "pcr_value_hex": "7ac91e2ac03e4e0a4690a16e805c60fb1cd3aa1388853dd945a9836415f9a4d6",
+          "quoted": "/1RDR4AYACIAC89H3jEBAjSMRflWkq99cGNZ0RmuSTbgvYdR+/hBkCXhACDqjF9RlM63FVbpZeqPzz5pQMCjd2HmF0r0QBW91Aw/WwAAAAABGy6Nr8gMQcDWwIYBP6qy4V+rFiYAAAABAAsDAAABACB5N/8QKTxrI7d8//NVDPJ3GYhIqqVptNvm/GPy6wV2dw==",
+          "signature": "ABgACwAgWk287heQiQz75JzjFCLyIlji0KtbP0xWcheULCV3lRkAIHGVoVbP2xORkgxK0BN5oa40jRIKAs1uszOwfBvaU4Ss"
+        },
+        "timestamp": "2026-11-07T23:40:48Z",
+        "type": "evidence"
+      },
+      "decision_id": "dae9bcdb41a3a7ab",
+      "expected_deployment_id": "dep-A",
+      "connections": [
+        {
+          "conn_id": 1,
+          "peer_cert_sha256": "933399f8ca97c614f919d8f0093e1f760b3f9a4a710e37d7378448051439121c",
+          "peer_name": "a.a2aid.test",
+          "exporter_hex": "63986a30d26e916a6afe399514c7dfd7477e47a90357eaea8a7d63ac24718592",
+          "tls_version": "TLS 1.3"
+        }
+      ],
+      "discovery_conn_id": 1,
+      "proof_conn_id": 1,
+      "pinned_conn_id": 1,
+      "dispatch_conn_id": 1,
+      "job_sent": true,
+      "tls_dials": 1,
+      "tls_dials_refused": 0,
+      "requester_events": [
+        {
+          "seq": 1,
+          "kind": "connect",
+          "detail": "https://a.a2aid.test:9443",
+          "at": "2026-11-07T23:40:48.805045307Z"
+        },
+        {
+          "seq": 2,
+          "kind": "card_fetched",
+          "conn_id": 1,
+          "at": "2026-11-07T23:40:48.806671406Z"
+        },
+        {
+          "seq": 3,
+          "kind": "challenge_sent",
+          "detail": "nonce=mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+          "at": "2026-11-07T23:40:48.807280114Z"
+        },
+        {
+          "seq": 4,
+          "kind": "proof_received",
+          "conn_id": 1,
+          "at": "2026-11-07T23:40:48.813611436Z"
+        },
+        {
+          "seq": 5,
+          "kind": "appraised",
+          "conn_id": 1,
+          "detail": "accept=true stage=",
+          "at": "2026-11-07T23:40:48.813947904Z"
+        },
+        {
+          "seq": 6,
+          "kind": "authorized",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "detail": "policy=T+tls expected=A nonce=mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+          "at": "2026-11-07T23:40:48.814080179Z"
+        },
+        {
+          "seq": 7,
+          "kind": "sealed",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "at": "2026-11-07T23:40:48.814160734Z"
+        },
+        {
+          "seq": 8,
+          "kind": "dispatch_attempt",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "at": "2026-11-07T23:40:48.814212311Z"
+        },
+        {
+          "seq": 9,
+          "kind": "got_conn",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "at": "2026-11-07T23:40:48.814399306Z"
+        },
+        {
+          "seq": 10,
+          "kind": "sent",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "detail": "request written to the transport (wire delivery is established by the recipient's receipt, not by this event)",
+          "at": "2026-11-07T23:40:48.814471845Z"
+        },
+        {
+          "seq": 11,
+          "kind": "ack",
+          "conn_id": 1,
+          "token": "a19cc3f39db32339301be5c0",
+          "detail": "claimed=dep-B",
+          "at": "2026-11-07T23:40:48.815694228Z"
+        }
+      ],
+      "evidence_schema": 2,
+      "context": {
+        "decision_id": "dae9bcdb41a3a7ab",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "T+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA="
+      },
+      "authorization_context": {
+        "decision_id": "dae9bcdb41a3a7ab",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "T+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+        "token": "a19cc3f39db32339301be5c0"
+      },
+      "dispatch_context": {
+        "decision_id": "dae9bcdb41a3a7ab",
+        "expected_label": "A",
+        "expected_deployment_id": "dep-A",
+        "policy": "T+tls",
+        "action": "release-synthetic-job",
+        "audience": "requester:a2aid-lab",
+        "session_key": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+        "token": "a19cc3f39db32339301be5c0"
+      }
+    }
+  ],
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "mP+dhOwhjRijHJHW36HRXvnr7j0d4/vLY6q6HvZCmvA=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "T+tls",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T23:40:48.80714308Z",
+      "expires_at": "2026-11-07T23:42:48.80714308Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T23:40:48.813803619Z",
+      "result": "accept",
+      "released": true,
+      "job_token": "a19cc3f39db32339301be5c0",
+      "appraisals": 1
+    }
+  ]
+}

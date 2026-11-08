@@ -1,0 +1,30 @@
+{"seq":1,"kind":"authority_reset","at":"2026-11-08T00:20:13.054911069Z","fields":{"head_version":1}}
+{"seq":2,"kind":"zk_dispatch","at":"2026-11-08T00:20:13.055970907Z","fields":{"challenge_hex":"91223a8d33fd1a704ba76317f7911c22","contract":"pinned","request_id":"Z1","version":1}}
+{"seq":3,"kind":"zk_result_received","at":"2026-11-08T00:20:33.069694233Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z1"}}
+{"seq":4,"kind":"authority_reset","at":"2026-11-08T00:20:33.069830924Z","fields":{"head_version":1}}
+{"seq":5,"kind":"authority_update","at":"2026-11-08T00:20:33.069833932Z","fields":{"commitment_hex":"ba84e0a21b78c9f50859add05db09ee83de1542687b248c814627d04358547fe","head_version":2}}
+{"seq":6,"kind":"zk_dispatch","at":"2026-11-08T00:20:33.072396137Z","fields":{"challenge_hex":"a45266c82467b510d21872c5045fa2eb","contract":"current","request_id":"Z2","version":2}}
+{"seq":7,"kind":"zk_result_received","at":"2026-11-08T00:20:53.099071197Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z2"}}
+{"seq":8,"kind":"authority_reset","at":"2026-11-08T00:20:53.099970875Z","fields":{"head_version":1}}
+{"seq":9,"kind":"zk_dispatch","at":"2026-11-08T00:20:53.102417494Z","fields":{"challenge_hex":"cd6bcfbed22fdc17cf96eec80057e4da","contract":"pinned","request_id":"Z3-B","version":1}}
+{"seq":10,"kind":"zk_result_received","at":"2026-11-08T00:21:13.128018095Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z3-B"}}
+{"seq":11,"kind":"zk_dispatch","at":"2026-11-08T00:21:13.131478206Z","fields":{"challenge_hex":"af35f2ae80c94143a75e7f9a51d7a5b9","contract":"pinned","request_id":"Z3P-B","version":1}}
+{"seq":12,"kind":"zk_result_received","at":"2026-11-08T00:21:33.147738869Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z3P-B"}}
+{"seq":13,"kind":"authority_reset","at":"2026-11-08T00:21:33.147806387Z","fields":{"head_version":1}}
+{"seq":14,"kind":"authority_update","at":"2026-11-08T00:21:33.147809619Z","fields":{"commitment_hex":"ba84e0a21b78c9f50859add05db09ee83de1542687b248c814627d04358547fe","head_version":2}}
+{"seq":15,"kind":"zk_dispatch","at":"2026-11-08T00:21:33.159494826Z","fields":{"challenge_hex":"07848429ad5badf9d39d00da92332bc0","contract":"current","request_id":"Z4","version":2}}
+{"seq":16,"kind":"zk_result_received","at":"2026-11-08T00:21:53.175622588Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z4"}}
+{"seq":17,"kind":"zk_dispatch","at":"2026-11-08T00:21:53.178844384Z","fields":{"challenge_hex":"d544e71ddffadab810eab2facebf4fed","contract":"current","request_id":"Z5","version":2}}
+{"seq":18,"kind":"zk_result_received","at":"2026-11-08T00:22:13.185992015Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z5"}}
+{"seq":19,"kind":"authority_reset","at":"2026-11-08T00:22:13.189299757Z","fields":{"head_version":1}}
+{"seq":20,"kind":"zk_dispatch","at":"2026-11-08T00:22:13.190936074Z","fields":{"challenge_hex":"bf347d9552fe2e1f6b43b4ae8a74cbca","contract":"pinned","request_id":"Z6","version":1}}
+{"seq":21,"kind":"zk_result_received","at":"2026-11-08T00:22:33.215955014Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z6"}}
+{"seq":22,"kind":"authority_update","at":"2026-11-08T00:22:33.215960499Z","fields":{"commitment_hex":"ba84e0a21b78c9f50859add05db09ee83de1542687b248c814627d04358547fe","head_version":2}}
+{"seq":23,"kind":"zk_reuse","at":"2026-11-08T00:22:33.216077971Z","fields":{"note":"controlled comparison: same bytes and challenge, different stored contract","receipt_sha256":"","request_id":"Z7","reuses_request":"Z6"}}
+{"seq":24,"kind":"authority_reset","at":"2026-11-08T00:22:33.216145314Z","fields":{"head_version":1}}
+{"seq":25,"kind":"authority_update","at":"2026-11-08T00:22:33.21614714Z","fields":{"commitment_hex":"ba84e0a21b78c9f50859add05db09ee83de1542687b248c814627d04358547fe","head_version":2}}
+{"seq":26,"kind":"zk_dispatch","at":"2026-11-08T00:22:33.219622015Z","fields":{"challenge_hex":"33754aa62a4edc9769918eb6f1f57c7e","contract":"current","request_id":"Z8","version":2}}
+{"seq":27,"kind":"zk_result_received","at":"2026-11-08T00:22:53.250485541Z","fields":{"a2a_task_id":"","err":"failed to send HTTP request: Post \"https://a.a2aid.test:9443\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)","receipt_sha256":"","request_id":"Z8"}}
+{"seq":28,"kind":"authority_reset","at":"2026-11-08T00:22:53.250986247Z","fields":{"head_version":1}}
+{"seq":29,"kind":"zk_dispatch","at":"2026-11-08T00:22:53.251595652Z","fields":{"challenge_hex":"ad00f8051985c0d0c44ba47d7c3def87","contract":"pinned","request_id":"Z10","version":1}}
+{"seq":30,"kind":"zk_result_received","at":"2026-11-08T00:22:53.405901574Z","fields":{"a2a_task_id":"01a1b889-6047-70cc-bb6c-fcf8fb54bc9e","err":"","receipt_sha256":"3931f48f724aa87333cc5a58705f056f750aee1a2f4aaec3adb7b8fecd64b178","request_id":"Z10"}}

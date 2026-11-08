@@ -1,0 +1,27 @@
+{
+  "note": "SYNTHETIC private openings (worker and offline oracle). Disclosed for reproducibility; never claimed private. Not read by the requester.",
+  "openings": [
+    {
+      "portfolio": "desk-1/portfolio-7",
+      "version": 1,
+      "salt_hex": "ba5a5579edad0d8c17e564466b942c112e87557cdf8cadae62527909f9e2fbab",
+      "holdings": [
+        10,
+        20,
+        20,
+        30
+      ]
+    },
+    {
+      "portfolio": "desk-1/portfolio-7",
+      "version": 2,
+      "salt_hex": "182e108ad72ca4261d593123723046378022f7e876368f870608312c576b306c",
+      "holdings": [
+        20,
+        30,
+        30,
+        40
+      ]
+    }
+  ]
+}

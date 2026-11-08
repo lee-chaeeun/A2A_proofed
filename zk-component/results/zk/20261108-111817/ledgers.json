@@ -1,0 +1,225 @@
+{
+ "ledger_schema": 1,
+ "ledgers": {
+  "Z1/V0": [
+   {
+    "evaluation_id": "Z1/V0",
+    "request_id": "Z1",
+    "policy": "V0",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 5
+   }
+  ],
+  "Z1/VI": [
+   {
+    "evaluation_id": "Z1/VI",
+    "request_id": "Z1",
+    "policy": "VI",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 9
+   }
+  ],
+  "Z1/VT": [
+   {
+    "evaluation_id": "Z1/VT",
+    "request_id": "Z1",
+    "policy": "VT",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 7
+   }
+  ],
+  "Z1/VTI": [
+   {
+    "evaluation_id": "Z1/VTI",
+    "request_id": "Z1",
+    "policy": "VTI",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 11
+   }
+  ],
+  "Z10/V0": [],
+  "Z10/VI": [],
+  "Z10/VT": [],
+  "Z10/VTI": [],
+  "Z2/V0": [],
+  "Z2/VI": [],
+  "Z2/VT": [],
+  "Z2/VTI": [],
+  "Z3/V0": [
+   {
+    "evaluation_id": "Z3/V0",
+    "request_id": "Z3-B",
+    "policy": "V0",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 36
+   }
+  ],
+  "Z3/VI": [
+   {
+    "evaluation_id": "Z3/VI",
+    "request_id": "Z3-B",
+    "policy": "VI",
+    "receipt_sha256": "1c9f7a6400a4b563167e2e7029d634abec190b49f494862f11c7ae3a06b25c76",
+    "authority_version": 1,
+    "event_seq": 39
+   }
+  ],
+  "Z3/VT": [],
+  "Z3/VTI": [],
+  "Z3P/V0": [
+   {
+    "evaluation_id": "Z3P/V0",
+    "request_id": "Z3P-B",
+    "policy": "V0",
+    "receipt_sha256": "dc84ba828a0e87e6a4c421b260f5b006431ff8939261c7b3dc74ff45fd4d90c6",
+    "authority_version": 1,
+    "event_seq": 44
+   }
+  ],
+  "Z3P/VI": [
+   {
+    "evaluation_id": "Z3P/VI",
+    "request_id": "Z3P-B",
+    "policy": "VI",
+    "receipt_sha256": "dc84ba828a0e87e6a4c421b260f5b006431ff8939261c7b3dc74ff45fd4d90c6",
+    "authority_version": 1,
+    "event_seq": 48
+   }
+  ],
+  "Z3P/VT": [
+   {
+    "evaluation_id": "Z3P/VT",
+    "request_id": "Z3P-B",
+    "policy": "VT",
+    "receipt_sha256": "dc84ba828a0e87e6a4c421b260f5b006431ff8939261c7b3dc74ff45fd4d90c6",
+    "authority_version": 1,
+    "event_seq": 46
+   }
+  ],
+  "Z3P/VTI": [
+   {
+    "evaluation_id": "Z3P/VTI",
+    "request_id": "Z3P-B",
+    "policy": "VTI",
+    "receipt_sha256": "dc84ba828a0e87e6a4c421b260f5b006431ff8939261c7b3dc74ff45fd4d90c6",
+    "authority_version": 1,
+    "event_seq": 50
+   }
+  ],
+  "Z4/V0": [
+   {
+    "evaluation_id": "Z4/V0",
+    "request_id": "Z4",
+    "policy": "V0",
+    "receipt_sha256": "db6366ed5f32292d0dfb3814dceb37d91152374372cd12d1b1e6d3573b9efa51",
+    "authority_version": 2,
+    "event_seq": 56
+   }
+  ],
+  "Z4/VI": [],
+  "Z4/VT": [
+   {
+    "evaluation_id": "Z4/VT",
+    "request_id": "Z4",
+    "policy": "VT",
+    "receipt_sha256": "db6366ed5f32292d0dfb3814dceb37d91152374372cd12d1b1e6d3573b9efa51",
+    "authority_version": 2,
+    "event_seq": 58
+   }
+  ],
+  "Z4/VTI": [],
+  "Z5/V0": [
+   {
+    "evaluation_id": "Z5/V0",
+    "request_id": "Z5",
+    "policy": "V0",
+    "receipt_sha256": "5f540612ee458c6ecae704e73baa2d49ba3687e82d111ab95d340e14ed21f45d",
+    "authority_version": 2,
+    "event_seq": 64
+   }
+  ],
+  "Z5/VI": [],
+  "Z5/VT": [],
+  "Z5/VTI": [],
+  "Z6/V0": [
+   {
+    "evaluation_id": "Z6/V0",
+    "request_id": "Z6",
+    "policy": "V0",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 73
+   }
+  ],
+  "Z6/VI": [
+   {
+    "evaluation_id": "Z6/VI",
+    "request_id": "Z6",
+    "policy": "VI",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 77
+   }
+  ],
+  "Z6/VT": [
+   {
+    "evaluation_id": "Z6/VT",
+    "request_id": "Z6",
+    "policy": "VT",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 75
+   }
+  ],
+  "Z6/VTI": [
+   {
+    "evaluation_id": "Z6/VTI",
+    "request_id": "Z6",
+    "policy": "VTI",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 79
+   }
+  ],
+  "Z7/V0": [
+   {
+    "evaluation_id": "Z7/V0",
+    "request_id": "Z7",
+    "policy": "V0",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 82
+   }
+  ],
+  "Z7/VI": [],
+  "Z7/VT": [
+   {
+    "evaluation_id": "Z7/VT",
+    "request_id": "Z7",
+    "policy": "VT",
+    "receipt_sha256": "7c373e8cea8c85c63c717a34cf322ae2352eeb6998966d216eeb915710dce054",
+    "authority_version": 2,
+    "event_seq": 84
+   }
+  ],
+  "Z7/VTI": [],
+  "Z8/V0": [],
+  "Z8/VI": [],
+  "Z8/VT": [],
+  "Z8/VTI": [],
+  "Z9a/V0": [],
+  "Z9a/VI": [],
+  "Z9a/VT": [],
+  "Z9a/VTI": [],
+  "Z9b/V0": [],
+  "Z9b/VI": [],
+  "Z9b/VT": [],
+  "Z9b/VTI": []
+ },
+ "note": "final approvals per isolated ledger (id = \u003cledger group\u003e/\u003cpolicy\u003e); Z1 and Z11 share group Z1"
+}

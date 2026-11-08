@@ -1,0 +1,13 @@
+{
+ "a2a_exchanges": 9,
+ "cache_hits_worker_reported": 0,
+ "evaluations_declared": 52,
+ "fake_receipts": 1,
+ "new_cache_files": 7,
+ "new_proofs_worker_reported": 7,
+ "replayed_receipts": 1,
+ "results_delivered": 9,
+ "rows": 52,
+ "transport_rejected": 0,
+ "wall_seconds": 169.213425994
+}

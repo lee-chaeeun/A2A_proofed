@@ -1,0 +1,7 @@
+=== RUN   TestHistoricalV2_CloseThenSwap_SEnvCB
+    zz_historical_continuity_test.go:164: v2 decision: err=<nil> accept=true stage= reason= job_released=true token=ecaf3372ebdbf57c47094a44 ack_claimed=dep-B job_error=""
+    zz_historical_continuity_test.go:167: RESULT: B RECEIVED THE JOB B:ecaf3372ebdbf57c47094a44 after a valid proof from A (v2 code has no connection pin). B answered 0 challenges.
+    zz_historical_continuity_test.go:175: A received nothing
+--- PASS: TestHistoricalV2_CloseThenSwap_SEnvCB (0.01s)
+PASS
+ok  	a2aid/internal/verifier	0.011s

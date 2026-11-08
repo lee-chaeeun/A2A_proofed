@@ -1,0 +1,28 @@
+{
+  "run_dir": "/home/bitchae/aisafety/swarmalign/a2a-identity/results/reviewer-v3-final/20261107T232312Z/empty-inventoried-rejected-cell",
+  "inventory_source": "run-inventory.json",
+  "inventory_cells": 6,
+  "cells_found": 6,
+  "decisions": 6,
+  "dispatch_attempts": 6,
+  "receipts": 2,
+  "outcomes": {
+    "ablation_excluded": 1,
+    "verified_dispatch": 2,
+    "verified_non_dispatch": 3
+  },
+  "checks_by_class": {
+    "cooperative_event": 4,
+    "copied_appraisal": 6,
+    "recomputed": 53,
+    "requester_tls_observation": 12,
+    "stipulated_order": 2
+  },
+  "failed_checks_by_class": {
+    "recomputed": 1
+  },
+  "orphan_receipts": 0,
+  "exit_code": 0,
+  "verdict": "NO UNEXPECTED VIOLATION",
+  "conditional_note": "Structural audit of retained records. Authorization validity is conditional on the recorded appraisal (copied_appraisal); TLS facts are the requester's own run-time observations; receipts are cooperative events attributed by the controller; cross-process order rests on causal ids (decision id, nonce, token) and requester sequence numbers, with any remainder stipulated by the controller. Not tamper-proof evidence and not a security proof."
+}

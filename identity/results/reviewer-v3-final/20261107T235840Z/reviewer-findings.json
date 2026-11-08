@@ -1,0 +1,82 @@
+{
+  "binary_sha256": "9d91bdbd71280f99a986102ccd5bf1ecf0631577d7c0be235e40c5b585d0e87f",
+  "cases": [
+    {
+      "case": "baseline",
+      "exit": 0,
+      "decisions": 7,
+      "verdict": "NO UNEXPECTED VIOLATION",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 2,
+        "verified_non_dispatch": 4
+      },
+      "unexpected_cells": []
+    },
+    {
+      "case": "empty-inventoried-rejected-cell",
+      "exit": 2,
+      "decisions": 6,
+      "verdict": "INCOMPLETE",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 2,
+        "verified_non_dispatch": 3
+      },
+      "unexpected_cells": []
+    },
+    {
+      "case": "unexpected-malformed-cell",
+      "exit": 2,
+      "decisions": 7,
+      "verdict": "INCOMPLETE (cells not in the declared inventory)",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 2,
+        "verified_non_dispatch": 4
+      },
+      "unexpected_cells": [
+        "UNDECLARED"
+      ]
+    },
+    {
+      "case": "removed-appraised-event",
+      "exit": 1,
+      "decisions": 7,
+      "verdict": "UNEXPECTED VIOLATION",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 1,
+        "verified_non_dispatch": 4,
+        "violation": 1
+      },
+      "unexpected_cells": []
+    },
+    {
+      "case": "changed-session-action-audience",
+      "exit": 1,
+      "decisions": 7,
+      "verdict": "UNEXPECTED VIOLATION",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 1,
+        "verified_non_dispatch": 4,
+        "violation": 1
+      },
+      "unexpected_cells": []
+    },
+    {
+      "case": "inventory-policy-mismatch",
+      "exit": 1,
+      "decisions": 7,
+      "verdict": "UNEXPECTED VIOLATION",
+      "outcomes": {
+        "ablation_excluded": 1,
+        "verified_dispatch": 1,
+        "verified_non_dispatch": 4,
+        "violation": 1
+      },
+      "unexpected_cells": []
+    }
+  ]
+}

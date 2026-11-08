@@ -1,0 +1,2 @@
+4d5b73cf6f949f69d0679c3098d2ebcbf03c3ca69f9cb8e03804912d9062bc99  results/audit/20261107T191625Z-v2snapshot/source-v2.tar.gz
+2b05751f988940ef3743e94d90e19d7fbef81db3958528a13274d3516d50f684  results/audit/20261107T225036Z-v2-continuity-historical/zz_historical_continuity_test.go.txt

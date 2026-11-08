@@ -1,0 +1,2 @@
+zk-oracle: mode="schema-2 (inventory declared before execution)" declared=52 rows=52 scored=36 agree=36 disagree=0 violations=0 evidence_mismatch=0 incomplete=16 malformed=1 attack_successes=7 wrong_context=3/8 unsafe=5/12 denied_legit=0/8 exit=2
+  malformed: requests.json entry 0 is null

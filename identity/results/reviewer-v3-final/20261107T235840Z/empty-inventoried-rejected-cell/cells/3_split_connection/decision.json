@@ -1,0 +1,21 @@
+{
+  "decisions": [],
+  "note": "fail-closed: two distinct exporters in one decision reject at stage=binding",
+  "requester_emissions_dropped": 0,
+  "sessions": [
+    {
+      "nonce": "7v2E+ZrxjljU77xObqoAtH6L/t8nIcrS1GoCY4beDmk=",
+      "expected_deployment": "A",
+      "action": "release-synthetic-job",
+      "policy": "S-env+cb",
+      "audience": "requester:a2aid-lab",
+      "issued_at": "2026-11-07T23:38:56.482986359Z",
+      "expires_at": "2026-11-07T23:40:56.482986359Z",
+      "consumed": true,
+      "consumed_at": "2026-11-07T23:38:56.485129672Z",
+      "result": "reject:binding",
+      "released": false,
+      "appraisals": 1
+    }
+  ]
+}
