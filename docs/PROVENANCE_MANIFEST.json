@@ -1,13 +1,23 @@
 {
- "built_utc": "2026-11-08T17:10:55Z",
+ "built_utc": "2026-11-08T22:11:52Z",
  "scope": "every published file except this manifest",
- "files": 1526,
- "bytes": 15558405,
+ "files": 1529,
+ "bytes": 15752581,
  "entries": [
   {
    "published_path": ".gitignore",
-   "sha256": "1fa47424be562c69e26ef3e07d8996898e96d6df07ffd750df4ea83b5a479795",
-   "bytes": 1127
+   "sha256": "1df8ba0ec690a73a159f727d5909fe3c71310fded35890fdd8fd91492e2946d2",
+   "bytes": 1140
+  },
+  {
+   "published_path": ".vscode/extensions.json",
+   "sha256": "feb20e05f689de2648a7eb27b694bd3ad2731109363b38ac528173a607038342",
+   "bytes": 51
+  },
+  {
+   "published_path": ".vscode/settings.json",
+   "sha256": "4d53f36993843d337606be0a81b8134b4317b91b34163809c19a1c90a4719ed6",
+   "bytes": 530
   },
   {
    "published_path": "LICENSE",
@@ -26,13 +36,13 @@
   },
   {
    "published_path": "README.md",
-   "sha256": "bc44a5c64aa1a92132d132d15a0174a00cf38a9df2de8ccaaf5a179103d12269",
-   "bytes": 3504
+   "sha256": "4904a7901cbf5520be64adcb02bf7ffd54e3470f1fa81934272239178fd35337",
+   "bytes": 3584
   },
   {
    "published_path": "docs/CODE_MAP.md",
-   "sha256": "0e5cbba3b5321e8813e43da98c412833274df3432fa3900bbf85679dd15c465e",
-   "bytes": 7204
+   "sha256": "d0196b2fa101c110a4b6bf0206288144e3866f0f327fb3ab163a6cd2fcd70c64",
+   "bytes": 7337
   },
   {
    "published_path": "docs/DESIGN.md",
@@ -41,8 +51,8 @@
   },
   {
    "published_path": "docs/REPRODUCING.md",
-   "sha256": "c228bed822cf4c08bdf925be822831e2834f1d02081f11c859d3857a3f5d4d52",
-   "bytes": 3847
+   "sha256": "7a95eeb95dfb9809ea207eeec59aa39be53bae47af6a8a05a2bcf486b113396d",
+   "bytes": 4711
   },
   {
    "published_path": "docs/RESULTS.md",
@@ -71,8 +81,8 @@
   },
   {
    "published_path": "docs/packaging/verify_manifest.py",
-   "sha256": "7e62f94bfe68dc030591f7a26ad040d7800dd2444900cd8cbf90069487fea958",
-   "bytes": 1843
+   "sha256": "95358c2bc1f73827d94f9638c71284c70eef8712c725dcf71c904dc56a9ad3c9",
+   "bytes": 1943
   },
   {
    "published_path": "identity/README.md",
@@ -3865,24 +3875,34 @@
    "bytes": 3054
   },
   {
+   "published_path": "paper/Makefile",
+   "sha256": "c87bbd9b52ea4ebf2723e48cf801bf303bf118ddcc7594e3a3a0554a72d454d5",
+   "bytes": 2733
+  },
+  {
    "published_path": "paper/README-BUILD.txt",
-   "sha256": "2703742d6b5759ec1bc5979068042354273602df5269f7ff28d35ce46b8f62bd",
-   "bytes": 485
+   "sha256": "20fbc2b3730a0be628d9f7ce3c214097350596feac3e6c2ef8b1c8ae4ee7b716",
+   "bytes": 847
   },
   {
    "published_path": "paper/SHA256SUMS",
-   "sha256": "df8a36ca1f8a641a55b7ec99f7191df70cf2f3fe66287430a7818857d902b0e5",
+   "sha256": "9906934947b75fb88e64c26563eaed28f054ffe7606e3a2d7eebd8d4dde668e8",
    "bytes": 178
   },
   {
    "published_path": "paper/a2a-identity-latex.zip",
-   "sha256": "22eb8da0542a20d741722d4146a1d720561452aab2f27590445a2ed2f33ef5fa",
-   "bytes": 333468
+   "sha256": "3687fc101ff0d8e61edf51456bb79cda9e6a199e9c96b49ca41bfa1dc912b390",
+   "bytes": 326941
   },
   {
    "published_path": "paper/a2a-identity-paper.pdf",
-   "sha256": "ea04210bb7a8ee6c407ca3ddaaa78d7bf69e4f05979d4f111177d706d299a3e1",
-   "bytes": 138369
+   "sha256": "7148f10958a0bef2fea002c640f6d5cae886ad7f33acc83e6abde67c777db16d",
+   "bytes": 364486
+  },
+  {
+   "published_path": "paper/appendix.tex",
+   "sha256": "f36606dd05079842d57822b3a78d5362733481865fdae290de4efbda95fddf05",
+   "bytes": 45171
   },
   {
    "published_path": "paper/fonts/OFL.txt",
@@ -3911,18 +3931,13 @@
   },
   {
    "published_path": "paper/main.tex",
-   "sha256": "6a0b41e4b6174865686061de058b4a5832bbdc75a31f09bcd19c8ceee9a3c85c",
-   "bytes": 59631
+   "sha256": "ddb82395d7028aeee2be50e39521ac76f2cde443c617db3501fab88ab0486a31",
+   "bytes": 35011
   },
   {
-   "published_path": "paper/md2tex.py",
-   "sha256": "5c1f0c93f48136115d3e2e62b6c5360ee80288f846b6b6213c401e2c6d0e3ac2",
-   "bytes": 7242
-  },
-  {
-   "published_path": "paper/paper-draft.md",
-   "sha256": "42f5dc7c829677989ad1d522a8b91fdde8e0f033410cb3dce872ab937e0c58d6",
-   "bytes": 49655
+   "published_path": "paper/references.bib",
+   "sha256": "890d844c5963e33085e182df6f72c237df05a7918fccf25236b22d4395c1232d",
+   "bytes": 6066
   },
   {
    "published_path": "pq-identity/README.md",

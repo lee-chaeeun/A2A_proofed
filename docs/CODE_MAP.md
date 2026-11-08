@@ -69,4 +69,5 @@ Tests sit next to the code they test. Tests that need a running lab, an emulator
 |---|---|
 | `Makefile`, `scripts/check.py` | Short commands for tests and evidence checks; audits run on copies or write to a separate output directory |
 | `docs/packaging/` | `check_package.py` (source coverage of this map, links, Rust sources, secret patterns) and its tests; `update_manifest.py` and `verify_manifest.py` for `docs/PROVENANCE_MANIFEST.json`, the hash list of every published file |
-| `paper/` | `paper-draft.md` (source), `md2tex.py` (converts it to `main.tex` with pandoc), `main.tex`, fonts, PDF and the self-contained LaTeX archive |
+| `paper/` | `main.tex`, `appendix.tex` and `references.bib` (the manuscript source), `Makefile` (build, watch, check, release), fonts, PDF and the self-contained LaTeX archive |
+| `.vscode/` | LaTeX Workshop settings: build the paper through `make` on save, PDF and SyncTeX in VS Code |

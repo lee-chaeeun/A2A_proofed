@@ -14,7 +14,7 @@ This is a runnable simulation, not a hardware or end-to-end post-quantum securit
 | [`pq-identity/`](pq-identity/README.md) | Main experiment: ML-DSA identity proofs from an emulated TPM, eight configurations × 16 scenarios, and the identity-to-result delivery guard |
 | [`identity/`](identity/README.md) | Classical comparison: software signatures and TPM quotes, with and without connection binding |
 | [`zk-component/`](zk-component/README.md) | Task-binding experiment: RISC Zero receipts checked against the request and the authorized input |
-| `paper/` | Manuscript (Markdown and LaTeX), PDF and self-contained LaTeX source archive |
+| `paper/` | Manuscript source (`main.tex`, `appendix.tex`, `references.bib`), PDF and self-contained LaTeX archive |
 | `docs/` | Design, results, code map, reproduction guide, tools and licences |
 
 Each experiment directory is a self-contained Go module (all three share the module name `a2aid`) with its source code, declared scenarios and predictions (`fixtures/`), and the published records of its experiment (`results/`). `pq-identity/` contains the code of the other two plus the PQ additions; the other two are kept because they produced the classical and task-binding results.
@@ -34,7 +34,7 @@ This builds the PQ experiment, runs its tests, re-audits the published 128-cell 
 - [DESIGN.md](docs/DESIGN.md): the two decisions, trust model, attacker capabilities and limits.
 - [RESULTS.md](docs/RESULTS.md): findings of the three experiments and how to read the published records.
 - [CODE_MAP.md](docs/CODE_MAP.md): what each package and script does.
-- [REPRODUCING.md](docs/REPRODUCING.md): building the emulator, fresh runs, receipt verification and the paper.
+- [REPRODUCING.md](docs/REPRODUCING.md): the shortest reproduction of the paper's findings, the emulator build, fresh runs, receipt verification and the paper build.
 - [TOOLS.md](docs/TOOLS.md): dependencies, versions, code origins and licences.
 
 ## License

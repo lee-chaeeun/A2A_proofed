@@ -2,6 +2,16 @@
 
 Run commands from the repository root unless a step says otherwise. The experiments were run on Linux with Go 1.27.1, swtpm 0.10.2, Rust 1.93 and RISC Zero 3.0.6; Go modules and Rust crates are pinned by their lock files.
 
+## 0. Shortest path to the paper's central findings
+
+With Go and Python installed, from the repository root:
+
+```sh
+make check
+```
+
+This re-audits the published 128-cell PQ run (Table 2 of the paper, including the 25 declared attacker deliveries) and the 17 corrupted-evidence controls. The emulator check behind Section 4.1 is read from `pq-identity/results/device/20261108T130125Z/README.md`; re-running it needs the emulator build in step 2. The task-binding results (Section 4.5) are re-verified in step 4, which needs the RISC Zero tools.
+
 ## 1. Check the published evidence (Go and Python only)
 
 ```sh
@@ -84,7 +94,7 @@ scripts/cleanup.sh
 
 ## 7. Rebuild the paper
 
-Edit `paper/paper-draft.md`, then from `paper/` run `python3 md2tex.py` (needs pandoc) and LuaLaTeX twice. `paper/a2a-identity-latex.zip` is self-contained, with fonts and build instructions.
+The manuscript sources are `paper/main.tex`, `paper/appendix.tex` (included by `main.tex`) and `paper/references.bib`; there is no other source. From `paper/`: `make` runs LuaLaTeX, BibTeX and LuaLaTeX twice into `build/main.pdf`; `make watch` rebuilds on every save; `make check` reports pages and LaTeX warnings; `make release` refreshes the published PDF, the self-contained source ZIP and the checksums. In VS Code, the LaTeX Workshop extension uses the repository settings to build through `make` on save.
 
 ## Updating the published file list
 

@@ -15,7 +15,8 @@ def publication_files():
         rel = path.relative_to(ROOT)
         build_bin = (rel.parts[0] == "bin" or
                      (len(rel.parts) > 1 and rel.parts[0] in {"identity", "zk-component", "pq-identity"} and rel.parts[1] == "bin"))
-        if path.is_file() and not build_bin and not any(p in IGNORED_DIRS for p in rel.parts):
+        paper_build = rel.parts[:2] == ("paper", "build")  # local LaTeX output
+        if path.is_file() and not build_bin and not paper_build and not any(p in IGNORED_DIRS for p in rel.parts):
             if rel.as_posix() != MANIFEST:
                 yield rel.as_posix(), path
 
