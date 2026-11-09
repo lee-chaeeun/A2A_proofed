@@ -1,4 +1,4 @@
-# pqtpm — bridge to the firmware TPM emulator
+# pqtpm: bridge to the firmware TPM emulator
 
 A small C program that manages an ML-DSA key inside the wolfTPM firmware TPM (TPM 2.0 v1.85) through the wolfTPM client library:
 

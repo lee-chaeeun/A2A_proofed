@@ -1,97 +1,69 @@
-# Design and trust model
+# Design
 
-This page explains how each check works, what the prototype trusts, what the attacker can do, and what the experiments do not show.
+Alice is the client, Bob the agent she wants to reach, Mallory the attacker. In code and records Bob is deployment A (Atlas) and Mallory is deployment B (Boreas).
 
-Participants: **Alice (A)** is the requester. **Bob (B)** is the intended recipient and the worker who computes the result. **Mallory (M)** is the attacker. In code and saved records, deployment A (Atlas) is Bob and deployment B (Boreas) is Mallory.
-
-## Terms used on this page
-
-- **TPM (Trusted Platform Module):** a security chip that creates keys and signs with them without giving the private key to the application. This prototype uses software emulators of a TPM.
-- **ML-DSA-65:** a post-quantum signature scheme (NIST FIPS 204). **ECDSA P-256:** a widely used classical signature scheme, included for comparison.
-- **TLS:** the encryption layer of HTTPS. **Exporter:** a 32-byte value that both ends of one TLS connection can compute and that differs for every connection (RFC 9266).
-- **CBOR:** a compact binary data format. *Deterministic* CBOR always encodes the same data as the same bytes, so Alice and Bob sign and check identical bytes.
-- **COSE:** a standard way to wrap signed CBOR data.
-- **Enrollment registry:** Alice's list of each agent's expected address, TLS server name, signature algorithm and public key.
-
-## The two decisions, step by step
+## Flow
 
 ```text
-Enrollment registry: address, TLS name, algorithm, key identifier, public key
-      |
-1. Read Bob's Agent Card           -> check its signature, Bob's address and TLS name
-2. Send a fresh random challenge   -> Alice stores it with the request
-3. Bob signs a request record      -> key in a signing service, a key file or an emulated TPM
-4. Check the signed record         -> Bob's registered public key; Alice's own TLS exporter
-5. Send the task                   -> once, only on the connection that carried the proof
-      |
-6. Bob proves the computation      -> RISC Zero receipt: proof plus public output
-7. Check the proof                 -> against the program identifier Alice expects
-8. Check the public output         -> right request challenge, allowed input
-9. Record the approval             -> at most once per request
+1. Alice reads Bob's Agent Card     check its signature, Bob's address and TLS server name
+2. Alice sends a random challenge   and stores the request it belongs to
+3. Bob signs a request record       with a key in a signing service, a key file or the TPM emulator
+4. Alice checks the record          signature under Bob's enrolled key; every field against her stored request
+5. Alice sends the task             once, on the connection that carried the proof
+6. Bob returns a RISC Zero receipt  a proof plus the program's public output (the journal)
+7. Alice verifies the receipt       against the program identifier she expects
+8. Alice checks the journal         result passed, challenge matches, input is one the request allows
+9. Alice records the approval       at most once per request
 ```
 
-Steps 1–5 are **identity authentication**, tested in Experiment 1 (`pq-identity/`) and Experiment 2 (`identity/`). Steps 6–9 are **ZK result verification**, tested in Experiment 3 (`zk-component/`). The separate integration test in `pq-identity/` runs all nine steps once with the emulated TPM. It does not repeat Experiment 3's attack scenarios.
+Steps 1–5 are tested in Experiments 1 and 2, steps 6–9 in Experiment 3. The integration test runs all nine once.
 
-## Identity authentication
+Alice keeps an enrollment registry: for each agent, its address, TLS server name, signature algorithm and public key. Everything she checks is compared against this registry or her own stored request, never against values the agent supplies.
 
-**What Bob signs.** Bob signs a short record that names the challenge, the intended agent, the requester, the action, the session, the expected algorithm and key, and an expiry time. The record is deterministic CBOR, signed directly with ML-DSA-65 or ECDSA. It is not wrapped in COSE. Alice rebuilds the record from her own stored request and compares it field by field. A response therefore cannot choose a different key, algorithm or session, and an answer to an old challenge cannot be reused.
+## Identity
 
-**Why channel binding matters.** Suppose Mallory holds a copy of Bob's TLS certificate and private key. She can then pass the TLS check and sit between Alice and Bob as a relay. The relay has two separate TLS connections: one with Alice and one with Bob. Each connection has its own exporter value. With channel binding, Bob signs the exporter of the connection Bob sees, and Alice expects the exporter of the connection she sees. The values differ, so Alice rejects the proof and Mallory does not receive the task. This works with software keys and with the emulated TPM.
+Bob signs a record naming the challenge, the intended agent, the requester, the action, the session, the algorithm, the key and an expiry time. It is encoded as deterministic CBOR, so both sides produce the same bytes, and signed directly with ML-DSA-65 or, for comparison, ECDSA P-256. There is no COSE wrapper.
 
-**Delivery guard.** After accepting a proof, Alice sends the task only on the connection that carried that proof, and only once per challenge. She does not open a new connection. If the connection closes first, the task is not sent; a new attempt needs a new challenge.
+**Channel binding.** TLS lets both ends of a connection derive an *exporter* value that is different for every connection (RFC 9266). In bound configurations Bob puts the exporter of Bob's own connection into the record. A relay that holds Bob's TLS certificate still has two connections, one to Alice and one to Bob, with two different exporters, so Alice rejects the forwarded proof.
 
-**Where the key is kept.** Experiment 1 compares three places:
-- a **signing service** that signs only for listed processes. It stands in for the key-access boundary we model; it is not a hardware measurement. The `env` in the configuration names `EC-env` and `PQ-env` refers to this service;
-- a **key file** among the agent's credential files;
-- the **wolfTPM firmware TPM emulator**, which creates the ML-DSA key and signs through TPM commands without returning the private key to the application.
+**Delivery guard.** Once a proof is accepted, the task goes only on that connection and only once per challenge. If the connection closes, nothing is sent and Alice has to start again.
 
-## ZK result verification
+**Key locations.** The signing service signs only for listed processes; it models a key-access boundary and is not a hardware measurement (`env` in `EC-env` and `PQ-env` refers to it). The key file sits among the agent's credentials. The wolfTPM firmware TPM emulator creates the ML-DSA key and signs through TPM commands without returning the private key.
 
-Bob runs a small program that checks whether four portfolio holdings add up to at most 100. RISC Zero produces a **receipt**: a proof that this exact program ran, plus its public output (the **journal**). The journal states whether the limit is met, the request challenge, and a hash that identifies the input.
+## Result approval
 
-**A valid proof is not permission to approve.** Checking the receipt tells Alice that the program produced this journal from some input. It does not tell her that the journal answers her request, or that the input is the one she allowed. Alice approves only if all of these hold:
+Bob's program checks whether four portfolio holdings add up to at most 100. A valid receipt shows that this program produced the journal from some input. It says nothing about whether the journal answers Alice's request or used an input she allowed, so Alice checks those separately.
 
-1. the receipt verifies for the expected program;
-2. the computation passed (the total is at most 100);
-3. the challenge in the journal matches her stored request;
-4. the input hash matches an input her request allows;
-5. the request has not been approved before.
+Example: the earlier portfolio totals 80 and passes; after an update it totals 120 and fails. A proof about the earlier portfolio stays valid. If the request named that earlier snapshot (*Pinned*), approving it is correct. If the request asked for the latest snapshot (*Current*), the same proof has to be refused.
 
-**A concrete example.** Bob's earlier portfolio totals 80, which is within the limit of 100. The portfolio is then updated to a total of 120, which exceeds it. A proof about the old portfolio stays valid forever: it truly shows that 80 is at most 100. But it says nothing about the updated portfolio. Each request therefore states which input it allows. A *Pinned* request names one historical snapshot, so the proof about 80 is acceptable. A *Current* request requires the latest snapshot, so the same proof must be refused once the total is 120.
+## TPM quotes
 
-## TPM quote comparison
+A quote is a TPM-signed report of its register values. In Experiment 2 the checked register holds a string the operator chose, so a passing quote shows that the enrolled key signed that value, not that trustworthy code is running. One configuration wraps the quote in a signed COSE response of our own design; some of its fields and checks follow the routine response in the PTV Internet-Draft ([draft-01](https://datatracker.ietf.org/doc/html/draft-anandakrishnan-rats-ptv-agent-identity-01)), but it does not implement PTV.
 
-Experiment 2 asks what a TPM quote adds. A **quote** is a TPM-signed report of the values in its platform configuration registers (PCRs). Here the checked register holds a string chosen by the operator, not a measurement of running software.
+## What each part protects against
 
-The comparison includes a quote inside a signed COSE response that we designed. Some of its fields and checks are taken from the routine response of the Prove-Transform-Verify (PTV) Internet-Draft ([draft-01](https://datatracker.ietf.org/doc/html/draft-anandakrishnan-rats-ptv-agent-identity-01)), a work-in-progress proposal for attested agent identity: the version, message type, attester identifier, triage band, evidence and timestamp fields; the rule that a routine response carries evidence and no separate proof; PTV's error codes; and a 300-second time window. This is our own design. It does not implement PTV and claims no conformance with it.
+| Part | Protects against | Does not protect against |
+|---|---|---|
+| ML-DSA | Quantum attacks on the signature | Someone who can use Bob's signer |
+| Physical TPM, non-exportable key (expected, not tested) | Copying the key through files or key blobs | Someone who can ask the TPM to sign; hardware attacks |
+| TPM emulator (tested) | The application handling the private key | Copying the emulator's state file (control X2) |
+| Channel binding | The tested relay with Bob's TLS credentials | Mallory using Bob's signer |
+| Request and input checks | Approving a valid proof for another request or outdated data | A wrong but authorized input |
 
-## What each protection adds
+Keeping an ECDSA key in a TPM does not make it quantum-resistant.
 
-- **ML-DSA** protects the signature scheme against quantum attacks. A large enough quantum computer could work out an ECDSA private key from its public key, even if the private key never leaves a TPM.
-- **A physical TPM with a key that cannot be exported** protects against copying the key. Copying the agent's files, or the TPM's encrypted key blobs, does not give another machine the ability to sign. Copying such a key would require defeating the TPM's hardware protections, for example with physical access to the device. It does not stop someone who can already ask the original TPM to sign (control X1). Keeping an ECDSA key in a TPM does not make ECDSA quantum-resistant.
-- **The emulator** shows that an ML-DSA key can be created and used through TPM commands inside A2A. It does not show hardware protection: its whole state is a file that can be copied, and control X2 shows that Mallory can then impersonate Bob.
-- **Channel binding** stopped the tested relay from reusing Bob's valid response on Mallory's connection with Alice (scenario P8).
-- **Request and input checks** stopped genuine proofs that answered the wrong request or used outdated data from being approved (Experiment 3).
+## Trust and attacker
 
-These results come from fixed scenarios on one machine. They do not show that TPMs, post-quantum signatures or ZK proofs are needed in every deployment.
+Trusted: Alice, the registry, the local certificate authority, the emulator operator, the signing service's access list, the record of allowed inputs, and the expected program identifier. Not trusted: anything an agent sends.
 
-## What the prototype trusts
+Mallory's capabilities, weakest first: Bob's Agent Card; Bob's application and credential files; Bob's address without credentials; Bob's TLS certificate and key; use of Bob's ECDSA or ML-DSA signer; a full copy of the emulator state. Some scenarios add rewriting the challenge or binding, swapping keys or algorithms, replacing the connection, or racing two deliveries. In Experiment 3 the worker may replay, damage or substitute receipts, prove over old input or the wrong challenge, or deliver twice.
 
-**Trusted:** Alice and what she observes on her own TLS connections; the enrollment registry; the laboratory certificate authority; whoever administers the emulators; the signing service's list of allowed processes; the input authority's record of which inputs are allowed; the expected program identifier and the proof checker.
+## Limits
 
-**Not trusted:** anything an agent sends: Agent Cards, challenge responses, quotes, signed responses, receipts and unsigned extra data.
+- Both TPMs are emulators. Physical key protection and physical-TPM performance are untested.
+- Agent Cards, TLS, the certificate authority and the quotes are classical, so the system is not post-quantum end to end. Anyone with the TLS session secrets also has the exporter.
+- All processes share one operating-system account. Key registration and revocation are tested only for one replaced key.
+- The verification scripts check proofs and record consistency with the same libraries as the application; they cannot show that logged events happened.
+- Nothing is formally verified, the scenarios are hand-picked, and the agents are scripted.
 
-**What Mallory can do, from weakest to strongest:** copy Bob's Agent Card; copy Bob's application and credential files; take over Bob's address without Bob's credentials; hold Bob's TLS certificate and key; use Bob's ECDSA or ML-DSA signer; copy the emulator's entire state. In some scenarios Mallory also rewrites the challenge, removes or injects the binding value, substitutes keys or algorithms, swaps the connection after the check, or races two deliveries. In Experiment 3, the attacker replays, damages or substitutes receipts, proves over outdated input or the wrong challenge, adds misleading unsigned data, or delivers a result twice.
-
-## What the experiments do not show
-
-- **Hardware protection.** Both TPMs are software. Their state, including the key that protects the firmware TPM's storage, is a file on the host. A physical ML-DSA-capable TPM was not tested, and its speed was not measured.
-- **End-to-end post-quantum security.** Agent Card signatures, TLS 1.3, the certificate authority and the TPM quotes are classical. Someone who learns the TLS session secrets also learns the exporter.
-- **Trustworthy code.** The checked register holds a chosen string. A passing quote shows that the enrolled key signed that register value, not that trustworthy software is running.
-- **Production isolation.** All processes share one operating-system account. Registering, replacing and disabling keys are tested only for one replaced key.
-- **Proof that events happened.** The verification scripts check that proofs verify and records are consistent. They use the same libraries as the application and cannot prove the logged events occurred.
-- **Formal guarantees, attack frequencies or real agents.** Nothing is formally verified. The scenarios are chosen protocol cases, not measured attack rates, and no language-model agent is involved.
-
-## Dual use
-
-The scenarios copy, replay, relay and hijack local test processes with synthetic tasks. No third-party system is attacked.
+The scenarios run only against local processes with synthetic tasks.

@@ -1,23 +1,13 @@
 {
- "built_utc": "2026-11-09T01:52:45Z",
+ "built_utc": "2026-11-09T02:03:17Z",
  "scope": "every published file except this manifest",
- "files": 1529,
- "bytes": 15772416,
+ "files": 1514,
+ "bytes": 14192830,
  "entries": [
   {
    "published_path": ".gitignore",
-   "sha256": "1df8ba0ec690a73a159f727d5909fe3c71310fded35890fdd8fd91492e2946d2",
-   "bytes": 1140
-  },
-  {
-   "published_path": ".vscode/extensions.json",
-   "sha256": "feb20e05f689de2648a7eb27b694bd3ad2731109363b38ac528173a607038342",
-   "bytes": 51
-  },
-  {
-   "published_path": ".vscode/settings.json",
-   "sha256": "4d53f36993843d337606be0a81b8134b4317b91b34163809c19a1c90a4719ed6",
-   "bytes": 530
+   "sha256": "18b1ac6a2870303689100b62a02874a2f4b6e8babe52b93c8ba5191ca47e0187",
+   "bytes": 998
   },
   {
    "published_path": "LICENSE",
@@ -31,38 +21,38 @@
   },
   {
    "published_path": "NOTICE",
-   "sha256": "f9d82965a77a68892fc183a55d6bcf506f4c646f144f5d0736941c3fc741bc24",
-   "bytes": 1022
+   "sha256": "04e5e2430ce0e5dd6b6ea75424982aa791e5befca8154a6715e631a1023aab32",
+   "bytes": 923
   },
   {
    "published_path": "README.md",
-   "sha256": "b32c0d303c61686c562ac1ab9b9c2374190e8ffe59038a7a2ea7c03b4f86a55e",
-   "bytes": 9230
+   "sha256": "033e25e8d30b7c6c824ceeaaff2438355bce267686526f4bfde4f7b20e9d8b40",
+   "bytes": 3087
   },
   {
    "published_path": "docs/CODE_MAP.md",
-   "sha256": "a7248963c9503cb464fd320901123c556b2046cdec6cf4b72a13958f7de76c65",
-   "bytes": 9021
+   "sha256": "bf90c395a2df871848c094fc67525500e5bbe334714ad4edc76cf943e70f2c59",
+   "bytes": 5974
   },
   {
    "published_path": "docs/DESIGN.md",
-   "sha256": "94cd9b3b01687254a1a68643684d507789fad6d94102259d0b5fb25d53cf6c15",
-   "bytes": 10624
+   "sha256": "0d4e442c2124c1d921fc4823834caa3cf29ae66fddf3e9cc5c1a1d0d80f3c3dd",
+   "bytes": 5998
   },
   {
    "published_path": "docs/REPRODUCING.md",
-   "sha256": "e0bad13329c0ccf7701d61dabdf08e915e483e676f69fe0a92c70b93ea9c0ad4",
-   "bytes": 7677
+   "sha256": "e5449af291af0c650f43bc42daafa5e142a9f249877d267e33fa2c94b29155e6",
+   "bytes": 4385
   },
   {
    "published_path": "docs/RESULTS.md",
-   "sha256": "a9f079bf1555365c8d9d65f2e12c5b3a8e5ea35d61ddc8b62d5d888f30dc9c7d",
-   "bytes": 12070
+   "sha256": "61ac50abce3d9efc08e262e1adcf5b6510f613944e8867ef4b390981f1a8c21f",
+   "bytes": 7349
   },
   {
    "published_path": "docs/TOOLS.md",
-   "sha256": "a05bf056ee3888b5fb79361601cbf06dc9810856c912cdd3bfefe5689202fe57",
-   "bytes": 4281
+   "sha256": "45101ac592b4dad874055ee47eacec016323d35e587d30a6413e9916de4375f7",
+   "bytes": 3229
   },
   {
    "published_path": "docs/packaging/check_package.py",
@@ -81,13 +71,13 @@
   },
   {
    "published_path": "docs/packaging/verify_manifest.py",
-   "sha256": "95358c2bc1f73827d94f9638c71284c70eef8712c725dcf71c904dc56a9ad3c9",
-   "bytes": 1943
+   "sha256": "7e62f94bfe68dc030591f7a26ad040d7800dd2444900cd8cbf90069487fea958",
+   "bytes": 1843
   },
   {
    "published_path": "identity/README.md",
-   "sha256": "5a7e9e1229f38994bb13953b2181d7be768d5a2a1b7a2441f1455fe79fb7cb89",
-   "bytes": 3646
+   "sha256": "8f9890ddd53d59943ba012e37399f12b50ae6da132613559747c992feecc4c38",
+   "bytes": 1886
   },
   {
    "published_path": "identity/cmd/a2aid/main.go",
@@ -3875,74 +3865,9 @@
    "bytes": 3054
   },
   {
-   "published_path": "paper/Makefile",
-   "sha256": "c87bbd9b52ea4ebf2723e48cf801bf303bf118ddcc7594e3a3a0554a72d454d5",
-   "bytes": 2733
-  },
-  {
-   "published_path": "paper/README-BUILD.txt",
-   "sha256": "20fbc2b3730a0be628d9f7ce3c214097350596feac3e6c2ef8b1c8ae4ee7b716",
-   "bytes": 847
-  },
-  {
-   "published_path": "paper/SHA256SUMS",
-   "sha256": "016aa829fc7d6fdffa3ecff54bd91b15a273a365dd3004e8833b60883176e99a",
-   "bytes": 178
-  },
-  {
-   "published_path": "paper/a2a-identity-latex.zip",
-   "sha256": "33b39407abf9e521bbfb49a9d36f176c6b6f3ab880fd8711c6794855d0c6da62",
-   "bytes": 327082
-  },
-  {
-   "published_path": "paper/a2a-identity-paper.pdf",
-   "sha256": "4cba620c4b3e37ea7c2c82ba75c1e63a46e7790e9e12fcd1f7d1d0d8efdab459",
-   "bytes": 356841
-  },
-  {
-   "published_path": "paper/appendix.tex",
-   "sha256": "f739e7f111c54acd0b1e167da1c078fe406d1b431d795afa7c71c214863253d1",
-   "bytes": 42672
-  },
-  {
-   "published_path": "paper/fonts/OFL.txt",
-   "sha256": "4faa2d9e2ce0a4b5b37e62ee6fafe474a539b31578f7214ed97cc3503aeb8ebd",
-   "bytes": 4373
-  },
-  {
-   "published_path": "paper/fonts/OldStandardTT-bold.ttf",
-   "sha256": "fcd2340207253ef61a6a02694b9a43cd54159867518edfd4788b0916f1fc92a3",
-   "bytes": 260156
-  },
-  {
-   "published_path": "paper/fonts/OldStandardTT-italic.ttf",
-   "sha256": "722168792ee2dda09d07ab6443bdd4743469b86e3d233e5bf8e96e3951afb98c",
-   "bytes": 267016
-  },
-  {
-   "published_path": "paper/fonts/OldStandardTT-regular.ttf",
-   "sha256": "cf759c9617e8d9a74ccc3fcdc8670a25d1e016e6e4cf55c378e79f70bf45520b",
-   "bytes": 242700
-  },
-  {
-   "published_path": "paper/latexmkrc",
-   "sha256": "276b04cd6052a7574fecfc7acad3295d67c4bcf99b2f544b82a6157abe8340aa",
-   "bytes": 15
-  },
-  {
-   "published_path": "paper/main.tex",
-   "sha256": "d37ba517bb8c1aeaa5c5b6294c207e0c36a6f52d2dc13051ca7c253f86fca49b",
-   "bytes": 35589
-  },
-  {
-   "published_path": "paper/references.bib",
-   "sha256": "b651a7e7ad696861baae043320f1616ed2676672dddb092a2b35c34d44c89783",
-   "bytes": 10001
-  },
-  {
    "published_path": "pq-identity/README.md",
-   "sha256": "0c6af9359de4f10be09d76a3615b48e54386c34efbf054c3c94a083f5def4d5f",
-   "bytes": 4637
+   "sha256": "2ee61c6d2fc7ca8b228d09d6c14c935747efa6d6066ebc15477e4f2a82156465",
+   "bytes": 2298
   },
   {
    "published_path": "pq-identity/cmd/a2aid/main.go",
@@ -6876,8 +6801,8 @@
   },
   {
    "published_path": "pq-identity/tools/pqtpm/README.md",
-   "sha256": "552f1242a6768fbf00f59d2131977919548eb2526073886d4f1886d92ca04f58",
-   "bytes": 1634
+   "sha256": "cbd6d94a65c1a88d18aefe6c452f0fac95d95e110f7bfb1e9251c874b6453002",
+   "bytes": 1631
   },
   {
    "published_path": "pq-identity/tools/pqtpm/pqtpm.c",
@@ -6981,8 +6906,8 @@
   },
   {
    "published_path": "zk-component/README.md",
-   "sha256": "5c9750b4440edbed03ee2f4dfa58390a3a8b3666996009602ddc614426390c27",
-   "bytes": 3071
+   "sha256": "0bf895282785974f1466d0af62cf216b01b72f1c9342dc33a53e7ecec41efcb4",
+   "bytes": 1593
   },
   {
    "published_path": "zk-component/cmd/a2aid/main.go",
