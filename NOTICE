@@ -13,5 +13,4 @@ pq-identity/tools/pqtpm (the C bridge to the wolfTPM firmware-TPM emulator) link
 wolfTPM and wolfSSL, which are GPLv3, and is itself licensed under GPLv3
 (pq-identity/tools/pqtpm/LICENSE); the Apache-2.0 Go code executes it as a separate
 process. Other third-party dependencies are fetched by the build tools under their own
-licences (see docs/TOOLS.md). The paper template fonts (Old Standard TT) are under the
-SIL Open Font License 1.1 (paper/fonts/).
+licences (see docs/TOOLS.md).

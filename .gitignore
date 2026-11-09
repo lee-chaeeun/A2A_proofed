@@ -31,15 +31,6 @@ pq-identity/tools/pqtpm/pqtpm
 !pq-identity/results/pq-bench/20261108-132255/
 !pq-identity/results/zk-pq-smoke/20261108-154419/
 **/results/snapshots/
-# Paper build artifacts
-paper/*.aux
-paper/*.log
-paper/*.fls
-paper/*.fdb_latexmk
-paper/*.synctex.gz
-paper/main.pdf
-paper/ziptest/
-paper/build/
 # Editor / OS
 .DS_Store
 *.swp
