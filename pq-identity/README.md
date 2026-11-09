@@ -1,31 +1,42 @@
-# PQ identity experiment
+# Experiment 1: Identity authentication
 
-An agent proves its identity with an ML-DSA-65 signature over a canonical context. In the device configurations the key is created and used by the wolfTPM firmware TPM (TPM 2.0 v1.85) through [`tools/pqtpm`](tools/pqtpm/README.md), and the requester verifies every proof with CIRCL under the enrolled public key. Eight configurations meet 12 scenarios and 4 boundary controls. This module also contains the classical and task-binding code, and sends the computation task through the same delivery guard as the identity task. Design and limits: [DESIGN.md](../docs/DESIGN.md); findings: [RESULTS.md](../docs/RESULTS.md); packages: [CODE_MAP.md](../docs/CODE_MAP.md).
+**Question:** in which configurations does Mallory, the attacker, receive the task that Alice, the requester, meant for Bob?
+
+Bob proves identity by signing a fresh challenge from Alice. The signed record is deterministic CBOR (a binary format that always encodes the same data as the same bytes), signed directly; it is not wrapped in COSE. Alice checks the signature with Bob's registered public key and compares every field with her stored request. In the device configurations, the ML-DSA-65 key is created and used inside the wolfTPM firmware TPM emulator through [`tools/pqtpm`](tools/pqtpm/README.md), a small C bridge program. Alice verifies every signature with CIRCL, an independent ML-DSA library.
+
+Eight configurations meet sixteen scenarios: twelve scenarios (P1–P12) and four boundary controls (X1–X4), for 128 tests. This folder also contains the code of Experiments 2 and 3 and runs the separate integration test.
+
+**Names in the saved records:** deployment A (Atlas) is Bob and deployment B (Boreas) is Mallory. A record that says the task went to `B` means Mallory received it.
+
+More: [DESIGN.md](../docs/DESIGN.md) explains the checks, [RESULTS.md](../docs/RESULTS.md) the findings, [CODE_MAP.md](../docs/CODE_MAP.md) the packages.
 
 ## Configurations
 
-| Paper name | Policy identifier | Signature | Key location |
-|---|---|---|---|
-| Baseline | `C+tls` | none (card signature, endpoint, TLS) | — |
-| Service ECDSA / Service ECDSA (bound) | `EC-env+tls` / `EC-env+cb` | ECDSA P-256 | signing service |
-| Service ML-DSA / Service ML-DSA (bound) | `PQ-env+tls` / `PQ-env+cb` | ML-DSA-65 | signing service |
-| File ML-DSA (bound) | `PQ-file+cb` | ML-DSA-65 | application files |
-| Device ML-DSA / Device ML-DSA (bound) | `PQ-device+tls` / `PQ-device+cb` | ML-DSA-65 | emulated TPM |
+| Name in the paper | Identifier in records | Signature | Where the key is kept | TLS channel binding |
+|---|---|---|---|---|
+| Baseline | `C+tls` | none: only the Agent Card signature, address and TLS are checked | — | no |
+| Service ECDSA | `EC-env+tls` | ECDSA P-256 | signing service | no |
+| Service ECDSA (bound) | `EC-env+cb` | ECDSA P-256 | signing service | yes |
+| Service ML-DSA | `PQ-env+tls` | ML-DSA-65 | signing service | no |
+| Service ML-DSA (bound) | `PQ-env+cb` | ML-DSA-65 | signing service | yes |
+| File ML-DSA (bound) | `PQ-file+cb` | ML-DSA-65 | credential file | yes |
+| Device ML-DSA | `PQ-device+tls` | ML-DSA-65 | emulated TPM | no |
+| Device ML-DSA (bound) | `PQ-device+cb` | ML-DSA-65 | emulated TPM | yes |
 
-`+cb` (bound) puts the requester's TLS exporter into the signed context; `+tls` does not. Scenarios P1–P12 and controls X1–X4 are declared in `fixtures/manifest-pq.json` with their predictions in `fixtures/predictions-pq.md`.
+With channel binding (`+cb`), Bob signs a value taken from Bob's own TLS connection, and Alice compares it with the value from her connection. A relay has two different connections, so the values differ. `env` in `EC-env` and `PQ-env` refers to the signing service; these proofs are not COSE envelopes. The scenarios are defined in `fixtures/manifest-pq.json`, and the predictions recorded before testing are in `fixtures/predictions-pq.md`.
 
-## Published records
+## Saved records
 
-| Directory | Contents |
+| Folder | Contents |
 |---|---|
-| `results/pq/20261108-153049` | The 128-cell matrix |
-| `results/device/20261108T130125Z` | Emulator check: key creation, signing, wrong authorization, tampered message, restart persistence, CIRCL cross-verification, build options |
-| `results/pq-bench/20261108-132255` | Sizes and timings |
-| `results/zk-pq-smoke/20261108-154419` | Computation task over the bound device configuration with a genuine receipt |
+| `results/pq/20261108-153049` | Experiment 1: all 128 tests, including the 25 predicted tests in which Mallory received Bob's task |
+| `results/device/20261108T130125Z` | Emulator check: key creation, signing, wrong password, changed message, restart, CIRCL cross-check, build options |
+| `results/pq-bench/20261108-132255` | Key, signature and proof sizes and signing times |
+| `results/zk-pq-smoke/20261108-154419` | Separate integration test: a computation task delivered over the bound emulator configuration with a real proof. It does not repeat Experiment 3 |
 
-## Commands
+## Check the saved run
 
-From this directory; only Go is needed for the first block.
+From this folder, with only Go and Python:
 
 ```sh
 go test -race -count=1 ./...
@@ -34,9 +45,13 @@ bin/a2aid audit-pq --results results/pq/20261108-153049 --out /tmp/pq-audit
 python3 -I scripts/pq_audit_controls.py --bin bin/a2aid --run results/pq/20261108-153049 --out /tmp/pq-controls
 ```
 
-`audit-pq` checks every declared cell: complete and well-formed records, event order, typed contexts, delivery on the proof connection, receipt joins, and re-verification of every proof under the recorded registry. Exit 0 means complete and in agreement with the declared outcomes, 1 a violation or disagreement, 2 incomplete or malformed evidence. Without `--out` it writes its report into the run directory.
+`audit-pq` is the verification script for this experiment. It reads the saved records without running the agents again. For every test it checks that the records are complete, that events happened in the right order, that each signed record matches Alice's request, that the task was sent only on the connection that carried the proof, and that every saved signature verifies with the registered key. It then compares each outcome with the prediction recorded before testing.
 
-Emulator, fresh matrix and smoke test:
+Expected: a line ending in `attacker_deliveries=25 ... exit=0`, then `controls: 17 cases, 0 mismatches, 0 uncovered, status 0`. Exit code 1 means an outcome differs from its prediction; 2 means records are missing or unreadable. Without `--out`, `audit-pq` writes its report into the run folder.
+
+## Run it again (optional)
+
+These steps build the emulator and need swtpm; see [REPRODUCING.md](../docs/REPRODUCING.md):
 
 ```sh
 scripts/build_pq_toolchain.sh
@@ -45,4 +60,4 @@ scripts/pq_matrix.sh
 scripts/cleanup.sh
 ```
 
-The setup script resets `run/` (emulator state and disposable lab credentials). See [REPRODUCING.md](../docs/REPRODUCING.md) for prerequisites.
+`scripts/setup.sh`, which `pq_matrix.sh` calls, deletes and recreates `run/`, the folder holding the emulator state and throwaway lab credentials.
